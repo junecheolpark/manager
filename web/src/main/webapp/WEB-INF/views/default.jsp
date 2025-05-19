@@ -5,9 +5,6 @@
 <html lang="en">
 <head>
 	<!-- head 파일 -->
-	<%@ include file="/WEB-INF/views/_include/common.jsp" %>
-	<link href="/resources/css/default.css?ver=20230330103500000" rel="stylesheet">
-	<script src="/resources/js/default.js?ver=20230330103500000"></script>
 </head>
 <body>
 
@@ -20,7 +17,7 @@
 
 	<section class="loginCont">
 	    <section class="loginBG">
-	        <p>어디에도<br /><span class="ftBold colPoint">존재하지 않는<br /> 시스템</span>을 만들다 </p>
+	        <!-- <p>어디에도<br /><span class="ftBold colPoint">존재하지 않는<br /> 시스템</span>을 만들다 </p> -->
 	    </section>
 	    <section id="login">
 	        <section>
