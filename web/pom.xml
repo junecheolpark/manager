@@ -13,6 +13,7 @@
 		<org.springframework-security-version>5.6.2</org.springframework-security-version>
 	</properties>
 	
+	<dependencies>
 		<!-- 파일 처리 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -149,4 +150,5 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+	</dependencies>
 </project>
