@@ -21,7 +21,7 @@
 	    </section>
 	    <section id="login">
 	        <section>
-	            <img src="/resources/images/login/logo.png" alt="RYSOFT">
+	            <img src="/resources/images/login/logo.png" alt="junecheol">
 	            <p>LOGIN</p>
 	            <input class="mgB20" name="txtID" type="text" maxlength="100" id="txtID" placeholder="아이디를 입력해주세요." value="">
 	            <input class="mgB20" name="txtPW" type="password" maxlength="100" id="txtPW" placeholder="비밀번호를 입력해주세요." value="">

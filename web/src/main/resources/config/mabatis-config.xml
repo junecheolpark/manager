@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+<!-- 
+기본값 (false): null 값을 가진 컬럼에 대해서는 해당 Java 객체의 setter 메서드를 호출하지 않음.
+true 설정 시: 컬럼 값이 null일지라도 setter를 무조건 호출함. 
+-->
+	<settings>
+		<setting name="callSettersOnNulls" value="true"/>
+	</settings>
+</configuration>
