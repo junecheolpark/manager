@@ -5,6 +5,8 @@
 <html lang="en">
 <head>
 	<!-- head 파일 -->
+	<link href="/resources/css/default.css?ver=20250525103500000" rel="stylesheet">
+	<script src="/resources/js/default.js?ver=20250525103500000"></script>
 </head>
 <body>
 
