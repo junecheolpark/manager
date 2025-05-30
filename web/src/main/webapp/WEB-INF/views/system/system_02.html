@@ -35,7 +35,7 @@
                                     </thead>
                                     <tbody>
                                     
-                                    <%-- list값이 있다면 --%>
+                                    <!-- <%-- list값이 있다면 --%> -->
                                     <c:if test="${list.size() == 0}">
                                     	<tr><td colspan="4" class="colGray2 ftSize12">검색된 내용이 없습니다.</td></tr>
                                     </c:if>
@@ -45,7 +45,7 @@
 	                                            <td>${list.CODE_IDX}</td>
 	                                            <td><a href="#view">${list.CODE_NM}</a></td>
 	                                          
-	                                            <%-- STS(상태)가 1이 아니면 미사용 --%>
+	                                            <!-- <%-- STS(상태)가 1이 아니면 미사용 --%> -->
 	                                            <c:if test="${list.CODE_STS eq 1}">
 	                                            	<td>사용</td>
 	                                            </c:if>
