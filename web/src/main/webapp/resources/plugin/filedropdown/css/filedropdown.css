@@ -1,0 +1,4 @@
+﻿.ry_fileUploadBody .DivScrollY { background: url(/resources/plugin/filedropdown/images/file_drag_bg.png) no-repeat center center; max-height: 200px; }
+.ry_fileUploadBody .DivScrollY .tableList > tbody > tr > td { border-bottom: 1px solid #d7d7d7; }
+
+.ry_btnLoading { display: none; }
