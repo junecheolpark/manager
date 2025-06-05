@@ -44,7 +44,7 @@
             </div>            
         </div>        
         <div class="userInfo">
-			<a href="#noti" onclick="fnNotificationCntView(); return false;"><img id="imgNoti" src="/resources/images/index/bell.png" alt="알림" style="width: 24px;"></a>
+			<a href="#noti" ><img id="imgNoti" src="/resources/images/index/bell.png" alt="알림" style="width: 24px;"></a>
 			<!-- <a href="#"><img src="/resources/images/icon/ic_refresh.png" alt="새로고침"></a> -->
 			<div id="notiCntView" style="display: none;">
 				<ul>
@@ -54,7 +54,7 @@
 				</ul>
 			</div>
             <div class="user">
-                <a href="#user" onclick="fnLoginView(); return false;">
+                <a href="#user" >
                     <img src="/resources/images/profile/s_profile_01.png" id="userCharacterS" alt="userImg" onerror="this.src='/resources/images/profile/s_profile_01.png';">
                     <span><span id="logNM" class="colWhite">&nbsp;</span><br><span id="logDept" class="colGray3 ftSize12">&nbsp;</span></span>                        
                 </a>
@@ -62,7 +62,7 @@
         </div>
         <!-- .userInfo 클릭 시 오픈 -->
         <div id="popUserInfo" class="shadowBox">
-            <a href="#popclose" class="btn-layerClose" onclick="fnLoginView(); return false;" ><img src="/resources/images/btn/btn_popclose.png" alt="닫기"></a>
+            <a href="#popclose" class="btn-layerClose"  ><img src="/resources/images/btn/btn_popclose.png" alt="닫기"></a>
             <div class="popInfoTop">
                 <img src="/resources/images/common/no_Image.jpg" alt="유저" id="userCharacter" onerror="this.src='/resources/images/common/no_Image.jpg';">
                 <!-- 관리자 뱃지 관리자만 노출 -->
@@ -75,13 +75,13 @@
             <div class="popInfoCont">
                 <div id="popMyLink">
                     <a href="/mypage/01"><img src="/resources/images/icon/ic_pcon_1.svg" alt="마이페이지">&nbsp;마이페이지</a>
-                    <!-- <a href="#qr" onclick="fnQRSave(); return false;"><img src="/resources/images/icon/ic_pcon_2.png" alt="QR 다운로드">&nbsp;QR 다운로드</a> -->
+                    <!-- <a href="#qr" ><img src="/resources/images/icon/ic_pcon_2.png" alt="QR 다운로드">&nbsp;QR 다운로드</a> -->
                 </div>
                 <div id="popMyInfo">
                     <ul>                        
                         <!--로그아웃 버튼-->
                         <li>
-                            <a href="/login/logout" class="colRed" onclick="if(!confirm('로그아웃하시겠습니까?')) return false;">
+                            <a href="/login/logout" class="colRed" >
                             <img src="/resources/images/icon/ic_logout.png" alt="로그아웃" >
                             &nbsp;로그아웃</a>
                         </li>
@@ -120,29 +120,6 @@
                 </div>
             </div>
             <!--근태관리//-->
-            <!--//유지보수-->
-            <div class="maintenance">
-                <div class="mTitle">
-                    <span class="ftSize20 ftBold">유지보수</span> &nbsp;&nbsp;
-                    <select name="selSchMt" id="selSchMt" style="width:180px">
-                    </select>&nbsp;&nbsp;
-                    <div class="maintenanceInfo">
-                        <p><span>미처리</span>&nbsp;<span class="colPoint" id="CompleCnt">0</span>건</p>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <p><span class="ftMedium" id="nowMonth">-</span>월<span class="colGray2">&nbsp;|&nbsp;</span></p>
-                        <p><span>예상 MD </span>&nbsp;<span class="colPoint" id="lblRpt01EMD">0<span class="colGray2">&nbsp;|&nbsp;</span></span></p>
-                        <p><span>처리 MD </span>&nbsp;<span class="colPoint" id="lblRpt01CMD">0</span></p>
-                    </div>
-                    <a href="/report/01" class="moreBtn">more +</a>
-                </div>
-                <div class="contBox" id="maintenanceList">
-                    <ul>
-						<li >
-							<span class="noData">검색된 유지보수가 없습니다.</span>
-						<li>
-					</ul>
-                </div>
-            </div>
-            <!--유지보수//-->
             <!--//프로젝트-->
             <div class="project">
                 <div class="mTitle">
@@ -244,10 +221,10 @@
                 <div class="contBox">
                     <div class="tabMenuList" id="boardMenu">
                         <ul>
-                            <li data-mbidx="0" class="choicebulletin"><a href="#all" onclick="return false;">전체</a></li>
-                            <li data-mbidx="11"><a href="#notice" onclick="return false;">공지사항</a></li>
-                            <li data-mbidx="17"><a href="#pds" onclick="return false;">자료실</a></li>
-                            <li data-mbidx="18"><a href="#work" onclick="return false;">업무공유</a></li>
+                            <li data-mbidx="0" class="choicebulletin"><a href="#all">전체</a></li>
+                            <li data-mbidx="11"><a href="#notice">공지사항</a></li>
+                            <li data-mbidx="17"><a href="#pds">자료실</a></li>
+                            <li data-mbidx="18"><a href="#work">업무공유</a></li>
                         </ul>
                     </div>
                     <div class="tabMenuCont">
@@ -270,7 +247,7 @@
         <section class="myPlace">
         	<div class="showMemoBtn"><img src="/resources/images/icon/ic_arrow_d.gif" alt="hide"></div>
             <p class="ftSize20 ftBold mP">My Place &nbsp;&nbsp;
-            <a href="#memo" onclick="fnMemoAdd(); return false;"><img src="/resources/images/icon/ic_memo.png" alt="추가">추가</a>
+            <a href="#memo" ><img src="/resources/images/icon/ic_memo.png" alt="추가">추가</a>
             </p>
             <div class="mDiv" id="memoBox">
             </div>

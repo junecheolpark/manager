@@ -64,8 +64,8 @@
 .board{background-color: #f7f7f7; margin-top: 60px;}
 .board > section.mainBoard{display: grid; padding:40px 40px 60px 40px; grid-template-rows: auto; gap: 20px;
     grid-template-areas: 
-    "tA maintenance maintenance project"
-    "weekly weekly weekly bulletin"; grid-template-columns: .8fr 1.6fr .2fr 1.4fr;}
+    "tA tA tA project"
+    "weekly weekly weekly bulletin"; grid-template-columns: 0fr 1.6fr 0fr 1.6fr;}
 .board > section.mainBoard > div.tA{grid-area: tA;}
 .board > section.mainBoard > div.maintenance{grid-area: maintenance;}
 .board > section.mainBoard > div.project{grid-area: project;}
@@ -141,7 +141,7 @@ div.grayCenter { background: #dedede; width: 140px; height: 140px;}
 /*주간업무*/
 .weekly > .contBox{padding: 0 !important;}
 #indexSchedule { margin: auto; }
-#indexSchedule table th { background-color: #fff; border-right: 1px solid #eee; border-bottom: 5px solid #FFC12E;}
+#indexSchedule table th { background-color: #fff; border-right: 1px solid #eee;}
 #indexSchedule table td { height: 211px; word-break: keep-all; vertical-align: top; border-right: 1px solid #eee; }
 #indexSchedule table td > p { text-align: left; }
 #indexSchedule table th:nth-last-child(1),
@@ -158,16 +158,16 @@ div.grayCenter { background: #dedede; width: 140px; height: 140px;}
 .bulletin > div:nth-child(2) > a > img{width:24px; height: 24px; display: inline-block; margin-right: 10px;}
 .bulletin > div:nth-child(2) > a > span{line-height: 24px;}
 .bulletin > .contBox{padding: 0!important; overflow: hidden;}
-.bulletin > .contBox > .tabMenuList{float:left; background-color: #FFFBF1; width:25%; padding:20px;}
+.bulletin > .contBox > .tabMenuList{float:left; width:25%; padding:20px;}
 .bulletin > .contBox > .tabMenuList .menuToggle{display: inline-block;}
- li.choicebulletin{background-color: #FFC12E;}
+ li.choicebulletin{background-color: #0266c1;}
  .bulletin > .contBox > .tabMenuList ul{display: inline-block;}
 .bulletin > .contBox > .tabMenuList li.choicebulletin > a{color:#fff; font-weight: 500; position: relative;}
 .bulletin > .contBox > .tabMenuList li.choicebulletin > a::after{display: block; content: '>';position: absolute; top:10px; right:10px; width:20px; height: 10px; }
 .bulletin > .contBox > .tabMenuList li{border-radius: 100px; margin-bottom: 10px;}
 .bulletin > .contBox > .tabMenuList li:last-child{margin-bottom: 0;}
 .bulletin > .contBox > .tabMenuList li > a{display: block; width:100%; height: 100%; padding:10px 16px;}
-.bulletin > .contBox > .tabMenuList li:hover{background-color: #FFE4A3;}
+.bulletin > .contBox > .tabMenuList li:hover{background-color: #0091ea;}
 .bulletin > .contBox > .tabMenuCont{float:right; width:75%; padding:20px;}
 .bulletin > .contBox > .tabMenuCont > ul > li > a{font-size: 0;}
 .bulletin > .contBox > .tabMenuCont > ul > li > ul > li{margin-bottom: 18px; overflow: hidden;}
