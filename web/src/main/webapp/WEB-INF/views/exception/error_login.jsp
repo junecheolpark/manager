@@ -1,5 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +11,7 @@
 
     <section id="htmlBody">
         <header id="subTop">
-            <h1 class="subTopL"><a href="/">랑연소프트</a></h1>
+            <h1 class="subTopL"><a href="/">junecheol</a></h1>
         </header>
         <section id="subBody">
             <article id="subConts">
