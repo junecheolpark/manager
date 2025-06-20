@@ -32,15 +32,15 @@
 
     <!-- 상단 메뉴 -->
     <section class="topMenu">
-        <div class="logo"><h1><a href="/index"><img src="/resources/images/index/logo.png" alt="junecheol"></a></h1></div>
+        <div class="logo"><h1><a href="/WEB-INF/views/index.html"><img src="/resources/images/index/logo.png" alt="junecheol"></a></h1></div>
         <div class="menuList">
             <ul id="menuTop">
                 <li><a href="#menu" class="menuToggle" id="btnMenu"><img src="/resources/images/btn/btn_menu_open.png" alt="menuBtn"></a></li>
-                <li><a href="#menu">업무보고서</a></li>
-                <li><a href="#menu">게시판</a></li>
-                <li><a href="#menu">일정관리</a></li>
-                <li><a href="#menu">업체관리</a></li>
-                <li><a href="#menu">시스템관리</a></li>
+                <li><a href="/WEB-INF/views/report/report_01.html">업무보고</a></li>
+                <li><a href="/WEB-INF/views/schedule/schedule_01.html">일정관리</a></li>
+                <li><a href="/WEB-INF/views/company/company_01.html">회사관리</a></li>
+                <li><a href="/WEB-INF/views/clipboard/clipboard_01.html">게시판</a></li>
+                <li><a href="/WEB-INF/views/system/system_01.html">시스템관리</a></li>
             </ul>
             <div id="menuAll" style="display: block;">
                 <ul>
@@ -69,10 +69,9 @@
                     <li>
                         <a href="#menu">게시판</a>
                         <ul>
-                            <li><a href="#menu">공지사항</a></li>
-                            <li><a href="#menu">자료실</a></li>
-                            <li><a href="#menu">업무공유</a></li>
-                            <li><a href="#menu">요청게시판</a></li>
+                            <li><a href="/WEB-INF/views/clipboard/clipboard_01.html">공지사항</a></li>
+                            <li><a href="/WEB-INF/views/clipboard/clipboard_02.html">자료실</a></li>
+                            <li><a href="/WEB-INF/views/clipboard/clipboard_03.html">업무공유</a></li>
                         </ul>
                     </li>                    
                     <li>
@@ -80,8 +79,6 @@
                         <ul>
                             <li><a href="#menu">운영자 관리</a></li>
                             <li><a href="#menu">코드 관리</a></li>
-                            <li><a href="#menu">근태관리</a></li>
-                            <li><a href="#menu">설정</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -266,9 +263,9 @@
                     <div class="tabMenuList" id="boardMenu">
                         <ul>
                             <li data-mbidx="0" class="choicebulletin"><a href="#all">전체</a></li>
-                            <li data-mbidx="11"><a href="#notice">공지사항</a></li>
-                            <li data-mbidx="17"><a href="#pds">자료실</a></li>
-                            <li data-mbidx="18"><a href="#work">업무공유</a></li>
+                            <li data-mbidx="11"><a href="/WEB-INF/views/clipboard/clipboard_01.html">공지사항</a></li>
+                            <li data-mbidx="17"><a href="/WEB-INF/views/clipboard/clipboard_02.html">자료실</a></li>
+                            <li data-mbidx="18"><a href="/WEB-INF/views/clipboard/clipboard_03.html">업무공유</a></li>
                         </ul>
                     </div>
                     <div class="tabMenuCont">
