@@ -166,7 +166,7 @@
 					style="width: 500px; margin: 147.5px auto; position: relative;">
 					<div class="autoSizeLayerT">
 						<div class="autoSizeLayerCls">
-							<a href="#popclose" class="" onclick="fnScheduleClose(); return false;"><img
+							<a href="#popclose" class="" ><img
 								src="/resources/images/btn/btn_popclose.png" alt="닫기"></a>
 						</div>
 						<div class="autoSizeLayerTInner">
@@ -209,7 +209,7 @@
 								<tbody>
 									<tr>
 										<th><span class="colRed">*</span> 일정구분</th>
-										<td><select name="selSchdule" id=selSchdule onchange="fnSelSchTp();">
+										<td><select name="selSchdule" id=selSchdule >
 										</select></td>
 									</tr>
 									<tr style="display:none;">
@@ -224,7 +224,7 @@
 												<p id="ToName"></p>
 												<p>
 													<a href="#" id="btnUser" class="btn btnPoint " 
-														onclick="fnCheckListPopUp(); return false;">선택</a>
+														>선택</a>
 												</p>
 											</div>
 										</td>
@@ -256,7 +256,7 @@
 									<tr>
 										<th class="bor_bot_none">시간</th>
 										<td class="bor_bot_none"><select id="selectTimeType"
-											onchange="fnSelectType();" style="width: 100px;">
+											 style="width: 100px;">
 												<option value="1">종일</option>
 												<option value="2">오전</option>
 												<option value="3">오후</option>
@@ -297,17 +297,17 @@
 						</div>
 						<div class="autoSizeLayerF">
 							<a id="btnApprove" class="btn btnPointLine" href="#"
-								onclick="fnScheduletcInput(2); return false;" style="display: none;">휴가승인</a>
+								style="display: none;">휴가승인</a>
 							<!--관리자 노출 버튼-->
 							<a id="btnApproveCancel" class="btn btnRedLine" href="#"
-								onclick="fnScheduletcInput(9); return false;" style="display: none;">휴가취소</a>
+								style="display: none;">휴가취소</a>
 							<!--관리자 노출 버튼-->
 							<a id="btnSave" class="btn btnPoint"
-								onclick="fnScheduletcInput(1); return false;" style="">저장</a>
-							<a id="btnDelete" class="btn btnRed" onclick="fnScheduleDelete(); return false;" href="#" style="display: none;">삭제</a>
+								style="">저장</a>
+							<a id="btnDelete" class="btn btnRed"  href="#" style="display: none;">삭제</a>
 							<!--등록된 일정 클릭 시 노출 버튼-->
 							<a href="#popclose" class="btn btnWhite"
-								onclick="fnScheduleClose(); return false;">닫기</a>
+								>닫기</a>
 						</div>
 					</div>
 				</div>
@@ -321,7 +321,7 @@
 				<div class="autoSizeLayer" style="width: 350px;">
 					<div class="autoSizeLayerT">
 						<div class="autoSizeLayerCls">
-							<a href="#popclose" class="" onclick="fnLayerPopupClose('CheckList'); return false;">
+							<a href="#popclose" class="" >
 								<img src="/resources/images/btn/btn_popclose.png" alt="닫기" />
 							</a>
 						</div>
@@ -340,7 +340,7 @@
 								<thead>
 									<tr>
 										<th>
-											<input type="checkbox" name="userSelect2" onclick="fnCheckAll();" class="noBorder" />
+											<input type="checkbox" name="userSelect2" class="noBorder" />
 										</th>
 										<th>직급</th>
 										<th>성명</th>
@@ -352,9 +352,9 @@
 						</div>
 						<div class="autoSizeLayerF">
 							<a href="#popclose" class="btn btnPoint"
-								onclick="fnUserSelect(); return false;">확인</a> <a
+								>확인</a> <a
 								href="#popclose" class="btn btnWhite"
-								onclick="fnLayerPopupClose('CheckList'); return false;">닫기</a>
+								>닫기</a>
 						</div>
 					</div>
 				</div>
