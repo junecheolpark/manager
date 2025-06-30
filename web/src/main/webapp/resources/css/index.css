@@ -73,17 +73,17 @@
 .board > section.mainBoard > div.bulletin{grid-area: bulletin;}
 .board > section.mainBoard > div > div.contBox{background-color: #fff; border-radius: 10px; outline: 1px solid #ccc; padding:20px;}
 
-.board > section.myPlace{position: relative; padding: 20px 40px 20px 40px; background-color: #FFFBF1; border-top:1px solid #FFC12E}
+.board > section.myPlace{position: relative; padding: 20px 40px 20px 40px;}
 .board > section.myPlace > .showMemoBtn{position: absolute; left:50%; transform: translate(-50%); top:-40px; width: 110px; height: 30px; 
     background-color: #FFFBF1; border:1px solid #FFC12E; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom: 0; cursor:pointer;}
 .board > section.myPlace > .showMemoBtn > img {position: absolute;top:11px;left: 48px; width:14px;}
 .board > section.myPlace > div{display: grid;  margin-top: 10px; gap: 20px; grid-template-rows: 200px; 
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;}
-.board > section.myPlace > div > div.memo{background-color: #FCFCEC;}
-.board > section.myPlace > div > div{border-radius: 10px; outline: 1px solid #FFC12E; background-color: #fff; position: relative;}
+.board > section.myPlace > div > div.memo{background-color: #fff;}
+.board > section.myPlace > div > div{border-radius: 10px; outline: 1px solid #ccc; background-color: #fff; position: relative;}
 .board > section.myPlace > div > div .placeTitle{position: absolute; overflow: hidden; width:100%; padding:15px 10px;}
 .board > section.myPlace > P{line-height: 14px;}
-.board > section.myPlace > P > a{display: inline-block; padding:5px 16px; border:1px solid #FFC12E; border-radius: 50px; background-color: #fff; color:#FFC12E; font-weight: 500;}
+.board > section.myPlace > P > a{display: inline-block; padding:5px 16px; border:1px solid #ccc; border-radius: 50px; background-color: #fff; font-weight: 500;}
 .board > section.myPlace > P > a > img{width:14px; height: 14px; margin-right: 4px;}
 
 /* .board > section.myPlace > div > div .placeTitle > div{position: absolute; overflow: hidden; top:15px; right:6%;} */
@@ -139,7 +139,7 @@ div.grayCenter { background: #dedede; width: 140px; height: 140px;}
 .project > .contBox {height:275px;}
 
 /*주간업무*/
-.weekly > .contBox{padding: 0 !important;}
+.weekly > .contBox{padding: 0 !important;  height: 273px;}
 #indexSchedule { margin: auto; }
 #indexSchedule table th { background-color: #fff; border-right: 1px solid #eee;}
 #indexSchedule table td { height: 211px; word-break: keep-all; vertical-align: top; border-right: 1px solid #eee; }
@@ -154,6 +154,8 @@ div.grayCenter { background: #dedede; width: 140px; height: 140px;}
 .sc_box span:nth-child(2) {color: #046fb8;}
 
 /* 게시판 */
+.bulletin > .contBox > .noticeTop {  margin-top: 10px; padding-left: 15px;}
+.bulletin > .contBox {  height: 273px;}
 .bulletin > .contBox > .tabMenuList ul {width:100%; min-width:102px !important;}
 .bulletin > div:nth-child(2) > a > img{width:24px; height: 24px; display: inline-block; margin-right: 10px;}
 .bulletin > div:nth-child(2) > a > span{line-height: 24px;}
@@ -175,3 +177,5 @@ div.grayCenter { background: #dedede; width: 140px; height: 140px;}
 .bulletin > .contBox > .tabMenuCont > ul > li > ul > li > a{float:left; width: calc(100% - 150px); overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
 .bulletin > .contBox > .tabMenuCont > ul > li > ul > li > a > img{display: inline-block; width:14px; height: 14px;}
 .bulletin > .contBox > .tabMenuCont > ul > li > ul > li > p{float:right;}
+
+

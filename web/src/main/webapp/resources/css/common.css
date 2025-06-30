@@ -164,6 +164,7 @@ img.va-tp { vertical-align: top; }
 .btnRedLine, a.btnRedLine { background-color: #fff; border:1px solid #FF5B5B; color: #FF5B5B; }
 .btnGreen, a.btnGreen { background-color: #4caf50; border-color: #4caf50; color:#fff;}
 .btnGreenLine, a.btnGreenLine { background-color: #fff; border:1px solid #4caf50; color:#4caf50;}
+.btnBlueLine, a.btnBlueLine { background-color: #fff; border:1px solid #0091ea; color:#0091ea;}
 .btnBlue, a.btnBlue { background-color: #0091ea; border-color: #0091ea; color:#fff}
 .btnGray, a.btnGray { background-color: #ccc; border-color: #ccc; color:#fff;}
 .btnBlueGreen, a.btnBlueGreen { background-color: #004d48; border-color: #004d48; color:#fff;}
