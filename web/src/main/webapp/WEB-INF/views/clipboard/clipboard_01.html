@@ -8,13 +8,21 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="google" content="notranslate">
-	<link href="/resources/favicon.ico" rel="shortcut icon" type="image/x-icon">
-	<link href="/manifest.webmanifest" rel="manifest">
-	<!-- font-->
-	<link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet">
-	<!-- css -->
+    <link href="/resources/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/manifest.webmanifest" rel="manifest">
+    <!-- js -->
+    <script src="/resources/js/html5/html5shiv.js"></script>
+    <script src="/resources/js/html5/placeholders.min.js"></script>
+    <script src="/resources/js/jquery/jquery-1.11.0.min.js"></script>
+    <script src="/resources/js/jquery/jquery-ui.js"></script>
+    <!-- css -->
     <link href="/resources/css/common.css?ver=20250624103500000" rel="stylesheet">
+    <!-- js -->
+    <script src="/resources/js/layout.js?ver=20250624103500000"></script>
+    <!-- font-->
+    <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet">
 
+	<!-- css -->
     <link href="/resources/css/jquery-ui.css?ver=20250624103500000" rel="stylesheet">
     <link href="/resources/css/layout.css?ver=20250624103500000" rel="stylesheet">
     <link href="/resources/css/sub.css?ver=20250624103500000" rel="stylesheet">
@@ -29,6 +37,7 @@
 	<script src="/resources/plugin/datepicker/datepicker.ko-KR.js?ver=20250624103500000"></script>
 	<link href="/resources/plugin/datepicker/datepicker.min.css?ver=20250624103500000" rel="stylesheet" />
 	<!-- board, pazing -->
+	<script src="/resources/js/clipboard/clipboard_01.js?ver=20250624103500000"></script>
     <link href="/resources/css/clipboard/clipboard_01.css?ver=20250624103500000" rel="stylesheet">
 </head>
 <body>
@@ -269,12 +278,11 @@
 						</div>
 					</div>
 					<div class="boardFootBtn">
-						<a href="#reg" id="btnInput" class="btn btnPoint" >등록</a> <a
-							href="#del" id="btnDelete" class="btn btnRed" 
-							style="display: none;">삭제</a> <a href="#can" id="btnCancel" class="btn btnWhite"
-							>취소</a>
+						<a href="#reg" id="btnInput" class="btn btnPoint">등록</a>
+						<a href="#del" id="btnDelete" class="btn btnRed" style="display: none;">삭제</a>
+						<a href="#can" id="btnCancel" class="btn btnWhite" onclick="fnBoardCancel(); return false;">취소</a>
 					</div>
-				</section>
+					</section>
 			</section>
 		</section> 
 	</section>
