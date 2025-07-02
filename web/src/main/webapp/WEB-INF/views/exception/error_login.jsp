@@ -4,7 +4,7 @@
 <head>
 	<!-- head -->
 	<%@ include file="/WEB-INF/views/_include/common.jsp" %>
-	<%@ include file="/WEB-INF/views/_include/html_head.jsp" %>	
+	<%@ include file="/WEB-INF/views/include/html_head.jsp" %>	
     <link href="/resources/css/error.css?ver=20230330103500000" rel="stylesheet">	
 </head>
 <body>

@@ -1,12 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
-  <display-name>test</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+
+	<!-- 웹 애플리케이션 전체의 기본 설정 파일 (배포 설명자)
+
+		🧭 "웹 프로젝트의 전반적인 동작 구조를 잡는 파일"
+		
+		주요 역할:
+		필터(Filter), 리스너(Listener), 서블릿(Servlet) 등록
+		
+		Spring MVC의 DispatcherServlet 매핑
+		
+		인코딩, 시작페이지 등 전역 설정
+		
+		Spring 설정 파일 위치 지정 (root-context.xml)
+		
+		(선택) 보안, 세션 타임아웃 등 설정 
+	-->
+
+	<!-- 필터로 UTF-8적용 해줌 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>forceEncoding</param-name> <!-- 요청/응답 모두 강제로 인코딩 적용 -->
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<!-- 모든 요청(/*)에 적용하겠다는 의미 -->
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+    <!-- 시작페이지 설정 -->
+    <welcome-file-list>
+        <welcome-file>/WEB-INF/views/default.html</welcome-file>
+    </welcome-file-list>
+
+	<!-- Spring Root Context 설정 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- Spring 전체 애플리케이션에서 공유할 Root ApplicationContext 설정 파일 경로 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- DispatcherServlet 설정 (MVC 핵심) -->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<!-- 모든 요청(/)을 이 DispatcherServlet이 처리하도록 지정 -->
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
 </web-app>

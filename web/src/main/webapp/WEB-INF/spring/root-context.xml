@@ -4,9 +4,27 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<!-- 
+		Spring의 루트 애플리케이션 컨텍스트 설정 파일
+
+		"전체 애플리케이션에서 공통으로 사용하는 Bean 설정 파일"
+		
+		주요 역할:
+		데이터베이스 설정 (DataSource, MyBatis, JPA 등)
+		
+		Service, DAO, Repository Bean 등록
+		
+		트랜잭션 관리 설정
+		
+		공통 Utility Bean (예: 이메일, 스케줄러 등)
+		
+		@Service, @Repository 같은 컴포넌트 스캔 설정
+	 -->
+	 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<!-- properties -->
+	<!-- jdbc.properties, api.properties 파일을 불러와서 ${} 형식으로 값을 사용할 수 있게 함 -->
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
@@ -18,7 +36,7 @@
 		<property name="fileEncoding" value="UTF-8" />
 	</bean>
 
-	<!-- JDBC-PostgreSQL -->
+	<!-- JDBC-PostgreSQL 데이터베이스 연결 설정 -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
@@ -28,6 +46,7 @@
 		<property name="password" value="${new.jdbc.password}" />
 	</bean>
 
+	<!-- MyBatis에서 SQL을 실행할 수 있도록 SqlSessionFactory를 생성 -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="mapperLocations"
@@ -37,6 +56,7 @@
 			value="classpath:config/mabatis-config.xml" />
 	</bean>
 
+	<!-- MyBatis의 SqlSession을 Spring이 관리하는 템플릿 형태로 제 -->
 	<bean id="sqlSessionTemplate"
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />

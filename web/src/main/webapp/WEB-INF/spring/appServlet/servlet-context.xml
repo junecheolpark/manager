@@ -7,16 +7,28 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- 
+		Spring MVC 서블릿(AppServlet)의 개별 설정 파일
+
+		"웹 요청 처리(컨트롤러, 뷰 등)와 관련된 Spring MVC 설정 전용"
+		
+		주요 역할:
+		Controller, ViewResolver, 인터셉터 등 등록
+		
+		컴포넌트 스캔 경로 설정 (@Controller, @Service 등 자동 등록)
+		
+		메시지 컨버터, 파일 업로드, 정적 자원 처리 등 설정
+	 -->
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- 정적 파일(css, js, img 등)을 요청할 때 해당 경로로 매핑해서 찾아주는 설정입니다. -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/**" location="/resources/static/" />	
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- Controller가 반환한 뷰 이름(view name)**을 .jsp 파일로 연결해주는 역할 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
@@ -28,8 +40,10 @@
 		<beans:property name="defaultEncoding" value="utf-8" />
 	</beans:bean>		
 	
+	<!-- Spring이 @Controller, @Service, @Repository, @Component 등이 붙은 클래스를 자동으로 찾아 Bean으로 등록 -->
 	<context:component-scan base-package="co.junecheol" />
 		
+	<!-- @ResponseBody 없이도 ModelAndView에서 JSON 응답을 리턴할 수 있도록 설정 -->	
 	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 		<beans:property name="contentType" value="application/json;charset=UTF-8" />
 	</beans:bean>	
