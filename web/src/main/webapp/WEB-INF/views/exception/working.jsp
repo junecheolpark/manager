@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
 	<!-- head -->
-	<%@ include file="/WEB-INF/views/_include/common.jsp" %>
-	<%@ include file="/WEB-INF/views/_include/html_head.jsp" %>
 	<style>
 		#htmlBody { text-align: center; } 	
 	</style>

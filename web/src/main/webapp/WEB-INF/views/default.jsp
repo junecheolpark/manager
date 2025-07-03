@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,33 +22,33 @@
 	<link href="/resources/css/common.css?ver=20230330103500000" rel="stylesheet">
 	<!-- font-->
 	<link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet">
-	<!-- head 파일 -->
+	<!-- head íì¼ -->
 	<link href="/resources/css/default.css?ver=20250525103500000" rel="stylesheet">
 </head>
 <body>
     <!--// loading -->
     <section class="loading-layer">
 	    <div class="loadingBg"></div>
-	    <div class="loadingImg"><img src="/resources/images/loading.png" alt="로딩중..." /></div>
+	    <div class="loadingImg"><img src="/resources/images/loading.png" alt="ë¡ë©ì¤..." /></div>
     </section>
     <!-- loading //-->
 
 	<section class="loginCont">
 	    <section class="loginBG">
-			<p>모든지<br /><span class="ftBold colPoint">다 해결하는<br /> 박준철</span>입니다 </p>
+			<p>어디에서도<br /><span class="ftBold colPoint">적응하는<br /> 박준철</span>포트폴리오입니다. </p>
 	    </section>
 	    <section id="login">
 	        <section>
 	            <img src="/resources/images/login/logo.png" alt="junecheol">
 	            <p>LOGIN</p>
-	            <input class="mgB20" name="txtID" type="text" maxlength="100" id="txtID" placeholder="아이디를 입력해주세요." value="">
-	            <input class="mgB20" name="txtPW" type="password" maxlength="100" id="txtPW" placeholder="비밀번호를 입력해주세요." value="">
+	            <input class="mgB20" name="txtID" type="text" maxlength="100" id="txtID" placeholder="아이디를 입력해 주세요." value="">
+	            <input class="mgB20" name="txtPW" type="password" maxlength="100" id="txtPW" placeholder="비밀번호를 입력해 주세요." value="">
 	            <div class="pdTB20">
-		            <input type="checkbox" id="chkAutoLogin" placeholder="자동 로그인을 원할 경우 체크해 주세요.">
+		            <input type="checkbox" id="chkAutoLogin" placeholder="자동로그인">
 		            <label for="chkAutoLogin"></label>	                
 	            </div>
 	            <a href="/WEB-INF/views/index.html" id="btnLogin" class="loginBtn" >로그인</a>
-	            <!-- <a href="#login" id="btnLogin" class="loginBtn">로그인</a> -->
+	            <!-- <a href="#login" id="btnLogin" class="loginBtn">ë¡ê·¸ì¸</a> -->
 	        </section>
 	    </section>
 	</section>
