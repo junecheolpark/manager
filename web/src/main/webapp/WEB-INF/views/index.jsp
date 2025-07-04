@@ -17,6 +17,7 @@
     <script src="/resources/js/html5/placeholders.min.js"></script>
     <script src="/resources/js/jquery/jquery-1.11.0.min.js"></script>
     <script src="/resources/js/jquery/jquery-ui.js"></script>
+    <script src="/resources/js/function.js?ver=20250624103500000"></script>
     <!-- css -->
     <link href="/resources/css/common.css?ver=20250624103500000" rel="stylesheet">
     <!-- js -->
