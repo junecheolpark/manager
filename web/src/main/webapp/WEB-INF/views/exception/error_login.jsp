@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,11 +15,9 @@
         </header>
         <section id="subBody">
             <article id="subConts">
-                <!--// 내용 -->
-                <p><!--<img src="/images/icon/ic_warning.jpg" height="100" />--> 죄송합니다.</p>
+                <p> 죄송합니다.</p>
                 <p>로그인 후에 이용해 주세요.</p>
                 <p><a href="/">로그인</a></p>
-                <!-- 내용 //-->
             </article>
         </section>
         <footer id="subFooter"></footer>

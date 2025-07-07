@@ -36,3 +36,9 @@ function fnAlertReturn(pVal, pTxt, pChk) {
 	}
 	return true;
 }
+
+// 로딩중 팝업 열기
+function fnLoadingOpen() {
+	if ($('.loading-layer').css('display') == 'none') $('.loading-layer').show();
+	return false;
+}

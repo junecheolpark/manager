@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,12 +15,12 @@
         </header>
         <section id="subBody">
             <article id="subConts">
-                <!--// 내용 -->
+                <!--// ë´ì© -->
                 <p> 죄송합니다.</p>
                 <p>파라미터 정보가 없습니다.</p>
                 <p>올바른 경로로 이용해 주세요.</p>
                 <p><a href="#back" onclick="history.back(-2); return false;">확인</a></p>
-                <!-- 내용 //-->
+                <!-- ë´ì© //-->
             </article>
         </section>
         <footer id="subFooter"></footer>
