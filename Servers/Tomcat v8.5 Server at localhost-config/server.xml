@@ -151,7 +151,7 @@
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
-
+		<Context docBase=":\\Users\\\uBC15\uC900\uCCA0\\Desktop\\\uAC1C\uBC1C\\java\\junecheol\\junecheol_file/ckeditor/" path="/ckeditor/" reloadable="true"/>
       <Context docBase="web" path="/" reloadable="true" source="org.eclipse.jst.jee.server:web"/></Host>
     </Engine>
   </Service>
