@@ -44,25 +44,25 @@ public class CommonController {
 	// 파라미터 에러
 	@RequestMapping(value = "/errorParam")
 	public String goErrorParam() {
-		return "/_exception/error_param";
+		return "/exception/error_param";
 	}
 
 	// 에러
 	@RequestMapping(value = "/error")
 	public String goError() {
-		return "/_exception/error";
+		return "/exception/error";
 	}
 
 	// 로그인 확인
 	@RequestMapping(value = "/errorLogin")
 	public String goErrorLogin() {
-		return "/_exception/error_login";
+		return "/exception/error_login";
 	}
 
 	// 작업예정
 	@RequestMapping(value = "/working")
 	public String goWorking() {
-		return "/_exception/working";
+		return "/exception/working";
 	}
 
 	/**
@@ -84,5 +84,257 @@ public class CommonController {
 				.orElse(null);
 	}
 	
+	
+	/*******************/
+	/** 업무 보고 **/
+
+	// 주간업무
+	@RequestMapping(value = "/report/02")
+	public String goReport02(HttpServletRequest request) {
+		Boolean isLogin = false;
+
+		// 쿠키 확인
+		Cookie cokChk = findCookie(request, cookieNm);
+		if (cokChk == null) {
+			// log.info("쿠키 검색 안됨");
+			isLogin = false;
+		} else {
+			isLogin = true;
+		}
+
+		if (isLogin) {
+			return "/report/report_02";
+		} else {
+			return goErrorLogin();
+		}
+	}
+
+
+	/*******************/
+	/** 게시판 **/
+	// 공지사항
+	@RequestMapping(value = "/clipboard/01")
+	public String goClipboard01(HttpServletRequest request) {
+		Boolean isLogin = false;
+
+		// 쿠키 확인
+		Cookie cokChk = findCookie(request, cookieNm);
+		if (cokChk == null) {
+			// log.info("쿠키 검색 안됨");
+			isLogin = false;
+		} else {
+			isLogin = true;
+		}
+
+		if (isLogin) {
+			return "/clipboard/clipboard_01";
+		} else {
+			return goErrorLogin();
+		}
+	}
+
+	// 자료실
+	@RequestMapping(value = "/clipboard/02")
+	public String goClipboard02(HttpServletRequest request) {
+		Boolean isLogin = false;
+
+		// 쿠키 확인
+		Cookie cokChk = findCookie(request, cookieNm);
+		if (cokChk == null) {
+			// log.info("쿠키 검색 안됨");
+			isLogin = false;
+		} else {
+			isLogin = true;
+		}
+
+		if (isLogin) {
+			return "/clipboard/clipboard_02";
+		} else {
+			return goErrorLogin();
+		}
+	}
+
+	// 업무공유
+	@RequestMapping(value = "/clipboard/03")
+	public String goClipboard03(HttpServletRequest request) {
+		/*
+		 * HttpSession session = request.getSession(); if
+		 * (CommonFunc.sessionChk(session)) {
+		 */
+		Boolean isLogin = false;
+		// 쿠키 확인
+		Cookie cokChk = findCookie(request, cookieNm);
+		if (cokChk == null) {
+			// log.info("쿠키 검색 안됨");
+			isLogin = false;
+		} else {
+			isLogin = true;
+		}
+
+		if (isLogin) {
+			return "/clipboard/clipboard_03";
+		} else {
+			return goErrorLogin();
+		}
+	}
+
+	/*******************/
+	/** 일정 관리 **/
+	// 사내일정
+	@RequestMapping(value = "/schedule/01")
+	public String goSchedule01(HttpServletRequest request) {
+		Boolean isLogin = false;
+
+		// 쿠키 확인
+		Cookie cokChk = findCookie(request, cookieNm);
+		if (cokChk == null) {
+			// log.info("쿠키 검색 안됨");
+			isLogin = false;
+		} else {
+			isLogin = true;
+		}
+
+		if (isLogin) {
+			return "/schedule/schedule_01";
+		} else {
+			return goErrorLogin();
+		}
+	}
+
+	// 프로젝트
+	@RequestMapping(value = "/schedule/02")
+	public String goSchedule02(HttpServletRequest request) {
+		Boolean isLogin = false;
+
+		// 쿠키 확인
+		Cookie cokChk = findCookie(request, cookieNm);
+		if (cokChk == null) {
+			// log.info("쿠키 검색 안됨");
+			isLogin = false;
+		} else {
+			isLogin = true;
+		}
+
+		if (isLogin) {
+			return "/schedule/schedule_02";
+		} else {
+			return goErrorLogin();
+		}
+	}
+
+	// 프로젝트 뷰
+	@RequestMapping(value = "/schedule/02/view")
+	public String goSchedule02View(HttpServletRequest request) {
+		String pidx = request.getParameter("pidx");
+		String cidx = request.getParameter("cidx");
+		Boolean isLogin = false;
+
+		// 쿠키 확인
+		Cookie cokChk = findCookie(request, cookieNm);
+		if (cokChk == null) {
+			// log.info("쿠키 검색 안됨");
+			isLogin = false;
+		} else {
+			isLogin = true;
+		}
+
+		if (isLogin) {
+			if (CommonFunc.isEmpty(pidx) || CommonFunc.isEmpty(cidx)) {
+				return goErrorParam();
+			} else {
+				return "/schedule/schedule_02_view";
+			}
+		} else {
+			return goErrorLogin();
+		}
+	}
+
+	/*******************/
+	// 사용자 관리
+	@RequestMapping(value = "/company/01")
+	public String goCompany01(HttpServletRequest request) {
+		Boolean isLogin = false;
+
+		// 쿠키 확인
+		Cookie cokChk = findCookie(request, cookieNm);
+		if (cokChk == null) {
+			// log.info("쿠키 검색 안됨");
+			isLogin = false;
+		} else {
+			isLogin = true;
+		}
+
+		if (isLogin) {
+			return "/company/company_01";
+		} else {
+			return goErrorLogin();
+		}
+	}
+
+	/*******************/
+	/** 시스템 관리 **/
+	// 운영자 관리
+	@RequestMapping(value = "/system/01")
+	public String goSystem01(HttpServletRequest request) {
+		Boolean isLogin = false;
+
+		// 쿠키 확인
+		Cookie cokChk = findCookie(request, cookieNm);
+		if (cokChk == null) {
+			// log.info("쿠키 검색 안됨");
+			isLogin = false;
+		} else {
+			isLogin = true;
+		}
+
+		if (isLogin) {
+			return "/system/system_01";
+		} else {
+			return goErrorLogin();
+		}
+	}
+
+	// 코드 관리
+	@RequestMapping(value = "/system/02")
+	public String goSystem02(HttpServletRequest request) {
+		Boolean isLogin = false;
+
+		// 쿠키 확인
+		Cookie cokChk = findCookie(request, cookieNm);
+		if (cokChk == null) {
+			// log.info("쿠키 검색 안됨");
+			isLogin = false;
+		} else {
+			isLogin = true;
+		}
+
+		if (isLogin) {
+			return "/system/system_02";
+		} else {
+			return goErrorLogin();
+		}
+	}
+	
+	// 코드 관리
+		@RequestMapping(value = "/system/03")
+		public String goSystem03(HttpServletRequest request) {
+			Boolean isLogin = false;
+
+			// 쿠키 확인
+			Cookie cokChk = findCookie(request, cookieNm);
+			if (cokChk == null) {
+				// log.info("쿠키 검색 안됨");
+				isLogin = false;
+			} else {
+				isLogin = true;
+			}
+
+			if (isLogin) {
+				return "/system/system_03";
+			} else {
+				return goErrorLogin();
+			}
+		}
+
 	
 }
