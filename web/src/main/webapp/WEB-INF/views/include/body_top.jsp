@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
     <!--// loading -->
     <section class="loading-layer">
 	    <div class="loadingBg"></div>
@@ -10,8 +13,57 @@
         <div class="logo"><h1><a href="/index"><img src="/resources/images/index/logo.png" alt="RYsoft"></a></h1></div>
         <div class="menuList">
             <ul id="menuTop">
+                <!-- <li><a href="#menu" class="menuToggle" id="btnMenu"><img src="/resources/images/btn/btn_menu_open.png" alt="menuBtn"></a></li>
+                <li><a href="/report/01">업무보고서</a></li>class="choiceMenu"
+                <li><a href="/clipboard/01">게시판</a></li>
+                <li><a href="/schedule/01">일정관리</a></li>
+                <li><a href="/company/01">업체관리</a></li>
+                <li><a href="/system/01">시스템관리</a></li> -->
+                <!--사용자 설정 버튼 클릭 시 오픈 메뉴-->
             </ul>
             <div id="menuAll">
+                <!-- <ul>
+                    <li>
+                        <a href="/report/01">업무 보고</a>
+                        <ul>
+                            <li><a href="/report/01">유지보수</a></li>
+                            <li><a href="/report/02">주간업무</a></li>
+                            <li><a href="/report/03">회의록</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/schedule/01">일정 관리</a>
+                        <ul>
+                            <li><a href="/schedule/01">사내일정</a></li>
+                            <li><a href="/schedule/02">프로젝트</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/company/01">회사 관리</a>
+                        <ul>
+                            <li><a href="/company/01">회사 관리</a></li>
+                            <li><a href="/company/02">사용자 관리</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/clipboard/01">게시판</a>
+                        <ul>
+                            <li><a href="/clipboard/01">공지사항</a></li>
+                            <li><a href="/clipboard/02">자료실</a></li>
+                            <li><a href="/clipboard/03">업무공유</a></li>
+                            <li><a href="/clipboard/04">요청게시판</a></li>
+                        </ul>
+                    </li>                    
+                    <li>
+                        <a href="/system/01">시스템 관리</a>
+                        <ul>
+                            <li><a href="/system/01">운영자 관리</a></li>
+                            <li><a href="/system/02">코드 관리</a></li>
+                            <li><a href="/system/03">근태관리</a></li>
+                            <li><a href="/system/04">설정</a></li>
+                        </ul>
+                    </li>
+                </ul> -->
             </div>            
         </div>        
         <div class="userInfo">
@@ -50,6 +102,14 @@
                 </div>
                 <div id="popMyInfo">
                     <ul>                        
+                        <!-- <li>
+                            <img src="/resources/images/icon/ic_pcon_3.svg" alt="이메일">                            
+                            <span id="popLogEmail">help@rysoft.co.kr</span>
+                        </li>
+                        <li>
+                            <img src="/resources/images/icon/ic_pcon_4.png" alt="휴대전화번호">                            
+                            <span id="popLogMobile">010-0000-0000</span>
+                        </li> -->
                         <!--로그아웃 버튼-->
                         <li>
                             <a href="/login/logout" class="colRed" onclick="if(!confirm('로그아웃하시겠습니까?')) return false;">
