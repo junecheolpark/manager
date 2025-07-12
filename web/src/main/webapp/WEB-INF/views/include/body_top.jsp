@@ -13,22 +13,19 @@
         <div class="logo"><h1><a href="/index"><img src="/resources/images/index/logo.png" alt="RYsoft"></a></h1></div>
         <div class="menuList">
             <ul id="menuTop">
-                <!-- <li><a href="#menu" class="menuToggle" id="btnMenu"><img src="/resources/images/btn/btn_menu_open.png" alt="menuBtn"></a></li>
-                <li><a href="/report/01">업무보고서</a></li>class="choiceMenu"
-                <li><a href="/clipboard/01">게시판</a></li>
+                <li><a href="#menu" class="menuToggle" id="btnMenu"><img src="/resources/images/btn/btn_menu_open.png" alt="menuBtn"></a></li>
+                <li><a href="/report/01">업무보고</a></li>
                 <li><a href="/schedule/01">일정관리</a></li>
-                <li><a href="/company/01">업체관리</a></li>
-                <li><a href="/system/01">시스템관리</a></li> -->
-                <!--사용자 설정 버튼 클릭 시 오픈 메뉴-->
+                <li><a href="/company/01">사용자관리</a></li>
+                <li><a href="/clipboard/01">게시판</a></li>
+                <li><a href="/system/01">시스템관리</a></li>
             </ul>
             <div id="menuAll">
-                <!-- <ul>
+                <ul>
                     <li>
-                        <a href="/report/01">업무 보고</a>
+                        <a href="/report/01">주간업무</a>
                         <ul>
-                            <li><a href="/report/01">유지보수</a></li>
-                            <li><a href="/report/02">주간업무</a></li>
-                            <li><a href="/report/03">회의록</a></li>
+                            <li><a href="/report/01">주간업무</a></li>
                         </ul>
                     </li>
                     <li>
@@ -39,10 +36,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/company/01">회사 관리</a>
+                        <a href="/company/01">사용자 관리</a>
                         <ul>
-                            <li><a href="/company/01">회사 관리</a></li>
-                            <li><a href="/company/02">사용자 관리</a></li>
+                            <li><a href="/company/01">사용자 관리</a></li>
                         </ul>
                     </li>
                     <li>
@@ -51,7 +47,6 @@
                             <li><a href="/clipboard/01">공지사항</a></li>
                             <li><a href="/clipboard/02">자료실</a></li>
                             <li><a href="/clipboard/03">업무공유</a></li>
-                            <li><a href="/clipboard/04">요청게시판</a></li>
                         </ul>
                     </li>                    
                     <li>
@@ -59,12 +54,11 @@
                         <ul>
                             <li><a href="/system/01">운영자 관리</a></li>
                             <li><a href="/system/02">코드 관리</a></li>
-                            <li><a href="/system/03">근태관리</a></li>
-                            <li><a href="/system/04">설정</a></li>
+                            <li><a href="/system/03">연차관리</a></li>
                         </ul>
                     </li>
-                </ul> -->
-            </div>            
+                </ul>
+            </div>           
         </div>        
         <div class="userInfo">
 			<a href="#noti" onclick="fnNotificationCntView(); return false;"><img id="imgNoti" src="/resources/images/index/bell.png" alt="알림" style="width: 24px;"></a>

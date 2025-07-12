@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,22 +21,14 @@
     <link href="/resources/css/jquery-ui.css?ver=20250624103500000" rel="stylesheet">
     <link href="/resources/css/layout.css?ver=20250624103500000" rel="stylesheet">
     <link href="/resources/css/sub.css?ver=20250624103500000" rel="stylesheet">
-	
-	 <!-- 멀티 파일 업로드 -->
-    <script src="/resources/plugin/filedropdown/js/filedropdown.js?ver=20221013134344363"></script>
-    <link href="/resources/plugin/filedropdown/css/filedropdown.css?ver=20221013134344363" rel="stylesheet">
+
     <!-- CK에디터 -->
-     <script src="/resources/plugin/ckeditor/ckeditor.js"></script>
-    <!--// 달력 -->
-	<script src="/resources/plugin/datepicker/datepicker.min.js?ver=20250624103500000"></script>
-	<script src="/resources/plugin/datepicker/datepicker.ko-KR.js?ver=20250624103500000"></script>
-	<link href="/resources/plugin/datepicker/datepicker.min.css?ver=20250624103500000" rel="stylesheet" />
-	<!-- board, pazing -->
-    <link href="/resources/css/clipboard/clipboard_01.css?ver=20250624103500000" rel="stylesheet">
+     <script src="/resources/plugin/ckeditor/ckeditor.js"></script>	
+	<!--// report -->
+	<link href="/resources/css/_report/report_01.css?ver=20250624103500000" rel="stylesheet">
 </head>
 <body>
-	<!-- top -->
-     <!--// loading -->
+	<!--// loading -->
     <section class="loading-layer">
 	    <div class="loadingBg"></div>
 	    <div class="loadingImg"><img src="/resources/images/loading.svg" alt="로딩중..." /></div>
@@ -48,7 +43,7 @@
                 <li><a href="#menu" class="menuToggle" id="btnMenu"><img src="/resources/images/btn/btn_menu_open.png" alt="menuBtn"></a></li>
                 <li><a href="/WEB-INF/views/report/report_01.html">업무보고</a></li>
                 <li><a href="/WEB-INF/views/schedule/schedule_01.html">일정관리</a></li>
-                <li><a href="/WEB-INF/views/company/company_01.html">회사관리</a></li>
+                <li><a href="/WEB-INF/views/company/company_01.html">사용자관리</a></li>
                 <li><a href="/WEB-INF/views/clipboard/clipboard_01.html">게시판</a></li>
                 <li><a href="/WEB-INF/views/system/system_01.html">시스템관리</a></li>
             </ul>
@@ -108,41 +103,11 @@
 			<div class="leftBox"><img src="/resources/images/btn/btn_leftmenu_close.png" alt="대메뉴"></div>
 			<section class="lmTop">
 				<p id="pageNavi" class="ftSize20 ftBold mgB10">
-					게시판&nbsp;&nbsp;<span class="ftNormal colGray2">업무공유</span>
+					업무보고&nbsp;&nbsp;<span class="ftNormal colGray2">주간업무</span>
 				</p>
 				<div id="leftTop">
-					<div id="leftTopRpt01" class="leftTopConts">
-						<div class="ucTable">
-							<div>
-								<p>
-									<!-- <span class="colGray2">MD</span> -->
-									<span class="colGray2">예상:</span>
-									<strong id="lblRpt01EMD">0</strong>
-								</p>
-							</div>
-							<div>
-								<p>
-									<span class="colGray2">처리:</span>
-									<strong id="lblRpt01CMD">0</strong>
-								</p>
-							</div>
-						</div>
-					</div>
-					<!-- 회의록  -->
-					<div id="leftTopRpt02" class="leftTopConts">
-						<div class="ucTable">
-							<a href="#inp" class="btn btn100 btnPoint" >저장</a>
-							<a href="#inp" class="btn btn100 btnRed mgT10" >삭제</a>
-						</div>
-					</div>
-		
-					<div id="leftTopRpt03" class="leftTopConts">
-						<div class="ucTable">
-							<a href="/report/03/write" class="btn btn100 btnPoint">등록</a>
-						</div>
-					</div>
 					<!-- 사내일정 -->
-					<div id="leftTopRpt04" class="leftTopConts">
+					<div id="leftTopRpt04" class="leftTopConts" style="display: block;">
 						<div class="ucTable">
 							<a href="#reg" class="btn btn100 btnPoint" >등록</a>
 						</div>
@@ -156,127 +121,132 @@
 			</section>
 			<section class="lmMenu">
 				<h3><img src="/resources/images/sub/leftMenu_icon_01.png" alt="대메뉴">&nbsp;&nbsp;<span
-						id="leftMenuTop">게시판<!-- 대메뉴 --></span></h3>
+						id="leftMenuTop">업무보고<!-- 대메뉴 --></span></h3>
 				<ul id="leftMenuList">
-					<li><a href="/WEB-INF/views/clipboard/clipboard_01.html">공지사항</a></li>
-					<li><a href="/WEB-INF/views/clipboard/clipboard_02.html">자료실</a></li>
-					<li class="lmChoice"><a href="/WEB-INF/views/clipboard/clipboard_03.html">업무공유</a></li>
+					<li class="lmChoice"><a href="/WEB-INF/views/clipboard/clipboard_01.html">주간업무</a></li>
 				</ul>
 			</section>
 			<footer></footer>
 		</section>
 		<section class="contens">
-		<!-- 게시판 -->
-		<input type="hidden" id="mBIdx" value="18">
-			<section class="schBox">
-				<p>
-					총 <span id="totalCnt" class="colPoint">0</span>건
-				</p>
-				&nbsp; <select id="cphBody_ddlDateSearch" style="width: 120px;">
-					<option value="">작성일</option>
-				</select> <input type="text" id="txtSdate" class="cal" style="width: 120px;" onkeyup="fnDateMask(this);"> ~ <input
-					type="text" id="txtEdate" class="cal" style="width: 120px;" onkeyup="fnDateMask(this);">&nbsp; <input
-					type="text" maxlength="100" id="txtRegName" placeholder="작성자" style="width: 120px;">&nbsp; <input type="text"
-					maxlength="100" id="txtTitle" placeholder="제목" style="width: 250px;"> <input type="submit" value="검색"
-					id="btnSch" class="btn btnPoint">
-			</section>
-			<section id="clipboard_01">
-				<section class="shadowBox">
-					<table id="tableList" class="tableList">
-						<colgroup>
-							<col>
-							<col style="width: 10%">
-							<col style="width: 10%">
-							<col style="width: 10%">
-							<col style="width: 17%">
-						</colgroup>
-						<thead>
-							<tr>
-								<th>제목</th>
-								<th>첨부파일</th>
-								<th>작성자</th>
-								<th>조회수</th>
-								<th>작성일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td colspan="5" class="noData">검색된 게시글이 없습니다.</td>
-							</tr>
-						</tbody>
-					</table>
-					<section id="pagingView" class="paging">
-						<!-- 페이징 -->
-					</section>
-				</section>
-				<section class="shadowBox">
-					<table id="tableView" class="tableView">
-						<colgroup>
-							<col style="width: 12%">
-							<col style="width: 40%">
-							<col style="width: 10%">
-							<col style="width: 38%">
-						</colgroup>
-						<tbody>
-							<tr>
-								<th>작성자</th>
-								<td><span id="regName"></span></td>
-								<!--로그인된 사람 불러옴-->
-								<th>작성날짜</th>
-								<td><span id="regDate">자동 저장</span></td>
-							</tr>
-							<tr>
-								<td colspan="4" style="padding: 10px 0;"><input id="txtSubj" name="txtSubj" type="text"
-										maxlength="100" data-bidx="0" placeholder="제목을 입력해 주세요"></td>
-							</tr>
-							<tr>
-								<td colspan="4" style="padding: 10px 0;"><textarea name="resCnts" id="resCnts"
-										placeholder="내용을 입력해 주세요"></textarea></td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="ry_fileUploadBody">
-						<!-- class(ry_fileUploadBody) 변경하면 안됨 -->
-						<div class="DivScrollY" id="fileDragBody">
-							<!-- 멀티 업로드 영역이 여러개일 경우 각 영역별 id 지정 -->
-							<table class="tableList">
-								<colgroup>
-									<col style="width: 55%;">
-									<col style="width: 15%;">
-									<col style="width: 15%;">
-									<col style="width: 15%;">
-								</colgroup>
-								<thead>
-									<tr class="DivScrollYHead">
-										<th>파일명</th>
-										<th>용량</th>
-										<th>상태</th>
-										<th>삭제</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
+			<!-- 팝업 시작 -->
+			<section id="WeekLayerPopUp" class="dim-layer" style="display: none;">
+				<section class="dimBg"></section>
+				<section class="autoSizeLayerBg">
+					<div class="autoSizeLayer" style="width: 1200px;">
+						<div class="autoSizeLayerT">
+							<div class="autoSizeLayerCls">
+								<a href="#popclose" class="btn-layerClose"> <img src="/resources/images/btn/btn_popclose.png" alt="닫기">
+								</a>
+							</div>
+							<div class="autoSizeLayerTInner">
+								<h4>주간 업무 보고</h4>
+							</div>
 						</div>
-						<div id="fileFoot">
-							<div class="filebox mgTB10">
-								<label for="ry_file">파일추가</label><input type="file" id="ry_file" name="ry_file" multiple="multiple">
-								<a href="#download" id="fileDownBtn" class="btn btnWhite"
-									 style="display: none;">파일전체 다운로드</a> <a
-									href="#input" id="fileUpBtn" class="btn btnPointLine floatR"
-									 style="display: none;">파일 업로드</a>
+						<div class="autoSizeLayerCont">
+							<div class="autoSizeLayerContBody">
+								<div class="tableTitle" id="tableTitle">
+									<p style="padding-bottom: 5px;"></p>
+									<p>
+										<span class="tableBtn"> 
+											<a href="/_Business/Business_Write_01.aspx" class="btn btnPoint" >추가</a> 
+										</span>
+									</p>
+								</div>
+								<table class="tableView" id="weekInput">
+									<colgroup>
+										<col style="width: 20%">
+										<col style="width: 40%">
+										<col style="width: 40%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th>항 목</th>
+											<th>전주 추진사항</th>
+											<th colspan="2" >금주 추진사항</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+									</tbody>
+								</table>
+							</div>
+							<div class="autoSizeLayerF">
+								<a id="btnSave" class="btn btnPoint" href="#">저장</a>
+								<a id="btnDelete" class="btn btnRed" href="#" style="display:none;">삭제</a> 
+								<a href="#popclose" class="btn btnWhite btn-layerClose" >닫기</a>
 							</div>
 						</div>
 					</div>
-					<div class="boardFootBtn">
-						<a href="#reg" id="btnInput" class="btn btnPoint" >등록</a> <a
-							href="#del" id="btnDelete" class="btn btnRed" 
-							style="display: none;">삭제</a> <a href="#can" id="btnCancel" class="btn btnWhite"
-							>취소</a>
-					</div>
 				</section>
 			</section>
-		</section> 
+			<!-- 팝업 끝 -->
+			<section class="schBox">
+				<section class="txtC">
+					<a id="btnWeekPre" href="#" >
+						<img src="/resources/images/btn/btn_bleft.png" alt="이전">
+					</a>&nbsp; 
+					<select name="selYear" id="selYear" style="width: 100px;">
+					</select>&nbsp; 
+					<select name="selMonth" id="selMonth" style="width: 100px;">
+						<option value="01">01월</option>
+						<option value="02">02월</option>
+						<option value="03">03월</option>
+						<option value="04">04월</option>
+						<option value="05">05월</option>
+						<option value="06">06월</option>
+						<option value="07">07월</option>
+						<option value="08">08월</option>
+						<option value="09">09월</option>
+						<option selected="selected" value="10">10월</option>
+						<option value="11">11월</option>
+						<option value="12">12월</option>
+					</select>&nbsp; <select name="selWeek" id="selWeek" style="width: 290px;">
+					</select>&nbsp; 
+					<a id="btnWeekNext" href="#" >
+						<img src="/resources/images/btn/btn_nright.png" alt="다음">
+					</a>
+				</section>
+			</section>
+			<section class="contsF shadowBox">
+				<section class="tableBody">
+					<table class="tableView" id="weekList">
+						<colgroup>
+							<col style="width: 12%">
+							<col style="width: 7%">
+							<col style="width: 40%">
+							<col style="width: 40%">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>항&nbsp;&nbsp;목</th>
+								<th>작업자</th>
+								<th>전주 추진사항</th>
+								<th>금주 추진사항</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>  
+								<td colspan="4" class="none">등록된 내용이 없습니다.</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+			</section>
+		</section>
 	</section>
+
+	<script>
+		/* 
+		CKEDITOR.instances.resCnts.getData();
+		CKEDITOR.instances.resCnts.setData('');
+		
+		CKEDITOR.replace('resCnts', {
+			filebrowserUploadUrl:'/common/uploadImgOne',
+			editorplaceholder : '내용을 입력해 주세요',
+		}); */
+	</script>
+
+	<!-- footer -->
 </body>
-</html>	
+</html>

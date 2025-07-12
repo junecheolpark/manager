@@ -1,7 +1,12 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- head -->
+	<!-- head -->
+	<%@ include file="/WEB-INF/views/_include/common.jsp" %>
+	<%@ include file="/WEB-INF/views/_include/html_head.jsp" %>	
     <!--// 달력 -->
     <script src="/resources/plugin/datepicker/datepicker.min.js?ver=20230330103500000"></script>
     <script src="/resources/plugin/datepicker/datepicker.ko-KR.js?ver=20230330103500000"></script>

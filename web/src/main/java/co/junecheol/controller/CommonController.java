@@ -89,8 +89,8 @@ public class CommonController {
 	/** 업무 보고 **/
 
 	// 주간업무
-	@RequestMapping(value = "/report/02")
-	public String goReport02(HttpServletRequest request) {
+	@RequestMapping(value = "/report/01")
+	public String goReport01(HttpServletRequest request) {
 		Boolean isLogin = false;
 
 		// 쿠키 확인
@@ -103,7 +103,7 @@ public class CommonController {
 		}
 
 		if (isLogin) {
-			return "/report/report_02";
+			return "/report/report_01";
 		} else {
 			return goErrorLogin();
 		}

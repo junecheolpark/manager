@@ -4,9 +4,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- head -->
+	<%@ include file="/WEB-INF/views/include/common.jsp" %>
+	<%@ include file="/WEB-INF/views/include/html_head.jsp" %>	
 	<link href="/resources/css/system/system_03.css?ver=20250624103500000" rel="stylesheet">
 </head>
 <body>
+	<!-- top -->
+	<%@ include file="/WEB-INF/views/include/body_top.jsp" %>	
+	<!-- left -->
+	<%@ include file="/WEB-INF/views/include/body_left.jsp" %>
 	
 		<section id="VacationView" class="dim-layer" style="display: none;">
 			<section class="autoSizeLayerBg" style="overflow-y: auto;">
@@ -140,7 +147,5 @@
                         </table>
                 </section>
             </section>
-    <!-- footer -->
-	<%@ include file="/WEB-INF/views/_include/body_footer.jsp" %>
 </body>
 </html>	
