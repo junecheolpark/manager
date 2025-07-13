@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
 	<!-- head -->
-	<%@ include file="/WEB-INF/views/_include/common.jsp" %>
-	<%@ include file="/WEB-INF/views/_include/html_head.jsp" %>	
+	<%@ include file="/WEB-INF/views/include/common.jsp" %>
+	<%@ include file="/WEB-INF/views/include/html_head.jsp" %>	
 
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<!--// 달력 -->

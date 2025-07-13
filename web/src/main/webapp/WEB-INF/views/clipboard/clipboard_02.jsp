@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
 	<!-- head -->
-	<%@ include file="/WEB-INF/views/_include/common.jsp" %>
-	<%@ include file="/WEB-INF/views/_include/html_head.jsp" %>	
+	<%@ include file="/WEB-INF/views/include/common.jsp" %>
+	<%@ include file="/WEB-INF/views/include/html_head.jsp" %>	
 	
 	 <!-- 멀티 파일 업로드 -->
     <script src="/resources/plugin/filedropdown/js/filedropdown.js?ver=20221013134344363"></script>

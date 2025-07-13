@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
 	<!-- head -->
-	<%@ include file="/WEB-INF/views/_include/common.jsp" %>
-	<%@ include file="/WEB-INF/views/_include/html_head.jsp" %>	
+	<%@ include file="/WEB-INF/views/include/common.jsp" %>
+	<%@ include file="/WEB-INF/views/include/html_head.jsp" %>	
     <!--// 달력 -->
     <script src="/resources/plugin/datepicker/datepicker.min.js?ver=20230330103500000"></script>
     <script src="/resources/plugin/datepicker/datepicker.ko-KR.js?ver=20230330103500000"></script>

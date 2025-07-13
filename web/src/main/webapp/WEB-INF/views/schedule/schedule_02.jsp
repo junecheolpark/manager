@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
 	<!-- head -->
-	<%@ include file="/WEB-INF/views/_include/common.jsp" %>
-	<%@ include file="/WEB-INF/views/_include/html_head.jsp" %>	
+	<%@ include file="/WEB-INF/views/include/common.jsp" %>
+	<%@ include file="/WEB-INF/views/include/html_head.jsp" %>	
 
 	<!-- fullcalendar //-->
 	<!--// 달력 -->
