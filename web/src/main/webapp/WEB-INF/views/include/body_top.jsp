@@ -52,9 +52,8 @@
                     <li>
                         <a href="/system/01">시스템 관리</a>
                         <ul>
-                            <li><a href="/system/01">운영자 관리</a></li>
-                            <li><a href="/system/02">코드 관리</a></li>
-                            <li><a href="/system/03">연차관리</a></li>
+                            <li><a href="/system/01">코드 관리</a></li>
+                            <li><a href="/system/02">연차관리</a></li>
                         </ul>
                     </li>
                 </ul>

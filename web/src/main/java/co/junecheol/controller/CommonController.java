@@ -273,7 +273,7 @@ public class CommonController {
 
 	/*******************/
 	/** 시스템 관리 **/
-	// 운영자 관리
+	// 코드 관리
 	@RequestMapping(value = "/system/01")
 	public String goSystem01(HttpServletRequest request) {
 		Boolean isLogin = false;
@@ -294,7 +294,7 @@ public class CommonController {
 		}
 	}
 
-	// 코드 관리
+	// 연차 관리
 	@RequestMapping(value = "/system/02")
 	public String goSystem02(HttpServletRequest request) {
 		Boolean isLogin = false;
@@ -314,27 +314,5 @@ public class CommonController {
 			return goErrorLogin();
 		}
 	}
-	
-	// 코드 관리
-		@RequestMapping(value = "/system/03")
-		public String goSystem03(HttpServletRequest request) {
-			Boolean isLogin = false;
-
-			// 쿠키 확인
-			Cookie cokChk = findCookie(request, cookieNm);
-			if (cokChk == null) {
-				// log.info("쿠키 검색 안됨");
-				isLogin = false;
-			} else {
-				isLogin = true;
-			}
-
-			if (isLogin) {
-				return "/system/system_03";
-			} else {
-				return goErrorLogin();
-			}
-		}
-
 	
 }

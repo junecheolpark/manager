@@ -10,11 +10,11 @@
 	<link href="/resources/css/system/system_03.css?ver=20250624103500000" rel="stylesheet">
 </head>
 <body>
-	<!-- top -->
-	<%@ include file="/WEB-INF/views/include/body_top.jsp" %>	
-	<!-- left -->
-	<%@ include file="/WEB-INF/views/include/body_left.jsp" %>
-	
+        <!-- top -->
+        <%@ include file="/WEB-INF/views/include/body_top.jsp" %>	
+        <!-- left -->
+        <%@ include file="/WEB-INF/views/include/body_left.jsp" %>
+        <!-- 컨텐츠 -->
 		<section id="VacationView" class="dim-layer" style="display: none;">
 			<section class="autoSizeLayerBg" style="overflow-y: auto;">
 				<div class="autoSizeLayer ui-draggable"

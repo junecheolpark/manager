@@ -17,6 +17,11 @@
 </head>
 <body>
 
+	<!-- top -->
+	<%@ include file="/WEB-INF/views/include/body_top.jsp" %>	
+	<!-- left -->
+	<%@ include file="/WEB-INF/views/include/body_left.jsp" %>
+	
     <!-- 컨텐츠 -->
     <section class="schBox">
         <input type="hidden" id="chargeIndex" value="0">
