@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board_mapper">
+
+
+	<!-- 게시판 테이블 갯수 -->
+	<select id="boardListTotal" parameterType="hashMap" resultType="Integer">
+		SELECT "TOTAL_CNT" FROM public.fn_board_list(
+		#{LIST_TP}, 
+		#{PAGE},
+		#{PAGESIZE},
+		#{MASTER_BOARD_IDX},
+		#{SEARCH_DATE1},
+		#{SEARCH_DATE2},
+		#{SEARCH_R_NM},
+		#{SCH_SEL},
+		#{SCH_TXT},
+		#{ORDER_BY},
+		#{DESC}
+		)
+	</select>
+
+	<!-- 게시판 테이블 불러오기 -->
+	<select id="boardList" parameterType="hashMap" resultType="co.junecheol.dto.BoardDTO">
+		SELECT * from public.fn_board_list(
+		#{LIST_TP}, 
+		#{PAGE},
+		#{PAGESIZE},
+		#{MASTER_BOARD_IDX},
+		#{SEARCH_DATE1},
+		#{SEARCH_DATE2},
+		#{SEARCH_R_NM},
+		#{SCH_SEL},
+		#{SCH_TXT},
+		#{ORDER_BY},
+		#{DESC}
+		)
+	</select>
+	
+	<!-- 게시글 디테일 -->
+	<select id="boardView" resultType="co.junecheol.dto.BoardDTO" parameterType="hashMap">
+		SELECT * FROM public.fn_board_view(
+		#{BOARD_IDX})
+	</select>
+
+</mapper>
