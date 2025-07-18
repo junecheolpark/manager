@@ -17,6 +17,10 @@ $(function() {
         zIndex: 8889,
     });
 
+	_master_boardIdx = parseInt($('#mBIdx').val());
+
+	$("#regName").text(_c_logNm);
+	
     // 검색창 엔터키
 	$('.schBox').children('input, select').keypress(function(event) {
 		if (event.which == 13) {
@@ -26,11 +30,29 @@ $(function() {
 		}
 	});
 
-    // 검색
+    _fileFolder = 'board';
+
+	// 파일 드롭 다운
+	fnRyUploader('fileDragBody'); // 드래그 영역 id
+
+	//파일 드롭 성공 하면 이미지 숨김
+	$('#fileDragBody').on('drop', function() {
+		const obj = $('#fileDragBody').find('tbody');
+		if (obj.children('tr').length != 0) { $('#fileDragBody').css('background', 'none') };
+	});
+	// 검색
 	$('#btnSch').on('click', function() {
 		_curPage = 1;
 		fnSortListView();
 		return false;
+	});
+
+	// 선택 달력 이벤트 불러오기
+	$('.cal').datepicker({
+		language: 'ko-KR',
+		format: 'yyyy-mm-dd',
+		autoHide: true,
+		zIndex: 8889,
 	});
 });
 
