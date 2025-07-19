@@ -12,9 +12,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.junecheol.common.CommonFunc;
+import co.junecheol.dto.UserDTO;
 
 @Controller
 @RequestMapping(value = "/login/")
@@ -26,6 +28,18 @@ public class LoginController {
 	private final String cookieAtLi = siteProps.getProperty("site.cookieAtLi");
 	private final String cookieSvId = siteProps.getProperty("site.cookieSvId");
 
+	/**
+	
+	  * @Method Name : login
+	  * @작성일 : 2025. 7. 19.
+	  * @작성자 : 박준철
+	  * @Method 설명 : 로그인
+	  * @param request
+	  * @param response
+	  * @return
+	  * @throws Exception
+	
+	  */
 	@RequestMapping(value = "login")
 	@ResponseBody
 	public Integer login(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -65,7 +79,77 @@ public class LoginController {
 
 		return resultCd;
 	}
+	
+	/**
+	
+	  * @Method Name : loginCok
+	  * @작성일 : 2025. 7. 19.
+	  * @작성자 : 박준철
+	  * @Method 설명 : 로그인 쿠키 정보
+	  * @param request
+	  * @return
+	  * @throws Exception
+	
+	  */
+	@RequestMapping(value = "loginCok", method = RequestMethod.POST)
+	@ResponseBody
+	public UserDTO loginCok(HttpServletRequest request) throws Exception {
+		System.out.println("################========");
+		System.out.println("Controller loginCok");
+		String cokLogin = "";
+		String cokAutoLogin = "";
+		UserDTO dto = new UserDTO();
 
+		Cookie[] list = request.getCookies();
+		for (Cookie cookie : list) {
+			if (cookie.getName().equals(cookieNm)) {
+				cokLogin = cookie.getValue();
+			} else if (cookie.getName().equals(cookieAtLi)) {
+				cokAutoLogin = cookie.getValue();
+			}
+		}
+
+		// 로그인 사용자 정보
+		if (!CommonFunc.isEmpty(cokLogin)) {
+			cokLogin = CommonFunc.decryptAES256(cokLogin);
+			System.out.println("cokLogin : " + cokLogin);
+			String[] arrCokLogin = cokLogin.split("‡");
+
+			dto.setUSER_IDX(Integer.valueOf(arrCokLogin[0]));
+			dto.setUSER_ID(arrCokLogin[1]);
+			dto.setNM(arrCokLogin[2]);
+			dto.setPHONE(arrCokLogin[3]);
+			dto.setMOBILE(arrCokLogin[4]);
+			dto.setEMAIL(arrCokLogin[5]);
+			dto.setPOSI_NM(arrCokLogin[6]);
+			dto.setDEPT_NM(arrCokLogin[7]);
+			dto.setADMIN_NM(arrCokLogin[8]);
+			dto.setADMIN_TP(Integer.valueOf(arrCokLogin[9]));
+			dto.setSIGN_TP(Integer.valueOf(arrCokLogin[10]));
+			dto.setCOMPANY_IDX(Integer.valueOf(arrCokLogin[11]));
+			dto.setUSER_IMG_NUM(Integer.valueOf(arrCokLogin[12]));
+
+		}
+		log.debug("################========");
+		return dto;
+	}
+
+	/**
+	
+	  * @Method Name : setLogin
+	  * @작성일 : 2025. 7. 19.
+	  * @작성자 : 박준철
+	  * @Method 설명 : 로그인 쿠키 생성
+	  * @param l_tp
+	  * @param u_idx
+	  * @param id
+	  * @param pw
+	  * @param at_login
+	  * @param request
+	  * @param response
+	  * @throws Exception
+	
+	  */
 	public void setLogin(Integer l_tp, Integer u_idx, String id, String pw, Boolean at_login,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		log.debug("################============");

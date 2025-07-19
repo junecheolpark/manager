@@ -42,3 +42,43 @@ function fnLoadingOpen() {
 	if ($('.loading-layer').css('display') == 'none') $('.loading-layer').show();
 	return false;
 }
+
+// 로딩중 팝업 닫기
+function fnLoadingClose() {
+	$('.loading-layer').fadeOut();
+	return false;
+}
+
+// 값이 0이나 공백일경우 - 반환
+function fnBlank(pVal, pReverse) {
+	pVal = $.trim(pVal);
+
+	if (pReverse == false) {
+		if (pVal == null || pVal == '' || pVal == '0') pVal = '-';
+	} else {
+		if (pVal == '-') pVal = '';
+	}
+
+	return pVal;
+}
+
+// pVal 값이 null이거나 공백일경우 pView 반환
+function fnEmpty(pVal, pView) {
+	let txt = $.trim(pVal);
+
+	if (txt == 'null' ||txt == null || txt == ''|| txt == 0) txt = pView;
+
+	return txt;
+}
+
+// 1000단위 콤마(,) 찍기 = 1,000
+function commify(n) {
+
+	var reg = /(^[+-]?\d+)(\d{3})/;   // 정규식
+	n += '';                          // 숫자를 문자열로 변환
+
+	while (reg.test(n))
+		n = n.replace(reg, '$1' + ',' + '$2');
+
+	return n;
+}

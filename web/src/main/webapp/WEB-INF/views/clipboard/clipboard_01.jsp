@@ -18,6 +18,7 @@
 	<script src="/resources/plugin/datepicker/datepicker.ko-KR.js?ver=20250624103500000"></script>
 	<link href="/resources/plugin/datepicker/datepicker.min.css?ver=20250624103500000" rel="stylesheet" />
 	<!-- board, pazing -->
+	<script src="/resources/js/paging.js?ver=20250624103500000"></script>
 	<script src="/resources/js/clipboard/clipboard_01.js?ver=20250624103500000"></script>
     <link href="/resources/css/clipboard/clipboard_01.css?ver=20250624103500000" rel="stylesheet">
 </head>
@@ -27,7 +28,7 @@
 	<!-- left -->
 	<%@ include file="/WEB-INF/views/include/body_left.jsp" %>
 		<!-- 게시판 -->
-		<input type="hidden" id="mBIdx" value="11">
+		<input type="hidden" id="mBIdx" value="10">
 			<section class="schBox">
 				<p>
 					총 <span id="totalCnt" class="colPoint">0</span>건

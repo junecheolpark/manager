@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.junecheol.common.CommonFunc;
@@ -112,11 +113,10 @@ public class CommonController {
 
 	/*******************/
 	/** 게시판 **/
-	// 공지사항
-	@RequestMapping(value = "/clipboard/01")
-	public String goClipboard01(HttpServletRequest request) {
+	// 공지사항, 자료실, 업무공유
+	@RequestMapping(value = "/clipboard/{type}")
+	public String goClipboard01(@PathVariable String type, HttpServletRequest request) {
 		Boolean isLogin = false;
-
 		// 쿠키 확인
 		Cookie cokChk = findCookie(request, cookieNm);
 		if (cokChk == null) {
@@ -128,51 +128,6 @@ public class CommonController {
 
 		if (isLogin) {
 			return "/clipboard/clipboard_01";
-		} else {
-			return goErrorLogin();
-		}
-	}
-
-	// 자료실
-	@RequestMapping(value = "/clipboard/02")
-	public String goClipboard02(HttpServletRequest request) {
-		Boolean isLogin = false;
-
-		// 쿠키 확인
-		Cookie cokChk = findCookie(request, cookieNm);
-		if (cokChk == null) {
-			// log.info("쿠키 검색 안됨");
-			isLogin = false;
-		} else {
-			isLogin = true;
-		}
-
-		if (isLogin) {
-			return "/clipboard/clipboard_02";
-		} else {
-			return goErrorLogin();
-		}
-	}
-
-	// 업무공유
-	@RequestMapping(value = "/clipboard/03")
-	public String goClipboard03(HttpServletRequest request) {
-		/*
-		 * HttpSession session = request.getSession(); if
-		 * (CommonFunc.sessionChk(session)) {
-		 */
-		Boolean isLogin = false;
-		// 쿠키 확인
-		Cookie cokChk = findCookie(request, cookieNm);
-		if (cokChk == null) {
-			// log.info("쿠키 검색 안됨");
-			isLogin = false;
-		} else {
-			isLogin = true;
-		}
-
-		if (isLogin) {
-			return "/clipboard/clipboard_03";
 		} else {
 			return goErrorLogin();
 		}
