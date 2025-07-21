@@ -82,3 +82,26 @@ function commify(n) {
 
 	return n;
 }
+
+// 날짜 사이 일수 계산
+function dateDiff(strDate1, strDate2) {
+	datDate1 = new Date(strDate1);
+	datDate2 = new Date(strDate2);
+	return ((datDate1 - datDate2) / (24 * 60 * 60 * 1000));
+}
+
+// 디데이 계산
+function dDayCalcul(strDate1, strDate2) {
+	datDate1 = new Date(strDate1);
+	datDate2 = new Date(strDate2);
+
+	const timeDiff = datDate1.getTime() - datDate2.getTime();
+	const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+	return dayDiff
+}
+
+// 페이지 뒤로가기
+function fnPageBack() {
+	history.go(-1);
+}
