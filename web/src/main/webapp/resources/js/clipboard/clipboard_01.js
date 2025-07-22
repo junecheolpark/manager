@@ -258,6 +258,40 @@ function fnBoardView(bidx) {
 	});
 }
 
+// 게시판 등록/수정/ 조회수
+function fnBoardInput(regCnt) {
+	const objSel = $('#tableList').find('.selRow');
+	let board_IDX = reg_CNT = 0;
+	let subj = conts = '';
+
+	conts = CKEDITOR.instances.resCnts.getData();
+	if (regCnt != 1) {
+		if (!fnAlertReturn('txtSubj', '제목', '')) return false;
+		if (conts == '' || conts == null) {
+			alert('내용을 입력해주세요');
+			return false;
+		}
+	}
+
+	if (objSel.length > 0) {
+		board_IDX = parseInt(objSel.attr('data-bidx'));
+	}
+
+	subj = $('#txtSubj').val();
+
+	const paramMap = {
+		bidx: board_IDX,
+		mbidx: _master_boardIdx,
+		rnm: $('#regName').text(),
+		rcnt: regCnt,
+		subj: subj,
+		conts: conts,//editor.getData(),//.replace(/<[^>]*>?/g, '')
+		ridx: _c_logIdx
+	}
+	const jsonData = JSON.stringify(paramMap);
+	console.log(jsonData);
+}
+
 function fnBoardCancel() {
 	const objList = $('#fileDragBody').find('tbody')
 		, objSel = $('#tableList').find('.selRow');
