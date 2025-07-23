@@ -290,6 +290,8 @@ function fnBoardInput(regCnt) {
 	}
 	const jsonData = JSON.stringify(paramMap);
 	console.log(jsonData);
+	
+	fnBoardFileInput();
 }
 
 function fnBoardCancel() {
@@ -306,4 +308,134 @@ function fnBoardCancel() {
 
 	$('#btnDelete').hide();
 	$('#fileDragBody').css('background', '');
+}
+
+// 파일 업로드 후 등록/수정
+function fnBoardFileInput() {
+	const obj = $('#fileDragBody').find('tbody');
+	//console.log(obj.children('tr').length);
+	if (obj.children('tr').length == 0 && _fidx == '') {
+		//if ($('.ry_row_new').length == 0) {
+		//alert('첨부파일을 추가해 주세요.');
+		_curPage = 1;
+		fnSortListView();
+		fnBoardCancel();
+		fnLoadingClose();
+		return false;
+	} else {
+		let conts = CKEDITOR.instances.resCnts.getData();
+		if (!fnAlertReturn('txtSubj', '제목', '')) return false;
+		if (conts == '' || conts == null) {
+			alert('내용을 입력해주세요');
+		}
+
+		const promise = new Promise(function(resolve, reject) {
+			fnLoadingOpen(); // 로딩 시작
+
+			// 로딩 이미지가 활성화 된 상태에서 실행하기 위해 지연시간을 둠
+			setTimeout(function() {
+				resolve();
+			}, 100);
+		});
+
+		promise.then(function() {
+			// 파일 업로드 처리
+			fnRyUploaderUpFile('fileDragBody', true);
+		}).then(function() {
+			let arrParam = [];
+			arrParam[0] = parseInt($('#txtSubj').attr('data-bidx'));
+			arrParam[1] = 0;
+			arrParam[2] = 0;
+			arrParam[3] = '';
+			arrParam[4] = '';
+			arrParam[5] = '';
+			arrParam[6] = 0.0;
+			arrParam[7] = _c_logIdx;
+
+			let obj = $('#fileDragBody')
+				//, objBody = obj.find('tbody')
+				, objList = obj.find('.ry_row_no')
+				, objThis = null;
+			let fileidx = fstatus = rfilename = filename = filepath = filesize = sizetype = sHtml = '';
+			let isError = false;
+			//let resultCode = 9;
+			// 파일 정보 DB 저장
+			//console.log(objList)
+
+			if (objList.length > 0) {
+				objList.each(function() {
+					objThis = $(this);
+					fstatus = objThis.attr('data-status');
+					fileidx = objThis.attr('data-fidx');
+					rfilename = objThis.attr('data-rfilename');
+					filename = objThis.attr('data-filename');
+					filepath = objThis.attr('data-filepath');
+					filesize = objThis.attr('data-filesize');
+
+					// 새파일 파일 저장
+					if (fstatus == 1) {
+						//console.log(fileidx + ' | ' + rfilename + ' | ' + filename + ' | ' + filepath + ' | ' + filesize);
+						arrParam[2] = fileidx;
+						arrParam[3] = rfilename;
+						arrParam[4] = filepath;
+						arrParam[5] = filename;
+						arrParam[6] = filesize;
+						//console.log(arrParam);
+
+						// 파일 등록/수정
+						const paramMap = {
+							bidx: arrParam[0],
+							fidx: parseInt(arrParam[2]),
+							ftp: 1,
+							fpath: arrParam[4],
+							fnm: arrParam[5],
+							rfnm: arrParam[3],
+							fsize: parseInt(arrParam[6]),
+							ridx: _c_logIdx
+						}
+						const jsonData = JSON.stringify(paramMap);
+						//console.log(jsonData);
+						$.ajax({
+							type: 'POST',
+							url: '/board/fileInput',
+							data: jsonData,
+							async: false,
+							contentType: 'application/json; charset=utf-8',
+							dataType: 'json', // dataType is json format
+							beforeSend: function() {
+								fnLoadingOpen();
+							},
+							success: function(res) {
+								if (res != 0) {
+									alert('실패');
+								}
+							},
+							//error: function(jqXHR, textStatus, errorThrown) {
+							error: function(jqXHR, textStatus, errorThrown) {
+								// loading.. progressbar 종료			
+								fnLoadingClose();
+								alert('실패');
+								//console.log("ERROR : " + textStatus + " : " + errorThrown);
+								//console.log(res.responseText);
+							}
+						});
+					} else {
+						if (!isError) isError = true;
+					}
+				});
+
+				if (isError) {
+					alert('일부파일이 저장중 오류가 발생했습니다.');
+				}
+
+				//fnBoardFileList(2);
+			}
+		}).then(function() {
+			_curPage = 1;
+			fnSortListView();
+			fnBoardCancel();
+			fnLoadingClose();
+		});
+	}
+
 }
