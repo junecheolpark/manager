@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import co.junecheol.dao.BoardDAO;
 import co.junecheol.dto.BoardDTO;
+import co.junecheol.dto.FileDTO;
 import co.junecheol.service.BoardService;
 
 @Service
@@ -58,4 +59,75 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return dto;
 	}
+	
+	// 게시글 등록/수정/조회수
+		@Override
+		public Integer boardInput(Map<String, Object> map) {
+			Integer resultCd = 9;
+
+			try {
+				resultCd = boardDao.boardInput(map);
+			} catch (Exception e) {
+				log.error("error", e);
+			}
+
+			return resultCd;
+		}
+
+		// 게시글 삭제
+		@Override
+		public Integer boardDelete(Map<String, Object> map) {
+			Integer resultCd = 9;
+
+			try {
+				resultCd = boardDao.boardDelete(map);
+			} catch (Exception e) {
+				log.error("error", e);
+			}
+
+			return resultCd;
+		}
+
+		// 유지보수 파일 목록
+		@Override
+		public List<FileDTO> boardFileList(Map<String, Object> map) {
+			// System.out.println("Service boardFileList");
+			List<FileDTO> list = new ArrayList<FileDTO>();
+
+			try {
+				list = boardDao.boardFileList(map);
+			} catch (Exception e) {
+				log.error("error", e);
+			}
+
+			return list;
+		}
+
+		// 유지보수 파일 등록/수정
+		@Override
+		public Integer boardFileInput(Map<String, Object> map) {
+			Integer resultCd = 9;
+
+			try {
+				resultCd = boardDao.boardFileInput(map);
+			} catch (Exception e) {
+				log.error("error", e);
+			}
+
+			return resultCd;
+		}
+
+		// 유지보수 파일 삭제
+		@Override
+		public Integer boardFileDelete(Map<String, Object> map) {
+			Integer resultCd = 9;
+
+			try {
+				resultCd = boardDao.boardFileDelete(map);
+			} catch (Exception e) {
+				log.error("error", e);
+			}
+
+			return resultCd;
+		}
 }

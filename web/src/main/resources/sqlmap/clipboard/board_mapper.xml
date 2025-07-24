@@ -44,4 +44,62 @@
 		#{BOARD_IDX})
 	</select>
 
+	<!-- 게시글 등록/수정 -->
+	<insert id="boardInput" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_board_input(
+					#{BOARD_IDX}, 
+					#{MASTER_BOARD_IDX}, 
+					#{REG_NM}, 
+					#{REG_CNT}, 
+					#{SUBJ}, 
+					#{CONTS}, 
+					#{REG_IDX}, 
+					#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+					)
+	</insert>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="boardDelete" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_board_delete(
+					#{DEL_TP}, 
+					#{BOARD_IDX},
+					#{DEL_IDX}, 
+					#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+					)
+	</delete>	
+
+	<!-- 게시판 첨부파일 목록 -->
+	<select id="boardFileList" resultType="co.junecheol.dto.FileDTO" parameterType="hashMap">
+		SELECT * 
+		FROM public.fn_board_file_list(
+			#{BOARD_IDX}, 
+			#{FILE_IDX},
+			#{FILE_TP})
+	</select>
+	
+	<!-- 게시판 첨부파일 등록/수정 -->
+	<insert id="boardFileInput" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_board_file_input(
+					#{BOARD_IDX},
+					#{FILE_IDX},
+					#{FILE_TP},
+					#{FILE_PATH},
+					#{FILE_NM},
+					#{REAL_FILE_NM},
+					#{FILE_SIZE},
+					#{REG_IDX},
+					#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+					)
+	</insert>
+	
+	<!-- 게시판 첨부파일 삭제 -->
+	<delete id="boardFileDelete" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_board_file_delete(
+					#{DEL_TP}, 
+					#{BOARD_IDX},
+					#{FILE_IDX},
+					#{DEL_IDX}, 
+					#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+					)
+	</delete>	
 </mapper>

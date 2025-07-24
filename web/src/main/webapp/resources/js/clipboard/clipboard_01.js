@@ -208,7 +208,8 @@ function fnBoardView(bidx) {
 	}
 	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
-
+	//조회수 업
+	fnBoardInput(1);
 	$.ajax({
 		type: 'POST',
 		url: '/board/view',
@@ -285,13 +286,110 @@ function fnBoardInput(regCnt) {
 		rnm: $('#regName').text(),
 		rcnt: regCnt,
 		subj: subj,
-		conts: conts,//editor.getData(),//.replace(/<[^>]*>?/g, '')
+		conts: conts,
 		ridx: _c_logIdx
 	}
 	const jsonData = JSON.stringify(paramMap);
-	console.log(jsonData);
-	
-	fnBoardFileInput();
+	//console.log(paramMap);
+	$.ajax({
+		type: 'POST',
+		url: '/board/input',
+		data: jsonData,
+		//async: false,
+		contentType: 'application/json; charset=utf-8',
+		dataType: 'json', // dataType is json format
+		beforeSend: function() {
+			fnLoadingOpen();
+		},
+		success: function(res) {
+			if (res == 0) {
+				if (regCnt == 0) {
+					if (_fnm != '') {
+						fnBoardFileDelete();
+					}
+					//파일등록
+					fnBoardFileInput();
+					alert('처리 되었습니다.');
+
+					if (_master_boardIdx == 11) {
+						let fcm_subj = '공지사항 ' + (board_IDX == 0 ? '등록' : '수정')
+							, fcm_conts = subj;
+
+						fnFCMSend(false, [1, 1, fcm_subj, fcm_conts, '', _c_logIdx, 0]);
+					}
+				}
+
+			} else {
+				alert('실패');
+			}
+
+			fnLoadingClose();
+		},
+		//error: function(jqXHR, textStatus, errorThrown) {
+		error: function(jqXHR, textStatus, errorThrown) {
+			// loading.. progressbar 종료			
+			fnLoadingClose();
+			alert('실패');
+			//console.log("ERROR : " + textStatus + " : " + errorThrown);
+			//console.log(res.responseText);
+		}
+	});
+}
+
+// 게시판 삭제
+function fnBoardDelete() {
+	if (fnDeleteMsg(1)) {
+		const objSel = $('#tableList').find('.selRow');
+		let bidx = 0;
+
+		if (objSel.length > 0) {
+			bidx = parseInt(objSel.attr('data-bidx'));
+		}
+
+		const paramMap = {
+			deltp: 1,
+			bidx: bidx,
+			didx: _c_logIdx,
+		}
+		const jsonData = JSON.stringify(paramMap);
+		//console.log(jsonData);
+		/**/
+		$.ajax({
+			type: 'POST',
+			url: '/board/delete',
+			data: jsonData,
+			//async: false,
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json', // dataType is json format
+			beforeSend: function() {
+				fnLoadingOpen();
+			},
+			success: function(res) {
+				//console.log(res);
+				if (res == 0) {
+
+					fnBoardCancel();
+
+					_curPage = 1;
+					fnSortListView();
+					alert('처리 되었습니다.');
+				} else {
+					alert('실패');
+				}
+
+				fnLoadingClose();
+			},
+			//error: function(jqXHR, textStatus, errorThrown) {
+			error: function(jqXHR, textStatus, errorThrown) {
+				// loading.. progressbar 종료			
+				fnLoadingClose();
+				alert('실패');
+				//console.log("ERROR : " + textStatus + " : " + errorThrown);
+				//console.log(res.responseText);
+			}
+		});
+		/**/
+	}
 }
 
 function fnBoardCancel() {
@@ -438,4 +536,131 @@ function fnBoardFileInput() {
 		});
 	}
 
+}
+// 파일 목록 생성
+function fnBoardFileList(pFtp) {
+	let paramMap = {
+		bidx: parseInt($('#txtSubj').attr('data-bidx')),
+		fidx: 0,
+		ftp: 0//pFtp
+	}
+	const jsonData = JSON.stringify(paramMap);
+	//console.log(jsonData);
+	$.ajax({
+		type: 'POST',
+		url: '/board/fileList',
+		data: jsonData,
+		async: false,
+		contentType: 'application/json; charset=utf-8',
+		dataType: 'json', // dataType is json format
+		beforeSend: function() {
+			//if (pIsLoadingView) fnLoadingOpen();
+		},
+		success: function(res) {
+			const items = res
+				, totalCnt = items.length
+				, objList = $('#fileDragBody').find('tbody');
+			let sHtml = file_PATH = file_NM = file_SIZE = fileType = real_FILE_NM = ''
+				, board_IDX = file_IDX = file_TP = 0;
+			if (totalCnt > 0) {
+				_totalfile_SIZE = 0;
+				//이미지 숨김
+				$('#fileDragBody').css('background', 'none');
+
+				$.each(items, function(i, val) {
+					board_IDX = val.board_IDX;
+					file_IDX = val.file_IDX;
+					file_PATH = val.file_PATH;
+					file_NM = val.file_NM;
+					file_SIZE = val.file_SIZE;
+					real_FILE_NM = val.real_FILE_NM
+
+					sHtml += '<tr id="ry_fileIdx_0' + (i + 1) + '" class="ry_row" data-fidx="' + file_IDX + '" data-status="2" data-filename="' + file_NM + '" data-filepath="' + file_PATH + '" data-filesize="' + file_SIZE + '" data-sizetype="' + fileType + '">' + '\n';
+					sHtml += '   <td class="tdL"><a href="/common/filedownload?fpt=' + file_PATH + '&fnm=' + file_NM + '&rfnm=' + real_FILE_NM + '" target="_blank" class="text-ellipsis" title="' + real_FILE_NM + '"><span>' + real_FILE_NM + '</p></div></td>' + '\n';
+					sHtml += '   <td class="tdR">' + fnFileSize(file_SIZE, fileType) + ' ' + '</td>' + '\n';
+					sHtml += '   <td class="tdC"><img class="ry_btnLoading" src="/resources/plugin/filedropdown/images/ajax-loader-s.gif" alt="file upload..." /><span class="ry_fileStatus">정상</span></td>' + '\n';
+					sHtml += '   <td class="tdC"><a href="#filedel" class="ry_btnFileDel" onclick="fnDelFile($(this),1); return false;"><img src="/resources/plugin/filedropdown/images/btn_rowdel.png" alt="삭제"></a></td>' + '\n';
+					sHtml += '</tr>' + '\n';
+
+					// 전체 파일 사이즈
+					_totalfile_SIZE += fnFileSize(file_SIZE, fileType);
+				});
+
+			} else {
+				$('#fileDragBody').css('background', '');
+			}
+			objList.html(sHtml);
+
+			//if (pIsLoadingView) fnLoadingClose();
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			// loading.. progressbar 종료			
+			//if (pIsLoadingView) fnLoadingClose();
+			alert('실패');
+			//console.log("ERROR : " + textStatus + " : " + errorThrown);
+			//console.log(res.responseText);
+		}
+	});
+}
+// - 삭제 버튼 클릭시 배열 +
+function fnDelFile(objTh) {
+	if (fnDeleteMsg(3)) {
+		const obj = $('#fileDragBody').find('tbody')
+			, objThis = objTh.closest('tr');
+		//console.log(objThis);
+		let fidx = objThis.attr('data-fidx')
+			, fnm = objThis.attr('data-filename')
+			, furl = objThis.attr('data-filepath');
+
+		objThis.remove();
+		_furl.push(furl);
+		_fnm.push(fnm);
+		_fidx.push(fidx);
+		if (obj.children('tr').length == 0) { $('#fileDragBody').css('background', '') };
+	}
+}
+
+// 게시판 파일 삭제
+function fnBoardFileDelete() {
+	let bidx = 0;
+	bidx = parseInt($('#txtSubj').attr('data-bidx'));
+	$.each(_fidx, function(i, val) {
+		const paramMap = {
+			furl: unescape(_furl[i]),
+			fnm: unescape(_fnm[i]),
+			deltp: 0,
+			bidx: bidx,
+			fidx: parseInt(_fidx[i]),
+			didx: _c_logIdx
+		}
+		const jsonData = JSON.stringify(paramMap);
+		//console.log(jsonData);
+		/**/
+		$.ajax({
+			type: 'POST',
+			url: '/board/fileDelete',
+			data: jsonData,
+			//async: false,
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json', // dataType is json format
+			beforeSend: function() {
+				fnLoadingOpen();
+			},
+			success: function(res) {
+				//console.log(res);
+				if (res !== 0) {
+					alert('실패');
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				// loading.. progressbar 종료			
+				fnLoadingClose();
+				alert('실패');
+				//console.log("ERROR : " + textStatus + " : " + errorThrown);
+				//console.log(res.responseText);
+			}
+		});
+		/**/
+	});
+	_fidx = [], _furl = [], _fnm = [];
 }

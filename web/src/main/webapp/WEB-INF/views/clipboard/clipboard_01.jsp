@@ -131,7 +131,7 @@
 					</div>
 					<div class="boardFootBtn">
 						<a href="#reg" id="btnInput" class="btn btnPoint" onclick="fnBoardInput(0); return false;">등록</a>
-						<a href="#del" id="btnDelete" class="btn btnRed" style="display: none;">삭제</a>
+						<a href="#del" id="btnDelete" class="btn btnRed" style="display: none;" onclick="fnBoardDelete(); return false;">삭제</a>
 						<a href="#can" id="btnCancel" class="btn btnWhite" onclick="fnBoardCancel(); return false;">취소</a>
 					</div>
 					</section>

@@ -105,3 +105,37 @@ function dDayCalcul(strDate1, strDate2) {
 function fnPageBack() {
 	history.go(-1);
 }
+
+// 파일 용량 단위
+function fnFileSize(pFileSize) {
+	let fs = '';
+
+	if (pFileSize >= 1024) {
+		if (((pFileSize / 1024) / 1024) >= 1024) {
+			fs = (((pFileSize / 1024) / 1024) / 1024).toFixed(2) + ' GB';
+		} else if ((pFileSize / 1024) >= 1024) {
+			fs = ((pFileSize / 1024) / 1024).toFixed(2) + ' MB';
+		} else {
+			fs = (pFileSize / 1024).toFixed(2) + ' KB';
+		}
+	} else {
+		fs = pFileSize.toFixed(2) + ' Byte';
+	}
+
+	fs = fs.replace('.00', '');
+
+	return fs;
+}
+
+// 삭제처리중 메시지 보여주기
+function fnDeleteMsg(pType) {
+	if (pType == 1) {
+		if (!confirm('삭제할 경우 데이터가 모두 삭제되며\n\n복구가 불가능합니다.\n\n삭제 하시겠습니까?')) return false;
+	} else if (pType == 2) {
+		if (!confirm('삭제할 경우 데이터 및 첨부파일이 모두 삭제되며\n\n복구가 불가능합니다.\n\n삭제 하시겠습니까?')) return false;
+	} else if (pType == 3) {
+		if (!confirm('삭제 하시겠습니까?')) return false;
+	}
+
+	return true;
+}
