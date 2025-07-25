@@ -11,7 +11,8 @@
     <!-- CK에디터 -->
      <script src="/resources/plugin/ckeditor/ckeditor.js"></script>	
 	<!--// report -->
-	<link href="/resources/css/_report/report_01.css?ver=20250624103500000" rel="stylesheet">
+	<link href="/resources/css/report/report_01.css?ver=20250624103500000" rel="stylesheet">
+	<script src="/resources/js/report/report_01.js?ver=20250624103500000"></script>
 </head>
 <body>
 	<!-- top -->
@@ -122,18 +123,5 @@
 			</table>
 		</section>
 	</section>
-
-	<script>
-		/* 
-		CKEDITOR.instances.resCnts.getData();
-		CKEDITOR.instances.resCnts.setData('');
-		
-		CKEDITOR.replace('resCnts', {
-			filebrowserUploadUrl:'/common/uploadImgOne',
-			editorplaceholder : '내용을 입력해 주세요',
-		}); */
-	</script>
-
-	<!-- footer -->
 </body>
 </html>

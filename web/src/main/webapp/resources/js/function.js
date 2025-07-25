@@ -139,3 +139,64 @@ function fnDeleteMsg(pType) {
 
 	return true;
 }
+
+// 레이어 팝업 보기
+function fnLayerPopupView(el) {
+	var $el = $('#' + el); // 레이어 id
+
+	$el.fadeIn();
+
+	var contsHeight = $el.find('.autoSizeLayer').height(),
+		$elHeight = ~~($el.outerHeight()),
+		docHeight = $(document).height(),
+		winHeight = $(window).height(),
+		margin = 0;
+
+	margin = (($elHeight - contsHeight) / 2);
+	margin = (margin < 50 ? 50 : margin);
+
+	// 레이어에 대한 스크롤
+	$('body').css('overflow', 'hidden');
+	$el.find('.autoSizeLayerBg').css('overflow-y', 'auto');
+
+	// 화면의 중앙에 레이어를 띄운다.
+	$el.find('.autoSizeLayer').css({ 'margin': margin + 'px auto' });
+	$el.find('.autoSizeLayer').draggable({ handle: 'h4' });
+
+	//// 스크롤 이벤트
+	//$(window).scroll(function () {
+	//});
+
+	//// 화면 크기 변경 이벤트
+	//$(window).resize(function () {
+	//});
+
+	// 닫기 버튼 클릭 이벤트
+	$el.find('.btn-layerClose').unbind().bind('click', function() {
+		$el.fadeOut();
+		$('body').css('overflow', 'auto');
+		$el.find('.autoSizeLayerBg').css('overflow-y', 'hidden');
+		return false;
+	});
+
+	//// 레이어 배경 클릭 이벤트
+	//if (bgClose) {
+	//    $('.autoSizeLayerBg, .autoSizeLayer').unbind().bind('click', function () {
+	//        if ($(this).attr('class').indexOf('autoSizeLayerBg') > -1) {
+	//            $el.fadeOut();
+	//            $('body').css('overflow', 'auto');
+	//            $el.find('.autoSizeLayerBg').css('overflow-y', 'hidden');
+	//        }
+	//        return false;
+	//    });
+	//}
+}
+
+// 레이어 팝업 닫기
+function fnLayerPopupClose(el) {
+	var $el = $('#' + el); // 레이어 id
+	$el.fadeOut();
+	$('body').css('overflow', 'auto');
+	$el.find('.autoSizeLayerBg').css('overflow-y', 'hidden');
+	return false;
+}
