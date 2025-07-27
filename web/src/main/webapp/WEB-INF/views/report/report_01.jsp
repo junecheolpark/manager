@@ -37,11 +37,6 @@
 					<div class="autoSizeLayerContBody">
 						<div class="tableTitle" id="tableTitle">
 							<p style="padding-bottom: 5px;"></p>
-							<p>
-								<span class="tableBtn"> 
-									<a href="/_Business/Business_Write_01.aspx" class="btn btnPoint" onclick="fnItemAdd(1,0); return false;">추가</a> 
-								</span>
-							</p>
 						</div>
 						<table class="tableView" id="weekInput">
 							<colgroup>

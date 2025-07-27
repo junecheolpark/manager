@@ -12,13 +12,25 @@ $(function(){
 	
 })
 
-//년 불러오기
-function fnDdlYear(yyyy) {
-	let sList = "";
-	for (let i = yyyy + 1; 2025 <= i; i--) {
-		sList += "    <option value=\"" + i + "\" " + (yyyy == i ? "selected" : "") + ">" + i + "년</option>";
+// 등록 시 항목 추가
+function fnItemAdd(pType, objTh) {
+	const obj = $('#weekInput').children('tbody')
+		, beforeWeekId = getTimeStampCustom('b')
+		, nextWeekId = getTimeStampCustom('n');
+	let leth = obj.children('tr').length;
+
+	if (pType == "1") {
+		obj.append('<tr data-widx="0"><td class="tdCenter"><select name="selectItem" class="selectItem">' + fnCompanySelList(['전체', 0], $('#selSchMn')) + '</select></td><td><div id="' + beforeWeekId + '" class="beforeWeek txtWeek"></div></td><td><div id="' + nextWeekId + '" class="nextWeek txtWeek"></div></td><td><a href="/_Business/Business_Write_01.aspx" onclick="fnItemAdd(2, $(this)); return false;"><img src="/resources/images/btn/btn_minus.png" alt="삭제" style="width: 30px;"></a></td></tr>');
+
+		fnSetCKEditor();
+	} else {
+		if (leth <= 1) {
+			alert('입력 항목은 1개 이상이어야 합니다.');
+			return false;
+		}
+
+		$(objTh).closest('tr').remove();
 	}
-	$('#selYear').html(sList);
 }
 
 //선택 팝업창 
@@ -31,6 +43,16 @@ function fnOpenPopUp() {
 	fnLayerPopupView('WeekLayerPopUp');
 	obj.children('p:first').text('적용기간 : ' + objSel.text() + '(' + (objSel.val() - objSelF + 1) + '주차)');
 	return false;
+}
+
+
+//년 불러오기
+function fnDdlYear(yyyy) {
+	let sList = "";
+	for (let i = yyyy + 1; 2025 <= i; i--) {
+		sList += "    <option value=\"" + i + "\" " + (yyyy == i ? "selected" : "") + ">" + i + "년</option>";
+	}
+	$('#selYear').html(sList);
 }
 
 // 월별 주간 불러오기
@@ -80,4 +102,58 @@ function fnDdlWeek(thisday) {
 
 	}
 	$('#selWeek').html(sHtml);
+}
+
+// (전주 이번주 다음주) 계산
+function fnweekDate(weekTp) {
+	let thisObj = weekTp == 0 ? _today.toISOString().substr(0, 10) : $("#selWeek option:selected").attr('data-date').split('|')[0];
+	'';
+	let d = new Date(thisObj)
+		, day = d.getDay(),
+		diff = d.getDate() - day + (day == 0 ? -6 : 1) + weekTp
+		, monday = new Date(d.setDate(diff)).toISOString().substr(0, 10).split('-')
+
+		, startYearDay = '1/1/' + monday[0]
+		, today = monday[1] + '/' + monday[2] + '/' + monday[0]
+
+		, dt = new Date(startYearDay)
+		, tDt = new Date(today)
+
+		, diffDay = (tDt - dt) / 86400000
+
+		// 1월 1일부터 현재날자까지 차이에서 7을 나눠서 몇주가 지났는지 확인을 함
+		, weekDay = parseInt(diffDay / 7) + 1;
+	// 요일을 기준으로 1월 1일보다 이전 요일이라면 1주가 더 늘었으므로 +1 시켜줌.
+	if (tDt.getDay() < dt.getDay()) weekDay += 1;
+	return monday[0] + '-' + monday[1] + '-' + monday[2] + '-' + weekDay;
+}
+
+
+// 내용 클릭시 에디터 호출
+function fnSetCKEditor() {
+	objInput = $('#weekInput')
+
+	objInput.find('.txtWeek').unbind().bind('click', function() {
+		const objThis = $(this)
+			, txtId = objThis.attr('id');
+
+		if (txtId != prevId) {
+			if (cke != null) {
+				$('#' + prevId)
+					.html(cke.getData())
+					.css({ 'visibility': 'visible', 'display': 'block' });
+				cke.destroy();
+			}
+
+			cke = CKEDITOR.replace(txtId, {
+				customConfig: '/resources/plugin/ckeditor/config_s.js',
+				filebrowserUploadUrl: '/common/uploadImgOne',
+				editorplaceholder: '내용을 입력해 주세요',
+			});
+
+			cke.setData(objThis.html());
+
+			prevId = txtId;
+		}
+	});
 }
