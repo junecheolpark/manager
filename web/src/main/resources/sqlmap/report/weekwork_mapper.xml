@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="weekwork_mapper">
+
+	<!-- 주간업무 테이블 불러오기 -->
+	<select id="weekWorkList" parameterType="hashMap"
+		resultType="co.junecheol.dto.WeekWorkDTO">
+		SELECT * from public.fn_prev_week_work_list(
+		#{PREVE_YEAR},
+		#{PREVE_WEEK_WORK},
+		#{YEAR},
+		#{WEEK_WORK},
+		#{USER_IDX}
+		)
+	</select>
+
+
+	<!-- 주간업무 등록/수정 -->
+	<insert id="weekWorkInput" statementType="CALLABLE"
+		parameterType="hashMap">
+		CALL public.sp_week_work_input(
+		#{WEEK_WORK_CONTS_IDX},
+		#{YEAR},
+		#{WEEK_WORK},
+		#{USER_IDX},
+		#{SDATE},
+		#{EDATE},
+		#{COMPANY_IDX},
+		#{PREV_CONTS},
+		#{NOW_CONTS},
+		#{REG_CD},
+		#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+		)
+	</insert>
+
+	<!-- 주간업무 삭제 -->
+	<delete id="weekWorkDelete" statementType="CALLABLE"
+		parameterType="hashMap">
+		CALL public.sp_week_work_delete(
+		#{DEL_TP},
+		#{YEAR},
+		#{WEEK_WORK},
+		#{USER_IDX},
+		#{DEL_IDX},
+		#{REG_CD},
+		#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+		)
+	</delete>
+
+
+</mapper>
