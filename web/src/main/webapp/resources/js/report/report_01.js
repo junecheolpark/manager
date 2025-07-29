@@ -329,7 +329,7 @@ function fnItemAdd(pType, objTh) {
 	let leth = obj.children('tr').length;
 
 	if (pType == "1") {
-		obj.append('<tr data-widx="0"><td class="tdCenter"><select name="selectItem" class="selectItem">' + fnCompanySelList(['전체', 0], $('#selSchMn')) + '</select></td><td><div id="' + beforeWeekId + '" class="beforeWeek txtWeek"></div></td><td><div id="' + nextWeekId + '" class="nextWeek txtWeek"></div></td><td><a href="/_Business/Business_Write_01.aspx" onclick="fnItemAdd(2, $(this)); return false;"><img src="/resources/images/btn/btn_minus.png" alt="삭제" style="width: 30px;"></a></td></tr>');
+		obj.append('<tr data-widx="0"><td class="tdCenter"><select name="selectItem" class="selectItem">' + fnCompanySelList(['전체', 0], $('#selSchMn')) + '</select></td><td><div id="' + beforeWeekId + '" class="beforeWeek txtWeek"></div></td><td><div id="' + nextWeekId + '" class="nextWeek txtWeek"></div></td><td></td></tr>');
 
 		fnSetCKEditor();
 	} else {
