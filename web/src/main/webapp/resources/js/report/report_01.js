@@ -146,7 +146,7 @@ function fnWorkWeekInputList() {
 					row_CNT = val.row_CNT;
 
 					if (user_IDX == _c_logIdx) { // 로그인된값과 같으면 담아줌
-						sInput = '<tr data-widx="' + week_WORK_CONTS_IDX + '"><td class="tdCenter"><select name="selectItem" class="selectItem"><option value="10" data-id="">준철 포트폴리오</option><select name="selectItem" class="selectItem"></select></td>' + '\n';
+						sInput = '<tr data-widx="' + week_WORK_CONTS_IDX + '"><td class="tdCenter"><select name="selectItem" class="selectItem"><option value="12" data-id="">준철 포트폴리오</option><select name="selectItem" class="selectItem"></select></td>' + '\n';
 						sInput += '<td><div id="beforeWeek' + (i + 1) + '" class="beforeWeek txtWeek">' + prev_CONTS + '</div></td>' + '\n';
 						sInput += '<td><div id="nextWeek' + (i + 1) + '" class="nextWeek txtWeek">' + now_CONTS + '</div></td>' + '\n';
 						sInput += '<td></td></tr>' + '\n';
@@ -165,7 +165,7 @@ function fnWorkWeekInputList() {
 
 			} else {
 				// 주간업무 보고 빈값 생성
-				objInput.html('<tr><td class="tdCenter"><select name="selectItem" class="selectItem"><option value="10" data-id="">준철 포트폴리오</option><select name="selectItem" class="selectItem">'
+				objInput.html('<tr><td class="tdCenter"><select name="selectItem" class="selectItem"><option value="12" data-id="">준철 포트폴리오</option><select name="selectItem" class="selectItem">'
 					+ '</select></td><td><div id="beforeWeek0" class="beforeWeek txtWeek"></div></td><td><div id="nextWeek0" class="nextWeek txtWeek">'
 					+ '</div></td><td></td></tr>');
 			}

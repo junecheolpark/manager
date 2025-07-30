@@ -63,6 +63,7 @@ function fnBlank(pVal, pReverse) {
 }
 
 // pVal 값이 null이거나 공백일경우 pView 반환
+// 함수, 값이 비었을 때 대체 텍스트를 출력하고 싶을 때 사용
 function fnEmpty(pVal, pView) {
 	let txt = $.trim(pVal);
 
@@ -70,6 +71,19 @@ function fnEmpty(pVal, pView) {
 
 	return txt;
 }
+
+// 넘어온 값이 빈값인지 체크합니다.
+// !value 하면 생기는 논리적 오류를 제거하기 위해
+// 명시적으로 value == 사용
+// [], {} 도 빈값으로 처리
+// 함수, 어떤 값이 "비어 있음"인지 여부를 조건문에 사용하기 좋음.
+var isEmpty = function(value) {
+	if (value == "" || value == null || value == undefined || (value != null && typeof value == "object" && !Object.keys(value).length)) {
+		return true
+	} else {
+		return false
+	}
+};
 
 // 1000단위 콤마(,) 찍기 = 1,000
 function commify(n) {
@@ -199,4 +213,27 @@ function fnLayerPopupClose(el) {
 	$('body').css('overflow', 'auto');
 	$el.find('.autoSizeLayerBg').css('overflow-y', 'hidden');
 	return false;
+}
+
+// timestamp 생성
+function getTimeStampCustom(pType) {
+	var d = new Date();
+	var month = d.getMonth() + 1;
+	var date = d.getDate();
+	var hour = d.getHours();
+	var minute = d.getMinutes();
+	var second = d.getSeconds();
+	var msecond = d.getMilliseconds();
+
+	month = (month < 10 ? '0' : '') + month;
+	date = (date < 10 ? '0' : '') + date;
+	hour = (hour < 10 ? '0' : '') + hour;
+	minute = (minute < 10 ? '0' : '') + minute;
+	second = (second < 10 ? '0' : '') + second;
+	if (msecond < 100) msecond = '0' + msecond;
+	else if (msecond < 10) msecond = '00' + msecond;
+
+	var s = pType + '' + d.getFullYear() + '' + month + '' + date + '' + hour + '' + minute + '' + second + '' + msecond;
+
+	return s;
 }

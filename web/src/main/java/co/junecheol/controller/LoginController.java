@@ -168,7 +168,7 @@ public class LoginController {
 		};
 		log.debug(hashMap.toString());
 		try {
-			sb.append(10);
+			sb.append(12);
 			sb.append("‡");
 			sb.append("pjc");
 			sb.append("‡");
