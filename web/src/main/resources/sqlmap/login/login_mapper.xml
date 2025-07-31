@@ -3,5 +3,25 @@
 
 <mapper namespace="login_mapper">
 
+	<!-- 로그인 -->
+	<update id="login" statementType="CALLABLE" parameterType="hashMap">
+		CALL sp_login(
+			#{login_tp},
+			#{user_id},
+			#{user_pw},
+			#{ip},
+			#{browser},
+			#{result_cd, mode=OUT, jdbcType=INTEGER}
+		)
+	</update>
+
+	<!-- 로그인 정보 -->
+	<select id="loginInfo" resultType="co.junecheol.dto.UserDTO" parameterType="hashMap">
+		SELECT * FROM fn_login_view(
+			#{login_tp},
+			#{user_idx},
+			#{user_id},
+			#{user_pw})
+	</select>
 	
 </mapper>

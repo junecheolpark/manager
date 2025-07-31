@@ -10,13 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.junecheol.common.CommonFunc;
 import co.junecheol.dto.UserDTO;
+import co.junecheol.service.LoginService;
 
 @Controller
 @RequestMapping(value = "/login/")
@@ -27,6 +30,10 @@ public class LoginController {
 	private final String cookieNm = siteProps.getProperty("site.cookieNm");
 	private final String cookieAtLi = siteProps.getProperty("site.cookieAtLi");
 	private final String cookieSvId = siteProps.getProperty("site.cookieSvId");
+	
+	@Autowired
+	private LoginService loginService;
+
 
 	/**
 	
@@ -42,19 +49,20 @@ public class LoginController {
 	  */
 	@RequestMapping(value = "login")
 	@ResponseBody
-	public Integer login(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public Integer login(@RequestBody final Map<String, Object> map, HttpServletRequest request
+			, HttpServletResponse response) throws Exception {
 		log.debug("controller login");
 		Integer resultCd = 9;
-		String id = "pjc";
-		String pw = CommonFunc.encryptSHA(1, "pjc")[0];
-		Boolean auto_login = false;
+		String id = (String) map.get("id");
+		String pw = CommonFunc.encryptSHA(1, (String) map.get("pw"))[0];
+		Boolean auto_login = (Boolean) map.get("at_login");
 		String ip = request.getRemoteAddr();
 		String agent = request.getHeader("USER-AGENT");
 
 		Map<String, Object> hashMap = new HashMap<String, Object>() {
 			private static final long serialVersionUID = 1L;
 			{
-				put("login_tp", 1);
+				put("login_tp", (Integer) map.get("ltp"));
 				put("user_id", id);
 				put("user_pw", pw);
 				put("ip", ip);
@@ -66,8 +74,9 @@ public class LoginController {
 		log.debug(hashMap.toString());
 		log.debug("################===");
 		try {
-
-			resultCd = 0;
+			loginService.login(hashMap);
+			
+			resultCd = (Integer) hashMap.get("result_cd");
 			log.debug("lodgin chk : " + resultCd.toString());
 			if (resultCd == 0) {
 				setLogin(2, 0, id, pw, auto_login, request, response);
@@ -168,32 +177,33 @@ public class LoginController {
 		};
 		log.debug(hashMap.toString());
 		try {
-			sb.append(12);
+			UserDTO dto = loginService.loginInfo(hashMap);
+			sb.append(dto.getUSER_IDX());
 			sb.append("‡");
-			sb.append("pjc");
+			sb.append(dto.getUSER_ID());
 			sb.append("‡");
-			sb.append("박준철");
+			sb.append(dto.getNM());
 			sb.append("‡");
-			sb.append("01036069430");
+			sb.append(dto.getPHONE());
 			sb.append("‡");
-			sb.append("01036069430");
+			sb.append(dto.getMOBILE());
 			sb.append("‡");
-			sb.append("skswnscjf2@naver.com");
+			sb.append(dto.getEMAIL());
 			sb.append("‡");
-			sb.append("작업자");
+			sb.append(dto.getPOSI_NM());
 			sb.append("‡");
-			sb.append("망원");
+			sb.append(dto.getDEPT_NM());
 			sb.append("‡");
-			sb.append("");
+			sb.append(dto.getADMIN_NM());
 			sb.append("‡");
-			sb.append(0);
+			sb.append(dto.getADMIN_TP());
 			sb.append("‡");
-			sb.append(0);
+			sb.append(dto.getSIGN_TP());
 			sb.append("‡");
-			sb.append(0);
+			sb.append(dto.getCOMPANY_IDX());
 			sb.append("‡");
-			sb.append(0);
-
+			sb.append(dto.getUSER_IMG_NUM());
+			
 			encryptCok = CommonFunc.encryptAES256(sb.toString());
 
 			// 로그인 성공 처리
