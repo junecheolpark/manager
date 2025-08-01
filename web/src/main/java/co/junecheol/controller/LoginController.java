@@ -51,7 +51,7 @@ public class LoginController {
 	@ResponseBody
 	public Integer login(@RequestBody final Map<String, Object> map, HttpServletRequest request
 			, HttpServletResponse response) throws Exception {
-		log.debug("controller login");
+		System.out.println("controller login");;
 		Integer resultCd = 9;
 		String id = (String) map.get("id");
 		String pw = CommonFunc.encryptSHA(1, (String) map.get("pw"))[0];

@@ -53,12 +53,12 @@
             <AppenderRef ref="rollingFileError" level="ERROR"/>
         </Root>
 
-        <Logger name="com.junechuol.admin.OfficialBook" level="off" additivity="true">
+        <Logger name="com.junechuol.admin.OfficialBook" level="debug" additivity="true">
             <AppenderRef ref="console"/>
             <AppenderRef ref="officialBookFile"/>
         </Logger>
 
-        <Logger name="com.junechuol.admin.Scheduler" level="off" additivity="true">
+        <Logger name="com.junechuol.admin.Scheduler" level="debug" additivity="true">
             <AppenderRef ref="console"/>
             <AppenderRef ref="officialBookFile"/>
         </Logger>
