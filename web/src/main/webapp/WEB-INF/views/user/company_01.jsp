@@ -13,6 +13,7 @@
 	<script src="/resources/plugin/datepicker/datepicker.min.js?ver=20230330103500000"></script>
 	<script src="/resources/plugin/datepicker/datepicker.ko-KR.js?ver=20230330103500000"></script>
 	<link href="/resources/plugin/datepicker/datepicker.min.css?ver=20230330103500000" rel="stylesheet" />
+	<script src="/resources/js/clipboard/user_01.js?ver=20250624103500000"></script>
 	<!-- 달력 //-->
     <style>
         #userManagement{display: grid; margin-top: 15px; grid-template-columns: 1fr .7fr;}
