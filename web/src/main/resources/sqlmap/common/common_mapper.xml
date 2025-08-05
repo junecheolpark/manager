@@ -3,5 +3,13 @@
 
 <mapper namespace="common_mapper">
 
+	<!-- 코드 목록 -->
+	<select id="codeSelList" resultType="co.junecheol.dto.CodeSelDTO" parameterType="co.junecheol.dto.CodeSelDTO">
+		SELECT * 
+		FROM public.fn_code_sellist(
+			#{PARENT_IDX},
+			#{CODE_ID},
+			#{CODE_NM})
+	</select>
 
 </mapper>

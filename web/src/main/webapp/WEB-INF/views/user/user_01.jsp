@@ -13,7 +13,7 @@
 	<script src="/resources/plugin/datepicker/datepicker.min.js?ver=20230330103500000"></script>
 	<script src="/resources/plugin/datepicker/datepicker.ko-KR.js?ver=20230330103500000"></script>
 	<link href="/resources/plugin/datepicker/datepicker.min.css?ver=20230330103500000" rel="stylesheet" />
-	<script src="/resources/js/clipboard/user_01.js?ver=20250624103500000"></script>
+	<script src="/resources/js/user/user_01.js?ver=20250624103500000"></script>
 	<!-- 달력 //-->
     <style>
         #userManagement{display: grid; margin-top: 15px; grid-template-columns: 1fr .7fr;}
@@ -36,9 +36,6 @@
                 </select>&nbsp;                
                 <select id="selSchUserSts" name="selSchUserSts" style="width:120px;">
                     <option value="0">상태</option>
-                </select>&nbsp;
-                <select id="selSchAdTp" name="selSchAdTp" style="width:120px;">
-                    <option value="0">권한</option>
                 </select>&nbsp;
                 <input type="text" id="txtSchCom" name="txtSchCom" maxlength="100" style="width:200px;" placeholder="회사">&nbsp;
                 <select id="selSch" name="selSch" style="width:120px;">
@@ -159,7 +156,7 @@
 	                            		<div style="width: 170px; padding-right: 5px;"><input type="text" id="txtEmail" name="txtEmail" maxlength="50"></div>
 	                            		<div style="width: 20px; padding-right: 5px;">@</div>
 	                            		<div style="min-width: 200px;">
-	                            			<input type="text" id="txtEmailDm" name="txtEmailDm" value="rysoft.co.kr" maxlength="50" placeholder="이메일 검색 후 선택">
+	                            			<input type="text" id="txtEmailDm" name="txtEmailDm" maxlength="50" placeholder="이메일 검색 후 선택">
 	                            			<div id="emailSchResult"><!-- 검색 목록 --></div>
 	                            		</div>
 	                            	</div>

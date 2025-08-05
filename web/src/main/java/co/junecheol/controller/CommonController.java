@@ -10,6 +10,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -25,7 +26,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,7 +39,9 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import com.google.gson.JsonObject;
 
 import co.junecheol.common.CommonFunc;
+import co.junecheol.dto.CodeSelDTO;
 import co.junecheol.dto.FileDTO;
+import co.junecheol.service.CommonService;
 
 @Controller
 public class CommonController {
@@ -48,6 +53,9 @@ public class CommonController {
 	
 	@Autowired
 	MappingJackson2JsonView jsonView;
+	
+	@Autowired
+	private CommonService commonService;
 
 	// 메인사이트
 	@RequestMapping(value = "/index")
@@ -111,6 +119,28 @@ public class CommonController {
 		return Arrays.stream(request.getCookies()).filter(cookie -> cookie.getName().equals(name)).findAny()
 				.orElse(null);
 	}
+	
+	// 코드 목록
+		@RequestMapping(value = "/common/codeSelList", method = RequestMethod.POST)
+		@ResponseBody
+		public List<CodeSelDTO> codeSelList(@RequestBody Map<String, Object> map) throws Exception {
+	//System.out.println("Controller codeSelList");
+
+			Integer pidx = (Integer) map.get("pidx");
+			String cid = (String) map.get("cid"), cnm = (String) map.get("cnm");
+	//System.out.println("pidx = " + String.valueOf(pidx));
+	//System.out.println("cid = " + cid);
+			CodeSelDTO dto = new CodeSelDTO();
+			dto.setPARENT_IDX(pidx);
+			dto.setCODE_ID(cid);
+			dto.setCODE_NM(cnm);
+
+			List<CodeSelDTO> list = new ArrayList<CodeSelDTO>();
+
+			list = commonService.codeSelList(dto);
+
+			return list;
+		}
 	
 	
 	/*******************/
@@ -233,7 +263,7 @@ public class CommonController {
 
 	/*******************/
 	// 사용자 관리
-	@RequestMapping(value = "/company/01")
+	@RequestMapping(value = "/user/01")
 	public String goCompany01(HttpServletRequest request) {
 		Boolean isLogin = false;
 
@@ -247,7 +277,7 @@ public class CommonController {
 		}
 
 		if (isLogin) {
-			return "/company/company_01";
+			return "/user/user_01";
 		} else {
 			return goErrorLogin();
 		}

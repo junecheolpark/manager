@@ -16,7 +16,7 @@
                 <li><a href="#menu" class="menuToggle" id="btnMenu"><img src="/resources/images/btn/btn_menu_open.png" alt="menuBtn"></a></li>
                 <li><a href="/report/01">업무보고</a></li>
                 <li><a href="/schedule/01">일정관리</a></li>
-                <li><a href="/company/01">사용자관리</a></li>
+                <li><a href="/user/01">사용자관리</a></li>
                 <li><a href="/clipboard/01">게시판</a></li>
                 <li><a href="/system/01">시스템관리</a></li>
             </ul>
@@ -36,9 +36,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/company/01">사용자 관리</a>
+                        <a href="/user/01">사용자 관리</a>
                         <ul>
-                            <li><a href="/company/01">사용자 관리</a></li>
+                            <li><a href="/user/01">사용자 관리</a></li>
                         </ul>
                     </li>
                     <li>

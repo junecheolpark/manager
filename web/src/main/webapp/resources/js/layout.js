@@ -63,8 +63,8 @@ function fnSiteMenu(){
 	    {navi:'일정 관리', name: '사내일정', url: '/schedule/01'},
 	    {navi:'일정 관리', name: '프로젝트', url: '/schedule/02'},
 	  ],
-	  'company': [
-	    {navi:'사용자 관리', name: '사용자 관리', url: '/company/01'},
+	  'user': [
+	    {navi:'사용자 관리', name: '사용자 관리', url: '/user/01'},
 	  ],
 	  'clipboard': [
 	    {navi:'게시판', name: '공지사항', url: '/clipboard/01'},
@@ -166,4 +166,74 @@ function fnLoginInfo() {
 			//console.log(res.responseText);
 		}
 	});
+}
+
+/**
+ * 코드 목록
+ * 0 : 목록 구분 - 1:숫자형, 2:문자형
+ * 1 : 상위 idx
+ * 2 : 상위 id
+ * 3 : option default text
+ * 4 : option default value
+ * 5 : option default show/hide 
+ * 6 : selected value
+ * obj : select object
+ */
+function fnCodeSelList(arr, obj) {
+	const pidx = parseInt(arr[1])
+		, cid = arr[2];
+
+	let sHtml = '';
+	const paramMap = {
+		pidx: pidx,
+		cid: cid,
+		cnm: ''
+	}
+	const jsonData = JSON.stringify(paramMap);
+	//console.log(jsonData);
+	$.ajax({
+		type: 'POST',
+		url: '/common/codeSelList',
+		data: jsonData,
+		async: false,
+		contentType: 'application/json; charset=utf-8',
+		dataType: 'json', // dataType is json format
+		beforeSend: function() {
+			obj.html('<option value="' + arr[4] + '" data-id="">loading...</option>');
+		},
+		success: function(res) {
+			const items = res;
+			let code_IDX = parent_IDX = 0
+				, code_ID = code_NM = '';
+
+			if (arr[4] == false) sHtml = '<option value="' + arr[4] + '" data-id="">' + arr[3] + '</option>' + '\n';
+
+			if (items.length == 0) {
+				sHtml = '<option value="' + arr[4] + '" data-id="">no data</option>' + '\n';
+			} else {
+				$.each(items, function(i, val) {
+					code_IDX = val.code_IDX;
+					parent_IDX = val.parent_IDX;
+					code_ID = val.code_ID;
+					code_NM = val.code_NM;
+
+					sHtml += '<option value="' + code_IDX + '" data-id="' + code_ID + '" ' + (arr[4] == '' || arr[4] == '0' ? '' : 'selected="selected"') + '>' + code_NM + '</option>' + '\n'; // 시스템관리자 제외
+				});
+			}
+
+			//fnLoadingClose();
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			// loading.. progressbar 종료			
+			fnLoadingClose();
+			alert('실패');
+			//console.log("ERROR : " + textStatus + " : " + errorThrown);
+			//console.log(res.responseText);
+			sHtml = '<option value="' + arr[4] + '" data-id="">Error!</option>' + '\n';
+		}
+	});
+
+	obj.children('option').remove();
+
+	obj.html(sHtml);
 }
