@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user_mapper">
+
+	<!-- 사용자 목록 개수 -->
+	<select id="userListTotal" resultType="Integer" parameterType="hashMap">
+		SELECT "TOTAL_CNT"
+		FROM public.fn_user_list(
+			#{LIST_TP}, 
+			#{PAGE},
+			#{PAGE_SIZE},
+			#{USER_TP},
+			#{USER_STS},
+			#{ADMIN_TP},
+			#{COMPANY_IDX},
+			#{COMPANY_NM},
+			#{SCH_DATE_TP},
+			#{SDATE},
+			#{EDATE},
+			#{SCH_SEL},
+			#{SCH_TXT},
+			#{ORDER_BY},
+			#{DESC})
+	</select>
+
+	<!-- 사용자 목록 -->
+	<select id="userList" resultType="co.junecheol.dto.UserDTO" parameterType="hashMap">
+		SELECT * 
+		FROM public.fn_user_list(
+			#{LIST_TP}, 
+			#{PAGE},
+			#{PAGE_SIZE},
+			#{USER_TP},
+			#{USER_STS},
+			#{ADMIN_TP},
+			#{COMPANY_IDX},
+			#{COMPANY_NM},
+			#{SCH_DATE_TP},
+			#{SDATE},
+			#{EDATE},
+			#{SCH_SEL},
+			#{SCH_TXT},
+			#{ORDER_BY},
+			#{DESC})
+	</select>
+	
+	<!-- 사용자 정보 -->
+	<select id="userView" resultType="co.junecheol.dto.UserDTO" parameterType="hashMap">
+		SELECT *
+		FROM public.fn_user_view(
+			#{USER_IDX})
+	</select>	
+
+	<!-- 사용자 등록/수정 -->
+	<insert id="userInput" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_user_input(
+			#{USER_IDX},
+			#{USER_TP},
+			#{USER_ID},
+			#{USER_PW},
+			#{NM},
+			#{POSI_IDX},
+			#{DEPT_IDX},
+			#{PHONE},
+			#{MOBILE},
+			#{EMAIL},
+			#{ZIPCODE},
+			#{ADDR},
+			#{ADDR_DETAIL},
+			#{USER_STS},
+			#{COMPANY_IDX},
+			#{ADMIN_TP},
+			#{JOIN_DATE},
+			#{REG_IDX},
+			#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+			)
+	</insert>	
+	
+	<!-- 사용자 삭제 -->
+	<delete id="userDelete" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_user_delete(
+			#{DEL_TP}, 
+			#{USER_IDX},
+			#{DEL_IDX}, 
+			#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+			)
+	</delete>
+
+	
+	<!-- 사용자 목록 개수 -->
+	<select id="userVacationTotal" resultType="Integer" parameterType="hashMap">
+		SELECT "TOTAL_CNT"
+		FROM public.fn_user_vacation(
+			#{LIST_TP}, 
+			#{PAGE},
+			#{PAGE_SIZE},
+			#{COMPANY_IDX},
+			#{YEAR},
+			#{USER_STS},
+			#{SCH_SEL},
+			#{SCH_TXT},
+			#{ORDER_BY},
+			#{DESC})
+	</select>
+	
+	<!-- 사용자 휴가 권한 -->
+	<select id="userVacation" resultType="co.junecheol.dto.UserDTO" parameterType="hashMap">
+		SELECT * 
+		FROM public.fn_user_vacation(
+			#{LIST_TP}, 
+			#{PAGE},
+			#{PAGE_SIZE},
+			#{COMPANY_IDX},
+			#{YEAR},
+			#{USER_STS},
+			#{SCH_SEL},
+			#{SCH_TXT},
+			#{ORDER_BY},
+			#{DESC})
+	</select>
+	
+	<!-- 사용자 휴가 등록/수정 -->
+	<insert id="vacationInput" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_vacation_input(
+			#{USER_IDX},
+			#{YEAR},
+			#{NOMAL_CNT},
+			#{REG_IDX},
+			#{RESULT_CD, mode=OUT, jdbcType=INTEGER})
+	</insert>
+	
+	<!-- 유저 배열 -->
+	<select id="userSel" resultType="String" parameterType="hashMap">
+		SELECT * 
+		FROM public.fn_user_sel(
+		#{COMPANY_IDX}
+		)
+	</select>
+	
+	<!-- 사용자 출퇴근 등록/수정 -->
+	<update id="workInOutInput" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_work_inout_input(
+					#{P_INPUT_TP},
+					#{P_USER_IDX},
+					#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+					)
+	</update>
+
+	<!-- 메모 목록 -->
+	<select id="memoList" resultType="co.junecheol.dto.MemoDTO" parameterType="hashMap">
+		SELECT * 
+		FROM public.fn_memo_list(
+			#{USER_IDX},
+			#{SHOW_TP})
+	</select>
+	
+	<!-- 메모 등록/수정 -->
+	<insert id="memoInput" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_memo_input(
+					#{REG_DATE}, 
+					#{USER_IDX}, 
+					#{MEMO}, 
+					#{SHOW_TP}, 
+					#{REG_IDX}, 
+					#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+					)
+	</insert>
+	
+	<!-- 메모 삭제 -->
+	<delete id="memoDelete" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_memo_delete(
+					#{DEL_TP}, 
+					#{REG_DATE}, 
+					#{USER_IDX},
+					#{DEL_IDX}, 
+					#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+					)
+	</delete>
+	
+</mapper>
