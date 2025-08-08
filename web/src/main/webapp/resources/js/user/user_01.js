@@ -8,6 +8,7 @@ $(function() {
 	fnCodeSelList([1, 30, '', '구분', 0, true, 0], $('#selSchUserTp'));
 	fnCodeSelList([1, 30, '', '선택', 0, true, 0], $('#selUserTp'));
 	
+	fnEmailAutocomplate();
 	fnSortListView();
 
 	// 검색창 엔터키
@@ -46,7 +47,7 @@ function fnSortListView() {
 		usersts: parseInt($('#selSchUserSts').val()),
 		admintp: parseInt($('#selSchAdTp').val()),
 		cidx: 0,
-		cnm: $('#txtSchCom').val(),
+		cnm: "",
 		datetp: 0,
 		sdate: '',
 		edate: '',
@@ -239,9 +240,6 @@ function fnUserView() {
 
 			arrEMail = email.split('@');
 
-			$('#txtComNm')
-				.attr('data-cidx', company_IDX)
-				.val(company_NM);
 			$('#selDept').val(dept_IDX);
 			$('#selPosi').val(posi_IDX);
 			$('#txtNm')
@@ -282,4 +280,265 @@ function fnUserView() {
 			//console.log(res.responseText);
 		}
 	});
+}
+
+// 사용자 등록/수정
+function fnUserInput() {
+	if (!fnAlertReturn('txtNm', '성명', '')) return false;
+	if (!fnAlertReturn('selUserTp', '구분', 'select')) return false;
+	if (!fnAlertReturn('txtID', '사번(ID)', '')) return false;
+
+	if ($('#btnInput').text() == '등록') {
+		if (!fnAlertReturn('txtPW', '비밀번호', '')) return false;
+	}
+
+	if (!fnAlertReturn('selUserSts', '상태', 'select')) return false;
+
+	const objSel = $('#userList').find('.selRow')
+		, objUser = $('#txtNm');
+	let uidx = cidx = atp = ctp = csts = 0;
+
+	cidx = 12;
+	atp = parseInt($('#lblAdTpNm').attr('data-atp'));
+
+	if (objSel.length > 0) {
+		uidx = parseInt(objSel.attr('data-uidx'));
+	} else {
+		uidx = parseInt(objUser.attr('data-uidx'));
+	}
+
+	const paramMap = {
+		uidx: uidx,
+		usertp: parseInt($('#selUserTp').val()),
+		id: $('#txtID').val(),
+		pw: $('#txtPW').val(),
+		nm: objUser.val(),
+		pidx: parseInt($('#selPosi').val()),
+		didx: parseInt($('#selDept').val()),
+		phone: $('#txtPhone').val(),
+		mobile: $('#txtMobile').val(),
+		email: $('#txtEmail').val() + '@' + $('#txtEmailDm').val(),
+		zcode: $('#txtZipCd').val(),
+		addr: $('#txtAddr').val(),
+		addrdt: $('#txtAddrDetail').val(),
+		usersts: parseInt($('#selUserSts').val()),
+		cidx: cidx,
+		admintp: atp,
+		jdate: $('#txtJDate').val(),
+		ridx: _c_logIdx,
+	}
+	const jsonData = JSON.stringify(paramMap);
+	$.ajax({
+		type: 'POST',
+		url: '/user/input',
+		data: jsonData,
+		//async: false,
+		contentType: 'application/json; charset=utf-8',
+		dataType: 'json', // dataType is json format
+		beforeSend: function() {
+			fnLoadingOpen();
+		},
+		success: function(res) {
+			//console.log(res);
+			if (res == 0) {
+				alert('처리 되었습니다.');
+				fnUserCancel();
+
+				_curPage = 1;
+				fnSortListView();
+			} else {
+				alert('실패');
+			}
+
+			fnLoadingClose();
+		},
+		//error: function(jqXHR, textStatus, errorThrown) {
+		error: function(jqXHR, textStatus, errorThrown) {
+			// loading.. progressbar 종료			
+			fnLoadingClose();
+			alert('실패');
+			//console.log("ERROR : " + textStatus + " : " + errorThrown);
+			//console.log(res.responseText);
+		}
+	});
+}
+
+// 사용자 삭제
+function fnUserDelete() {
+	if (fnDeleteMsg(1)) {
+		const objSel = $('#userList').find('.selRow');
+		let uidx = 0;
+
+		if (objSel.length > 0) {
+			uidx = parseInt(objSel.attr('data-uidx'));
+		}
+
+		const paramMap = {
+			deltp: 1,
+			uidx: uidx,
+			didx: _c_logIdx,
+		}
+		const jsonData = JSON.stringify(paramMap);
+		//console.log(jsonData);
+		$.ajax({
+			type: 'POST',
+			url: '/user/delete',
+			data: jsonData,
+			//async: false,
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json', // dataType is json format
+			beforeSend: function() {
+				fnLoadingOpen();
+			},
+			success: function(res) {
+				//console.log(res);
+				if (res == 0) {
+					alert('처리 되었습니다.');
+					fnUserCancel();
+
+					_curPage = 1;
+					fnSortListView();
+				} else {
+					alert('실패');
+				}
+
+				fnLoadingClose();
+			},
+			//error: function(jqXHR, textStatus, errorThrown) {
+			error: function(jqXHR, textStatus, errorThrown) {
+				// loading.. progressbar 종료			
+				fnLoadingClose();
+				alert('실패');
+				//console.log("ERROR : " + textStatus + " : " + errorThrown);
+				//console.log(res.responseText);
+			}
+		});
+	}
+}
+
+// 사용자 등록/수정 취소
+function fnUserCancel() {
+	const obj = $('#userInput')
+		, objSel = $('#userList').find('.selRow');
+
+	obj.find('input[type=text], input[type=password], textarea').val('');
+
+	$('#txtNm').attr('data-uidx', 0);
+	$('#lblAdTpNm')
+		.attr('data-atp', 0)
+		.text('-');
+	$('#selDept').val(0);
+	$('#selPosi').val(0);
+	$('#selUserTp').val(0);
+	$('#selUserSts').val(0);
+
+	objSel.removeClass('selRow');
+
+	$('#txtPW').attr('placeholder', '');
+	$('#pwRequired').css('display', 'inline-block');
+
+	$('#btnInput').text('등록');
+	$('#btnDelete').hide();
+}
+
+// 이메일 자동 완성 검색
+function fnEmailAutocomplate() {
+	/*********************************/
+	/** 자동 완성 검색 **/
+	$('#txtEmailDm').autocomplete({
+		source: function(request, response) {
+			const paramMap = {
+				pidx: 19,
+				cid: '',
+				cnm: request.term
+			}
+			const jsonData = JSON.stringify(paramMap);
+			$.ajax({
+				type: 'POST',
+				url: '/common/codeSelList',
+				data: jsonData,
+				//async: false,
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json', // dataType is json format
+				beforeSend: function() {
+					//fnLoadingOpen();
+				},
+				success: function(res) {
+					const items = res;
+					let code_IDX = 0
+						, code_NM = '';
+
+					if (items.length > 0) {
+						response($.map(items, function(val, key) {
+							code_IDX = val.code_IDX;
+							code_NM = val.code_NM;
+
+							return {
+								label: code_NM,
+								value: code_IDX,
+							};
+						}));
+					} else {
+						response({
+							label: '검색된 이메일이 없습니다.',
+							value: 0,
+						});
+					}
+
+					//fnLoadingClose();
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					// loading.. progressbar 종료			
+					//fnLoadingClose();
+					alert('실패');
+					//console.log("ERROR : " + textStatus + " : " + errorThrown);
+					//console.log(res.responseText);
+				}
+			});
+		},
+		position: {
+			my: 'left+0 top+0',
+		},
+		appendTo: '#emailSchResult',
+		//조회를 위한 최소글자수
+		minLength: 1,
+		delay: 100,
+		autoFocus: true,
+		search: function() {
+			//$(this).addClass('ui-autocomplete-loading'); // 로딩 이미지 보여주기
+		},
+		open: function(e, ui) {
+			//console.log('open');
+			//$(this).removeClass('ui-autocomplete-loading'); // 로딩 이미지 감추기
+			let acData = $(this).data('ui-autocomplete');
+			acData
+				.menu
+				.element
+				.find('li')
+				.each(function() {
+					let me = $(this);
+					let keywords = acData.term.split(' ').join('|');
+					me.html(me.text().replace(new RegExp('(' + keywords + ')', 'gi'), '<strong>$1</strong>'));
+				}); // 검색한 글자 진하게
+		},
+		focus: function(event, ui) {
+			event.preventDefault();
+			//console.log(ui.item.label);
+		},
+		select: function(event, ui) {
+			let idx = ui.item.value
+				, email = ui.item.label;
+			let obj = $('#txtEmailDm');
+
+			if (email == '검색된 이메일이 없습니다.') {
+				idx = '0';
+				email = '';
+			}
+
+			obj.val(email);
+
+			return false;
+		}
+	});
+	/*********************************/
 }
