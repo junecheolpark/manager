@@ -7,9 +7,7 @@
 	<!-- head -->
 	<%@ include file="/WEB-INF/views/include/common.jsp" %>
 	<%@ include file="/WEB-INF/views/include/html_head.jsp" %>	
-	<script src="/resources/js/paging.js?ver=20230330103500000"></script>
-	<script src="/resources/js/_system/system_01.js?ver=20230330103500000"></script>
-
+	<script src="/resources/js/system/system_01.js?ver=20250624103500000"></script>
     <link href="/resources/css/index.css?ver=20250624103500000" rel="stylesheet">
 	<style>
     	#codeManagement{display: grid; margin-top: 15px; grid-template-columns: 1fr 1fr 1fr;}
@@ -23,7 +21,6 @@
     <!-- left -->
     <%@ include file="/WEB-INF/views/include/body_left.jsp" %>
     <!-- 컨텐츠 -->
-	<!-- 컨텐츠 -->
 	<section id="codeManagement">
                 <section class="shadowBox">
                     <section class="">

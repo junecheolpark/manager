@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="code_mapper">
+	<!-- 소중대 불러오기 -->
+	<select id="codeList" resultType="co.junecheol.dto.CodeDTO" parameterType="int">
+		SELECT * FROM public.fn_code_list(
+			#{CODE_IDX}, 0
+			)
+	</select>
+	
+	<!-- 코드 등록/수정 -->
+	<insert id="codeInput" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_code_input(
+					#{CODE_IDX}, 
+					#{PARENT_IDX}, 
+					#{CODE_ID}, 
+					#{CODE_NM}, 
+					#{CODE_DEPTH}, 
+					#{CODE_STS}, 
+					#{CODE_SORT}, 
+					#{RED_IDX}, 
+					#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+					)
+	</insert>
+	<insert id="codeSort" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_code_sort(
+					#{CODE_IDX}, 
+					#{PARENT_IDX}, 
+					#{CHANGE_SORT}, 
+					#{CODE_SORT}, 
+					#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+					)
+	</insert>
+</mapper>
