@@ -103,8 +103,8 @@
                             </div>
                             </div>
                             <div class="pdT10 btnRight">
-                                <a href="#save" id="btnSave1" class="btn btnPoint">추가</a>
-                                <a href="#cancel" class="btn btnWhite">취소</a>
+                                <a href="#save" onclick="fnCodeInput(1); return false;" id="btnSave1" class="btn btnPoint">추가</a>
+                                <a href="#cancel" onclick="fnCancel(1)" class="btn btnWhite">취소</a>
                             </div>
                         </div>
                     </section>
@@ -167,8 +167,8 @@
                                 </table>
                                 </div>
                                 <div class="pdT10 btnRight">
-                                    <a href="#save"  id="btnSave2" class="btn btnPoint">추가</a>
-                                    <a href="#cancel"  class="btn btnWhite">취소</a>
+                                    <a href="#save" onclick="fnCodeInput(2); return false;" id="btnSave2" class="btn btnPoint">추가</a>
+                                    <a href="#cancel" onclick="fnCancel(2)" class="btn btnWhite">취소</a>
                                 </div>
                                 </div>
                             </section>
@@ -230,8 +230,8 @@
                                         </tbody></table>
                                     </div>
                                     <div class="pdT10 btnRight">
-                                        <a href="#save"  id="btnSave3" class="btn btnPoint">추가</a>
-                                        <a href="#cancel" class="btn btnWhite">취소</a>
+                                        <a href="#save" onclick="fnCodeInput(3); return false;" id="btnSave3" class="btn btnPoint">추가</a>
+                                        <a href="#cancel" onclick="fnCancel(3)" class="btn btnWhite">취소</a>
                                     </div>
                                 </div>
                             </section>

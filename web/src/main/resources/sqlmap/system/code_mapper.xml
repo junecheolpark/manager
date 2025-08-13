@@ -5,7 +5,8 @@
 	<!-- 소중대 불러오기 -->
 	<select id="codeList" resultType="co.junecheol.dto.CodeDTO" parameterType="int">
 		SELECT * FROM public.fn_code_list(
-			#{CODE_IDX}, 0
+				#{CODE_IDX}, 
+				0
 			)
 	</select>
 	

@@ -27,6 +27,7 @@ public class CodeController {
 	public List<CodeDTO> codeList(@RequestBody Map<String, Object> map) throws Exception {
 		Integer cidx = (Integer) map.get("idx");
 
+		System.out.println(cidx);
 		List<CodeDTO> list = new ArrayList<CodeDTO>();
 		list = codeService.codeList(cidx);
 		return list;
