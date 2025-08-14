@@ -7,7 +7,8 @@
 	<!-- head -->
 	<%@ include file="/WEB-INF/views/include/common.jsp" %>
 	<%@ include file="/WEB-INF/views/include/html_head.jsp" %>	
-	<link href="/resources/css/system/system_03.css?ver=20250624103500000" rel="stylesheet">
+	<script src="/resources/js/system/system_02.js?ver=20250624103500000"></script>
+	<link href="/resources/css/system/system_02.css?ver=20250624103500000" rel="stylesheet">
 </head>
 <body>
         <!-- top -->
@@ -99,9 +100,8 @@
 	                <option value="0">년도</option>
                 </select>&nbsp;
                 <select style="width: 120px;" id="selStatus">
-                    <option value="35">재직</option>
-                    <option value="36">퇴사</option>
-                    <option value="37">휴직</option>
+                    <option value="17">가입</option>
+                    <option value="18">탈퇴</option>
                 </select>&nbsp;
                 <select style="width: 120px;" id="selSearch">
                     <option value="1">성명</option>

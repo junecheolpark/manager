@@ -237,3 +237,83 @@ function getTimeStampCustom(pType) {
 
 	return s;
 }
+
+//*************************************//
+// 날짜 및 시간
+function datetimeView(viewType) {
+	var now = new Date();
+	var sResult = null;
+	var yyyy = null;
+	var MM = null;
+	var dd = null;
+	var HH = null;
+	var mm = null;
+	var ss = null;
+
+	yyyy = now.getFullYear();
+	MM = now.getMonth() + 1;
+	dd = now.getDate();
+	HH = now.getHours();
+	mm = now.getMinutes();
+	ss = now.getSeconds();
+
+	MM = (MM > 9 ? MM : '0' + MM);
+	dd = (dd > 9 ? dd : '0' + dd);
+	HH = (HH > 9 ? HH : '0' + HH);
+	mm = (mm > 9 ? mm : '0' + mm);
+	ss = (ss > 9 ? ss : '0' + ss);
+
+	if (viewType == 'date') {
+		sResult = yyyy + '-' + MM + '-' + dd;
+	} else if (viewType == 'time') {
+		sResult = HH + ':' + mm + ':' + ss;
+	} else if (viewType == 'smalltime') {
+		sResult = HH + ':' + mm;
+	} else if (viewType == 'yyyy') {
+		sResult = yyyy;
+	} else if (viewType == 'mm') {
+		sResult = MM;
+	} else if (viewType == 'dd') {
+		sResult = dd;
+	} else {
+		sResult = yyyy + '-' + MM + '-' + dd + ' ' + HH + ':' + mm + ':' + ss;
+	}
+
+	return sResult;
+}
+//*************************************//
+
+// 년도 설정
+// obj : 셀렉트박스 id
+// stYear : 시작 년도
+// addYear : 현재 년도 기준 + addYear
+// blBlank : 선택 option 추가함/추가 안함 (true, false)
+// txt : 년도 숫자 뒤에 붙일 텍스트
+// fnSelYear(obj, stYear, addYear, blBlank, txt)
+function fnSelYear(obj, stYear, addYear, blBlank, txt) {
+	var htmlOption = '';
+	var date = new Date();
+	var year = date.getFullYear();
+
+	if (blBlank) htmlOption = '<option value="0">선택</option>';
+
+	for (var i = stYear; (year + addYear) >= i; i++) {
+		htmlOption += '<option value="' + i + '">' + i + txt + '</option>';
+	}
+
+	$(obj).html(htmlOption);
+	$(obj).val(year);
+}
+
+///////////////////////////////////////////////////////////////////////////
+// checkbox 체크여부 확인
+// ex) fnCheckboxCheck(pRadioName, pMsg)
+///////////////////////////////////////////////////////////////////////////
+function fnCheckboxCheck(pCheckboxName, pMsg) {
+	if ($('input[name=' + pCheckboxName + ']:checkbox:checked').length == 0) {
+		alert(pMsg + '을(를) 선택해 주세요.');
+		return false;
+	} else {
+		return true;
+	}
+}
