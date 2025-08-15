@@ -24,6 +24,7 @@
 <link href="/resources/plugin/datepicker/datepicker.min.css?ver=20250624103500000" rel="stylesheet" />
 
 <!--// schedule -->
+<script src="/resources/js/schedule/schedule_01.js?ver=20250624103500000"></script>
 <link href="/resources/css/schedule/schedule_01.css?ver=20250624103500000"	rel="stylesheet">
 
 </head>
