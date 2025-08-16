@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="schedule_mapper">
+	
+	<!-- 사내일정 테이블 불러오기 -->
+	<select id="scheduleList" parameterType="hashMap" resultType="co.junecheol.dto.ScheduleDTO">
+		SELECT * from public.fn_schedule_list(
+		#{USER_IDX}, 
+		#{SCH_SDATE},
+		#{SCH_EDATE}
+		)
+	</select>
+	
+	<!-- 사내일정 테이블 불러오기 -->
+	<select id="scheduleView" parameterType="hashMap" resultType="co.junecheol.dto.ScheduleDTO">
+		SELECT * from public.fn_schedule_view(
+		#{SCHEDULE_IDX},
+		#{USER_IDX} 
+		)
+	</select>
+	
+	<!-- 사내일정 등록/수정 -->
+	<insert id="scheduleInput" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_schedule_input(
+					#{SCHEDULE_IDX}, 
+					#{SCHEDULE_TP}, 
+					#{SUBJ}, 
+					#{CONTS}, 
+					#{SDATE}, 
+					#{STIME}, 
+					#{EDATE}, 
+					#{ETIME},
+					#{AMPM},  
+					#{APPROVE_STS}, 
+					#{SCHEDUlE_USER_IDX}, 
+					#{REG_IDX}, 
+					#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+					)
+	</insert>
+	
+	<!-- 사내,대상자 삭제 -->
+	<delete id="scheduleDelete" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_schedule_delete(
+					#{DEL_TP}, 
+					#{SCHEDUlE_USER_IDX}, 
+					#{SCHEDULE_IDX},
+					#{DEL_IDX}, 
+					#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+					)
+	</delete>
+	
+	<!-- 사내일정 첨부파일 등록/수정 -->
+	<insert id="scheduleFileInput" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_schedule_file_input(
+			#{SCHEDULE_IDX},
+			#{FILE_IDX},
+			#{FILE_TP},
+			#{FILE_PATH},
+			#{FILE_NM},
+			#{REAL_FILE_NM},
+			#{FILE_SIZE},
+			#{REG_IDX},
+			#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+		)
+	</insert>
+	
+	<!-- 사내,대상자 파일삭제 -->
+	<delete id="scheduleFileDelete" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_schedule_file_delete(
+			#{DEL_TP}, 
+			#{SCHEDULE_IDX},
+			#{FILE_IDX}, 
+			#{DEL_IDX}, 
+			#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+		)
+	</delete>
+	
+	
+	<!-- 연차 및 시간설정 뷰 -->
+	<select id="vacationView" parameterType="hashMap" resultType="co.junecheol.dto.ScheduleDTO">
+		SELECT * from public.fn_vacation_view(
+		#{YEAR},
+		#{USER_IDX} 
+		)
+	</select>
+	
+	
+	<!-- 일정체크 불러오기 -->
+	<select id="mySchduleCheck" parameterType="hashMap" resultType="co.junecheol.dto.MyScheduleDTO">
+		SELECT * from public.fn_myschedule(
+		#{USER_IDX}, 
+		#{YEAR},
+		#{S_WEEK},
+		#{E_WEEK},
+		#{S_YEAR},
+		#{E_YEAR}
+		)
+	</select>
+	
+	<!-- 공휴일 불러오기 -->
+	<select id="holidayList" parameterType="hashMap" resultType="co.junecheol.dto.HolidayDTO">
+		SELECT * from public.fn_holiday_list(
+		#{SCH_SDATE},
+		#{SCH_EDATE}
+		)
+	</select>
+	
+</mapper>
