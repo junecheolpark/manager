@@ -9,10 +9,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.junecheol.dto.HolidayDTO;
+import co.junecheol.dto.MyScheduleDTO;
 import co.junecheol.dto.ScheduleDTO;
-import kr.co.rysoft.dto.HolidayDTO;
-import kr.co.rysoft.dto.MyScheduleDTO;
-import kr.co.rysoft.dto.WorkInoutDTO;
+import co.junecheol.dto.WorkInoutDTO;
 
 @Repository
 public class ScheduleDAO {
@@ -54,11 +54,6 @@ public class ScheduleDAO {
 	// 연차 및 시간설정 뷰
 	public ScheduleDTO vacationView(Map<String, Object> map) {
 		return session.selectOne("schedule_mapper.vacationView", map);
-	}
-
-	// 근태관리 리스트
-	public List<WorkInoutDTO> attendanceList(Map<String, Object> map) {
-		return session.selectList("schedule_mapper.attendanceList", map);
 	}
 
 	// 출퇴근 불러오기

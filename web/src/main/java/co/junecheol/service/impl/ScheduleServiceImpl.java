@@ -11,11 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import co.junecheol.dao.ScheduleDAO;
+import co.junecheol.dto.HolidayDTO;
+import co.junecheol.dto.MyScheduleDTO;
 import co.junecheol.dto.ScheduleDTO;
+import co.junecheol.dto.WorkInoutDTO;
 import co.junecheol.service.ScheduleService;
-import kr.co.rysoft.dto.HolidayDTO;
-import kr.co.rysoft.dto.MyScheduleDTO;
-import kr.co.rysoft.dto.WorkInoutDTO;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
@@ -120,20 +120,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 		}
 
 		return dto;
-	}
-
-	// 근태관리 리스트
-	@Override
-	public List<WorkInoutDTO> attendanceList(Map<String, Object> map) {
-		List<WorkInoutDTO> list = new ArrayList<WorkInoutDTO>();
-
-		try {
-			list = scheduleDao.attendanceList(map);
-		} catch (Exception e) {
-			log.error("error", e);
-		}
-
-		return list;
 	}
 
 	// 출퇴근 불러오기

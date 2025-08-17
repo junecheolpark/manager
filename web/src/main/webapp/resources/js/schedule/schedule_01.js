@@ -1,6 +1,6 @@
 ﻿_today = datetimeView('date')
 	, _fileRName = '', _fileName = '', _fileUrl = '', _fileSize = 0, _clsDelFile = 'N'
-	, _schedule_Arr = [106, 110, 127, 128];
+	, _schedule_Arr = [27, 29, 34];
 
 $(function() {
 	$("#leftTopRpt04").show();
@@ -45,7 +45,7 @@ $(function() {
 	});
 
 	// 코드불러오기
-	fnCodeSelList([1, 105, '', '선택', 0, true, 0], $('#selSchdule'));
+	fnCodeSelList([1, 24, '', '선택', 0, true, 0], $('#selSchdule'));
 
 	// 년도 설정
 	let date = new Date();
@@ -422,9 +422,9 @@ function fnSchList() {
 					case 2: approveClass = 'boxCol2 '; break; // 승인
 					case 9: approveClass = 'boxCol3 '; break; // 취소
 				}
-				if (schedule_TP != 106 && schedule_TP != 110 && schedule_TP != 127 && schedule_TP != 128) { approveClass = 'boxCol4 ' }
+				if (schedule_TP != 27 && schedule_TP != 29 && schedule_TP != 34) { approveClass = 'boxCol4 ' }
 
-				if (schedule_TP == 111 || schedule_TP == 112 || schedule_TP == 113) {//기타
+				if (schedule_TP == 26 || schedule_TP == 33) {//기타
 					title = '<div class="titleBox ftSize11 boxCol5"><span class="ftBold ' + fnScheduleTp(schedule_TP) + '">' + conts + '</span>' + '</div>';
 				} else {
 					title = '<div class="titleBox ftSize11 ' + approveClass + '"><span class="ftBold ' + fnScheduleTp(schedule_TP) + '">' + code_NM + '</span>' + ' | ' + user_NM + '</div>';
@@ -540,7 +540,7 @@ function fnUserScheduleView(pThis) {
 
 			if (_schedule_Arr.includes(schedule_TP)) { // 휴가,반차,반반차
 
-				if (schedule_TP == 128) {// 기타휴가시 파일 체크
+				if (schedule_TP == 34) {// 기타휴가시 파일 체크
 					fHtml = fnEmpty(items.file_NM, '') == '' ? ' -' : '<a href="/common/filedownload?fpt=' + _fileUrl + '&fnm=' + _fileName + '&rfnm=' + _fileRName + '" target="_blank" class="btn btnWhite">' + _fileRName + '</a>&nbsp;<a href="#del" id="btnDelFile1" class="btn btnGray" onclick="fnFileDelete(); return false;">삭제</a>'
 					$('#fileShow').show();
 					$('#scheduleFile').parent().find('label').hide();
@@ -565,7 +565,7 @@ function fnUserScheduleView(pThis) {
 				(approve_STS == 1) ? $('#btnDelFile1').show() : $('#btnDelFile1').hide();
 				$('.vacationShow').show();
 				$('#btnUser').hide();
-			} else if (schedule_TP == 111 || schedule_TP == 112 || schedule_TP == 113) { // 공휴일, 휴무, 기타시
+			} else if (schedule_TP == 26|| schedule_TP == 33) { // 공휴일, 휴무, 기타시
 				$('#userTr').hide();
 				$('#btnDelete').show();
 			} else { // 휴가 외
@@ -597,10 +597,10 @@ function fnScheduletcInput(appSts) {
 
 	if (!fnAlertReturn('selSchdule', '일정구분', 'select')) return false;
 	if (!fnAlertReturn('txtTitle', '제목', '')) return false;
-	if (stp != 111 && stp != 112 && stp != 113) {
+	if (stp != 26 && stp != 33) {
 		if (sUser == '' || sUser == null) { alert("선택된 대상자가 없습니다."); return false; }
 	}
-	if (fnEmpty(_fileName, '') == '' && stp == 128) { alert("업로드된 파일이 없습니다."); return false; }
+	if (fnEmpty(_fileName, '') == '' && stp == 34) { alert("업로드된 파일이 없습니다."); return false; }
 	if (!fnAlertReturn('txtSDate', '시작일', '')) return false;
 	if (!fnAlertReturn('txtEDate', '종료일', '')) return false;
 	if (!fnAlertReturn('txtConts', '내역', '')) return false;
@@ -638,34 +638,24 @@ function fnScheduletcInput(appSts) {
 			let selSchdule = $("#selSchdule option:checked").text();
 			if (res == 0) {
 
-				if ((stp == 107 || stp == 108)) { // 수정 x, 출장, 외근시 회의록 등록
-					if (!confirm("회의록을 등록하시겠습니까?")) {
-						fnMySchedule();
-						fnSchList();
-						fnScheduleClose();
-						return false;
+				if (appSts == 1) { //휴가신청
+					if (stp == 34 && _clsDelFile == 'Y') { // 기타휴가시 파일 삭제
+						fnScheduleFileDelete();
 					}
-					fnMeetingInput(paramMap);
-				} else {
-					if (appSts == 1) { //휴가신청
-						if (stp == 128 && _clsDelFile == 'Y') { // 기타휴가시 파일 삭제
-							fnScheduleFileDelete();
-						}
-						if (stp == 128 && _fileName != '') { // 기타휴가시 파일 등록
-							fnScheduleFileInput();
-						}
+					if (stp == 34 && _fileName != '') { // 기타휴가시 파일 등록
+						fnScheduleFileInput();
+					}
 
-						// push
-						fnFCMSend(false, [3, 2, selSchdule + ' 신청 내용 : ' + paramMap.conts, '신청자 : ' + sUser, '', _c_logIdx, 0]);
-					} else if (appSts == 2 && (_schedule_Arr.includes(stp))) {
-						//휴가승인
-						fnFCMSend(false, [1, 3, selSchdule + ' 승인 완료', '승인자 : ' + _c_logNm, '', _c_logIdx, parseInt(paramMap.suidx)]);
-					}
-					alert('처리 되었습니다.');
-					fnMySchedule();
-					fnSchList();
-					fnScheduleClose();
+					// push
+					fnFCMSend(false, [3, 2, selSchdule + ' 신청 내용 : ' + paramMap.conts, '신청자 : ' + sUser, '', _c_logIdx, 0]);
+				} else if (appSts == 2 && (_schedule_Arr.includes(stp))) {
+					//휴가승인
+					fnFCMSend(false, [1, 3, selSchdule + ' 승인 완료', '승인자 : ' + _c_logNm, '', _c_logIdx, parseInt(paramMap.suidx)]);
 				}
+				alert('처리 되었습니다.');
+				fnMySchedule();
+				fnSchList();
+				fnScheduleClose();
 
 			} else if (res == 4) {
 				alert('해당 기간에 이미 등록된 대상이 있습니다.');
@@ -763,55 +753,6 @@ function fnScheduleFileDelete() {
 		}
 	});
 	/**/
-}
-
-// 회의록 등록/수정
-function fnMeetingInput(pmMap) {
-
-	const paramMap = {
-		midx: 0,
-		subj: pmMap.conts,
-		mdate: pmMap.sdate,
-		stime: pmMap.stime,
-		etime: pmMap.etime,
-		rnm: _c_logNm,
-		conts: '',
-		etc: '',
-		ridx: _c_logIdx,
-		mroom: ''
-	}
-	const jsonData = JSON.stringify(paramMap);
-	//console.log(jsonData);
-	/**/
-	$.ajax({
-		type: 'POST',
-		url: '/meeting/input',
-		data: jsonData,
-		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
-		beforeSend: function() {
-			//fnLoadingOpen();
-		},
-		success: function(res) {
-			//console.log(res);
-			if (res == 0) {
-				fnAttendeesInput();
-			} else {
-				alert('실패');
-			}
-		},
-		//error: function(jqXHR, textStatus, errorThrown) {
-		error: function(jqXHR, textStatus, errorThrown) {
-			// loading.. progressbar 종료			
-			fnLoadingClose();
-			alert('실패');
-			//console.log("ERROR : " + textStatus + " : " + errorThrown);
-			//console.log(res.responseText);
-		}
-	});
-	/**/
-
 }
 // 참석자 등록/수정
 function fnAttendeesInput() {
@@ -949,7 +890,7 @@ function fnSelSchTp() {
 		, txtSel = objSel.children('option:selected').text();
 
 	$('#txtTitle').val(txtSel);
-	if (schedule_TP == 106 || schedule_TP == 110 || schedule_TP == 127 || schedule_TP == 128) {
+	if (schedule_TP == 27 || schedule_TP == 29 || schedule_TP == 34) {
 		$('.vacationShow, #userTr').show();
 		$('#txtSchedule_TP').closest('tr').hide();
 		$('#btnUser').hide();
@@ -957,11 +898,11 @@ function fnSelSchTp() {
 		$('#ToName').text(_c_logNm);
 		$('#schIdx').val(_c_logIdx);
 
-		if (schedule_TP == 128) {//기타휴가시 파일 첨부
+		if (schedule_TP == 34) {//기타휴가시 파일 첨부
 			$('#fileShow').show();
 		}
 
-	} else if (schedule_TP == 111 || schedule_TP == 112 || schedule_TP == 113) { // 공휴일, 휴무, 기타시
+	} else if (schedule_TP == 26|| schedule_TP == 33) { // 공휴일, 휴무, 기타시
 		$('#schIdx').val(_c_logIdx);
 		$('#userTr, #btnApprove, #btnApproveCancel').hide();
 	} else {

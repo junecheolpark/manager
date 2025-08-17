@@ -85,6 +85,24 @@
 		)
 	</select>
 	
+	<!-- 출퇴근  불러오기 -->
+	<select id="workInoutList" parameterType="hashMap" resultType="co.junecheol.dto.WorkInoutDTO">
+		SELECT * from public.fn_work_inout_list(
+		#{USER_IDX}, 
+		#{SCH_SDATE},
+		#{SCH_EDATE}
+		)
+	</select>
+	
+	<!-- 출퇴근 등록/수정 -->
+	<insert id="workInoutInput" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_work_inout_input(
+			#{USER_IDX}, 
+			#{INOUT_TP}, 
+			#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+			)
+	</insert>	
+	
 	
 	<!-- 일정체크 불러오기 -->
 	<select id="mySchduleCheck" parameterType="hashMap" resultType="co.junecheol.dto.MyScheduleDTO">

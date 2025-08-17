@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.junecheol.dto.HolidayDTO;
+import co.junecheol.dto.MyScheduleDTO;
 import co.junecheol.dto.ScheduleDTO;
+import co.junecheol.dto.WorkInoutDTO;
 import co.junecheol.service.ScheduleService;
-import kr.co.rysoft.dto.HolidayDTO;
-import kr.co.rysoft.dto.MyScheduleDTO;
-import kr.co.rysoft.dto.WorkInoutDTO;
 
 @Controller
 @RequestMapping(value = "/schedule/")
@@ -217,32 +217,6 @@ public class ScheduleController {
 		}
 
 		return dto;
-	}
-
-	// 근태관리 리스트
-	@RequestMapping(value = "attendanceList", method = RequestMethod.POST)
-	@ResponseBody
-	public List<WorkInoutDTO> attendanceList(@RequestBody final Map<String, Object> map) throws Exception {
-
-		List<WorkInoutDTO> list = new ArrayList<WorkInoutDTO>();
-
-		try {
-			Map<String, Object> hashMap = new HashMap<String, Object>() {
-				private static final long serialVersionUID = 1L;
-				{
-					put("MONTH_DATE", (String) map.get("mdate"));
-					put("USER_IDX", (Integer) map.get("uidx"));
-					put("SCH_SEL", (Integer) map.get("schsel"));
-					put("SCH_TXT", (String) map.get("schtxt"));
-					put("SCH_TP", (Integer) map.get("schtp"));
-				}
-			};
-			list = scheduleService.attendanceList(hashMap);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-
-		return list;
 	}
 
 	// 출퇴근 리스트

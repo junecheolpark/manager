@@ -3,10 +3,10 @@ package co.junecheol.service;
 import java.util.List;
 import java.util.Map;
 
+import co.junecheol.dto.HolidayDTO;
+import co.junecheol.dto.MyScheduleDTO;
 import co.junecheol.dto.ScheduleDTO;
-import kr.co.rysoft.dto.HolidayDTO;
-import kr.co.rysoft.dto.MyScheduleDTO;
-import kr.co.rysoft.dto.WorkInoutDTO;
+import co.junecheol.dto.WorkInoutDTO;
 
 public interface ScheduleService {
 	public List<ScheduleDTO> scheduleList(Map<String, Object> map); //  사내일정 불러오기
@@ -17,8 +17,6 @@ public interface ScheduleService {
 	public Integer scheduleFileDelete(Map<String, Object> map); //  사내일정 파일 삭제
 	
 	public ScheduleDTO vacationView(Map<String, Object> map); //  // 연차 및 시간설정 뷰
-	
-	public List<WorkInoutDTO> attendanceList(Map<String, Object> map); //  근태관리 리스트
 	
 	public List<WorkInoutDTO> workInoutList(Map<String, Object> map); //  출퇴근 불러오기
 	public Integer workInoutInput(Map<String, Object> map); //  출퇴근 등록/수정
