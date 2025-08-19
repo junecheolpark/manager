@@ -7,6 +7,7 @@
 	<%@ include file="/WEB-INF/views/include/common.jsp" %>
 	<%@ include file="/WEB-INF/views/include/html_head.jsp" %>
     
+    <script src="/resources/js/index.js?ver=20250624103500000"></script>
     <link href="/resources/css/index.css?ver=20250624103500000" rel="stylesheet">
 </head>
 <body>
@@ -146,9 +147,9 @@
                     <div class="tabMenuList" id="boardMenu">
                         <ul>
                             <li data-mbidx="0" class="choicebulletin"><a href="#all">전체</a></li>
-                            <li data-mbidx="11"><a href="/WEB-INF/views/clipboard/clipboard_01.html">공지사항</a></li>
-                            <li data-mbidx="17"><a href="/WEB-INF/views/clipboard/clipboard_02.html">자료실</a></li>
-                            <li data-mbidx="18"><a href="/WEB-INF/views/clipboard/clipboard_03.html">업무공유</a></li>
+                            <li data-mbidx="10"><a href="/WEB-INF/views/clipboard/clipboard_01.html">공지사항</a></li>
+                            <li data-mbidx="11"><a href="/WEB-INF/views/clipboard/clipboard_02.html">자료실</a></li>
+                            <li data-mbidx="12"><a href="/WEB-INF/views/clipboard/clipboard_03.html">업무공유</a></li>
                         </ul>
                     </div>
                     <div class="tabMenuCont">

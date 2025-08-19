@@ -15,7 +15,7 @@ $(function() {
 		
 		if (!isNaN(_bidx)) {
 			console.log(_bidx);
-			fnBoardView(bidx);
+			fnBoardView(_bidx);
 		}
 	}
 	/**/

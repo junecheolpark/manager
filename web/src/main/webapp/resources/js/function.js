@@ -281,6 +281,94 @@ function datetimeView(viewType) {
 
 	return sResult;
 }
+
+//*************************************//
+// 날짜 계산 후 리턴
+var dateUtil = function() {
+	this.startObject = null;
+	this.endObject = null;
+	this.args = null;
+	this.startDate = null;
+}
+
+dateUtil.prototype.formatLen = function(str) {
+	return str = ("" + str).length < 2 ? "0" + str : str;
+}
+
+dateUtil.prototype.formatDate = function(dateObject, delimiter) {
+	delimiter = delimiter || "-";
+	return dateObject.getFullYear() + delimiter + this.formatLen(dateObject.getMonth() + 1) + delimiter + this.formatLen(dateObject.getDate());
+}
+
+dateUtil.prototype.toDay = function(delimiter) {
+	return this.formatDate(new Date(this.startDate.split('-')[0], this.startDate.split('-')[1] - 1, this.startDate.split('-')[2]), "-");
+}
+
+dateUtil.prototype.calDate = function() {
+	var year = this.args.year == null ? 0 : Number(this.args.year);
+	var month = this.args.month == null ? 0 : Number(this.args.month);
+	var day = this.args.day == null ? 0 : Number(this.args.day);
+	var result = new Date(this.startDate.split('-')[0], this.startDate.split('-')[1] - 1, this.startDate.split('-')[2]);
+
+	result.setYear(result.getFullYear() + year);
+	result.setMonth(result.getMonth() + month);
+	result.setDate(result.getDate() + day);
+	return this.formatDate(result, "-");
+}
+
+dateUtil.prototype.setDate = function(startObject, endObject, args, startDate) {
+	this.startObject = startObject;
+	this.endObject = endObject;
+	this.args = args;
+	this.startDate = startDate;
+
+	document.getElementById(this.startObject).value = this.toDay();
+	document.getElementById(this.endObject).value = this.calDate();
+}
+
+dateUtil.prototype.formatTime = function(dateObject, delimiter) {
+	delimiter = delimiter || ":";
+	return this.formatLen(dateObject.getHours()) + delimiter + this.formatLen(dateObject.getMinutes());
+}
+
+dateUtil.prototype.setAddDate = function(dateObject, add) {
+	var _date = new Date(dateObject);
+
+	_date.setDate(_date.getDate() + add); // 날짜 +,-
+
+	var yyyy = _date.getFullYear();
+	var MM = _date.getMonth() + 1;
+	var dd = _date.getDate();
+
+	if (MM < 10) MM = '0' + MM;
+	if (dd < 10) dd = '0' + dd;
+
+	returnDate = yyyy + '-' + MM + '-' + dd;
+
+	return returnDate;//this.formatDate(returnDate, "-");
+}
+
+dateUtil.prototype.setAddYear = function(dateObject, delimiter) {
+	var result = new Date(dateObject);
+
+	result.setYear(result.getFullYear() + delimiter);
+	result.setMonth(result.getMonth());
+	result.setDate(result.getDate());
+	return this.formatDate(result, "-");
+};
+
+dateUtil.prototype.nowDate = function() {
+	var result = new Date();
+
+	result.setYear(result.getFullYear());
+	result.setMonth(result.getMonth());
+	result.setDate(result.getDate());
+	return this.formatDate(result, "-");
+};
+
+var dateUtilObj = new dateUtil();
+//*************************************//
+
 //*************************************//
 
 // 년도 설정

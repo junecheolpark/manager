@@ -3,15 +3,8 @@ $(function() {
 	//내 정보
 	fnMySchedule();
 
-	//유지보수
-	fnCompanyIndexSelList(['최신', 0, 2], $('#selSchMt'));
-	fnMaintenanceListView();
-	//select 변경시
-	$("#selSchMt").on("change", function() {
-		fnMaintenanceListView();
-	});
-
 	//프로젝트
+	/*/
 	fnCompanyIndexSelList(['최신', 0, 1], $('#selSchPj'));
 	if ($('#selSchPj option').text() != 'no data') fnProjectView();
 
@@ -19,6 +12,8 @@ $(function() {
 	$("#selSchPj").on("change", function() {
 		fnProjectView();
 	});
+	
+	 */
 
 	//주간일정
 	fnScheduleList();
@@ -154,9 +149,9 @@ function fnBoardList(midx) {
 					objList.children('li').removeClass('selRow');
 					//console.log(objBmidx);
 					switch (objBmidx) {
-						case 11: location.href = '/clipboard/01?bidx=' + objBidx; break;
-						case 17: location.href = '/clipboard/02?bidx=' + objBidx; break;
-						case 18: location.href = '/clipboard/03?bidx=' + objBidx; break;
+						case 10: location.href = '/clipboard/01?bidx=' + objBidx; break;
+						case 11: location.href = '/clipboard/02?bidx=' + objBidx; break;
+						case 12: location.href = '/clipboard/03?bidx=' + objBidx; break;
 					}
 					//location.href = '/report/01/write?midx=' + objRow.attr('data-midx');
 				});
@@ -310,158 +305,6 @@ function fnCompanyIndexSelList(arr, obj) {
 
 }
 
-// 유지보수 보기
-function fnMaintenanceListView() {
-	let re = _today.split('-')
-		, sDate = re[0] + '-' + re[1] + '-01'
-		, eDate = dateUtil.prototype.formatDate(new Date(re[0], re[1], 0), '-');
-
-	let paramMap = {
-		ltype: 1,
-		page: 1,
-		psize: 4,
-		sstp: 0,
-		rqtp: 0,
-		prsts: 0,
-		cidx: parseInt($('#selSchMt').val()),
-		cnm: '',
-		datetp: 1,
-		sdate: sDate,
-		edate: eDate,
-		schsel: 0,
-		schtxt: '',
-		orderby: 0,
-		desc: 0
-	}
-	const jsonData = JSON.stringify(paramMap);
-	//console.log(jsonData);
-	$.ajax({
-		type: 'POST',
-		url: '/maintenance/listTotal',
-		data: jsonData,
-		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
-		beforeSend: function() {
-			fnLoadingOpen();
-		},
-		success: function(res) {
-			//console.log(res)
-			const items = res
-				, total_CNT = items.total_CNT
-				, total_SCHECULE_MD = items.total_SCHECULE_MD
-				, total_PROC_MD = items.total_PROC_MD
-				, proc_STS = items.proc_STS;
-			let month = parseInt(_today.split('-')[1]);
-
-			$('#nowMonth').text(month);
-			$('#CompleCnt').text(commify(proc_STS));
-			$('#lblRpt01EMD').text(commify(total_SCHECULE_MD));
-			$('#lblRpt01CMD').text(commify(total_PROC_MD));
-			fnMaintenanceList(total_CNT, paramMap);
-		},
-		error: function(jqXHR, textStatus, errorThrown) {
-			// loading.. progressbar 종료			
-			fnLoadingClose();
-			alert('실패');
-			//console.log("ERROR : " + textStatus + " : " + errorThrown);
-			//console.log(res.responseText);
-		}
-	});
-}
-
-// 유지보수 목록
-function fnMaintenanceList(totalCnt, paramMap) {
-	paramMap.ltype = 2;
-	const jsonData = JSON.stringify(paramMap);
-	//console.log(jsonData);
-	$.ajax({
-		type: 'POST',
-		url: '/maintenance/list',
-		data: jsonData,
-		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
-		beforeSend: function() {
-			//if ($('.loading-layer').css('display') == 'none') $('.loading-layer').show();
-		},
-		success: function(res) {
-			//console.log(res);
-			const items = res
-				, objList = $('#maintenanceList').children('ul');
-			let sHtml = company_NM = subj = request_NM = request_TEL = request_EMAIL = request_DATE = request_CONTS
-				= error_REASON = proc_CONTS = proc_NM = proc_TEL = proc_DATE = etc
-				= system_TP_NM = request_TP_NM = proc_STS_NM = ''
-				, maintenance_IDX = company_IDX = system_TP = request_TP = proc_STS = month = 0
-				, schecule_MD = proc_MD = 0.0
-				, is_SEND = false;
-
-			if (items.length == 0) {
-				sHtml += '<li>';
-				sHtml += '  <span class="noData">검색된 유지보수가 없습니다.</span>';
-				sHtml += '</li>';
-
-				objList.html(sHtml);
-			} else {
-				$.each(items, function(i, val) {
-					maintenance_IDX = val.maintenance_IDX;
-					company_IDX = val.company_IDX;
-					system_TP = val.system_TP;
-					request_TP = val.request_TP;
-					proc_STS = val.proc_STS;
-					subj = val.subj;
-					request_NM = val.request_NM;
-					request_TEL = val.request_TEL;
-					request_EMAIL = val.request_EMAIL;
-					request_DATE = val.request_DATE;
-					request_CONTS = val.request_CONTS;
-					error_REASON = val.error_REASON;
-					proc_CONTS = val.proc_CONTS;
-					proc_NM = val.proc_NM;
-					proc_TEL = val.proc_TEL;
-					proc_DATE = val.proc_DATE;
-					etc = val.etc;
-					company_NM = val.company_NM;
-					system_TP_NM = val.system_TP_NM;
-					request_TP_NM = val.request_TP_NM;
-					proc_STS_NM = val.proc_STS_NM;
-					schecule_MD = val.schecule_MD;
-					proc_MD = val.proc_MD;
-					is_SEND = val.is_SEND;
-
-
-					sHtml += '<li data-midx="' + maintenance_IDX + '" data-cidx="' + company_IDX + '">' + '\n';
-					sHtml += '	<a href="#">' + '\n';
-					sHtml += '		<div class="Unprocessed Processing"><span class="' + fnMaintenanceProcSts(proc_STS) + '">' + proc_STS_NM + '</span></div>' + '\n';
-					sHtml += '		<div>' + '\n';
-					sHtml += '			<p class="colGray2 mgB5">' + system_TP_NM + '</p>' + '\n';
-					sHtml += '			<p><span class="ftBold">' + request_TP_NM + '</span>&nbsp;|&nbsp;<span>' + subj + '</span></p>' + '\n';
-					sHtml += '		</div>' + '\n'
-					sHtml += '	</a>' + '\n';;
-					sHtml += '</li>' + '\n';
-				});
-				objList.html(sHtml);
-
-				// 행 선택 이벤트
-				objList.find('a').unbind().bind('click', function() {
-					const objThis = $(this)
-						, objRow = objThis.parent();
-
-					objList.children('li').removeClass('selRow');
-					location.href = '/report/01/write?midx=' + objRow.attr('data-midx');
-				});
-			}
-			fnLoadingClose();
-		},
-		error: function(jqXHR, textStatus, errorThrown) {
-			// loading.. progressbar 종료			
-			fnLoadingClose();
-			alert('실패');
-			//console.log("ERROR : " + textStatus + " : " + errorThrown);
-			//console.log(res.responseText);
-		}
-	});
-}
 
 // 프로젝트 보기
 function fnProjectView() {
