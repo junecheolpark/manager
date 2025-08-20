@@ -189,7 +189,7 @@ function fnMySchedule() {
 		uidx: _c_logIdx
 	}
 	const jsonData = JSON.stringify(paramMap);
-	console.log(jsonData);
+	//console.log(jsonData);
 	$.ajax({
 		type: 'POST',
 		url: '/schedule/vacationView',
@@ -202,7 +202,7 @@ function fnMySchedule() {
 		},
 		success: function(res) {
 			const items = res;
-			console.log(res);
+			//console.log(res);
 			let in_DATETIME = out_DATETIME = in_TIME = out_TIME = now = weekKN = ''
 				, nomal_CNT = use_NOMAL_CNT = quarter = 0;
 			const week = ['일', '월', '화', '수', '목', '금', '토'];
