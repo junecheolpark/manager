@@ -43,50 +43,6 @@
                 </div>
             </div>
             <!--근태관리//-->
-            <!--//프로젝트-->
-            <div class="project">
-                <div class="mTitle">
-                    <span class="ftSize20 ftBold">프로젝트</span> &nbsp;&nbsp;
-                    <select name="selSchPj" id="selSchPj" style="width:180px">
-                    </select>
-                    <a href="/schedule/02" class="moreBtn">more +</a>
-                </div>
-                <div class="contBox" id="projectShow" style="display:none;">
-                    <!--그래프 영역-->
-                    <div class="projectGraph">
-						<div class='wrap'>
-							<div class='container'>
-								<div class="chart doughnut1">
-									<div class="center2"></div>
-									<div class="grayCenter">
-										<div class="center">
-											<div style="margin-top: 20px;">
-												<div class="font1">
-													년 <b>월</b>
-												</div>
-												<div class="font2">0%</div>
-												<div class="font3">진행률</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-                    <p class="txtC">
-	                    <span id="projectNm"></span>&nbsp;|&nbsp;
-	                    <span id="projectUser"class="colGray2"></span>
-                    </p>
-                    <div class="progress mgTB10">
-                        <p id="projectPg" style="width: 0%;">&nbsp;</p>
-                        <span>D-day &nbsp;<span id="projectPgTxt"></span></span>
-                    </div>
-                </div>
-                <div class="contBox" id="projectHide">
-                	<span class="noData pdL20">검색된 프로젝트가 없습니다.</span>
-                </div>
-            </div>
-            <!--프로젝트//-->
             <!--//주간일정-->
             <div class="weekly">
                 <div class="mTitle">

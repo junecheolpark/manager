@@ -3,18 +3,6 @@ $(function() {
 	//내 정보
 	fnMySchedule();
 
-	//프로젝트
-	/*/
-	fnCompanyIndexSelList(['최신', 0, 1], $('#selSchPj'));
-	if ($('#selSchPj option').text() != 'no data') fnProjectView();
-
-	//select 변경시
-	$("#selSchPj").on("change", function() {
-		fnProjectView();
-	});
-	
-	 */
-
 	//주간일정
 	fnScheduleList();
 
@@ -303,91 +291,6 @@ function fnCompanyIndexSelList(arr, obj) {
 
 	obj.html(sHtml);
 
-}
-
-
-// 프로젝트 보기
-function fnProjectView() {
-	let paramMap = {
-		pidx: 0,
-		cidx: parseInt($('#selSchPj').val())
-	}
-	const jsonData = JSON.stringify(paramMap);
-	console.log(jsonData);
-	$.ajax({
-		type: 'POST',
-		url: '/project/projectMainView',
-		data: jsonData,
-		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
-		beforeSend: function() {
-		},
-		success: function(res) {
-			//console.log(res);
-			const items = res;
-			let work_PROGRESS = dateProgress = company_IDX = schedule = uLen = 0
-				, project_NM = s_USER_NM = sdate = edate = sHtml = ''
-			dDay = _today.split('-');
-			// D-day (전체일정 비율)
-
-
-			if (items.length > 0) {
-				$.each(items, function(i, val) {
-					work_PROGRESS = val.work_PROGRESS;
-					work_PROGRESS = work_PROGRESS > 98 ? 100 : work_PROGRESS;
-					project_NM = val.project_NM;
-					s_USER_NM = val.s_USER_NM.split(',');
-					uLen = s_USER_NM.length;
-					sdate = val.sdate;
-					edate = val.edate;
-					dateProgress = Math.round((dateDiff(_today, sdate)) / dateDiff(edate, sdate) * 100);
-					dateProgress = dateProgress <= 0 ? 0 : dateProgress;
-					dateProgress = dateProgress >= 100 ? 100 : dateProgress;
-
-					$('#projectNm').text(project_NM);
-					$('#projectUser').text(uLen == 1 ? s_USER_NM : s_USER_NM[0] + ' 외 ' + (uLen - 1) + '명');
-					$('#projectPg').css('width', dateProgress + '%');
-					$('#projectPgTxt').text(dateProgress + '%').parent().css('left', dateProgress - 5 + '%');
-
-					$('.font1').html(dDay[0] + '년 <b>' + dDay[1] + '월');
-					$('.font2').text(work_PROGRESS + '%');
-
-					//원형 플러그인 
-					const chart1 = document.querySelector('.doughnut1');
-					const makeChart = (percent, classname, color) => {
-						let i = 0;
-						let chartFn = setInterval(function() {
-							if (i < percent) {
-								colorFn(i, classname, color);
-								i++;
-							} else {
-								clearInterval(chartFn);
-							}
-						}, 10);
-					}
-					const colorFn = (i, classname, color) => {
-						classname.style.background = "conic-gradient(" + color + " 0% " + i + "%, #fff " + i + "% 100%)";
-					}
-					makeChart(work_PROGRESS + 1, chart1, '#f5b914');
-
-					$('#projectHide').hide();
-					$('#projectShow').show();
-				});
-			} else {
-				$('#projectHide').show();
-				$('#projectShow').hide();
-			}
-
-		},
-		error: function(jqXHR, textStatus, errorThrown) {
-			// loading.. progressbar 종료			
-			fnLoadingClose();
-			alert('실패');
-			//console.log("ERROR : " + textStatus + " : " + errorThrown);
-			//console.log(res.responseText);
-		}
-	});
 }
 
 // 주간 일정 목록
