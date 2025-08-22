@@ -621,6 +621,13 @@ function fnTopMemo() {
 
 // 메모 추가
 function fnMemoAdd() {
+	
+	let count = $(".memo").length;
+	if(count >= 5){
+		alert('5개까지 추가 가능합니다.');
+		return false;
+	}
+	
 	let sHtml = '';
 	sHtml += '<div class="memo">' + '\n';
 	sHtml += '	<div class="placeTitle">' + '\n';

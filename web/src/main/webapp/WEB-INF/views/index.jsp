@@ -127,60 +127,9 @@
         <!--my place-->
         <section class="myPlace">
             <p class="ftSize20 ftBold mP">My Place &nbsp;&nbsp;
-            <a href="#memo" ><img src="/resources/images/icon/ic_memo.png" alt="추가">추가</a>
+            <a href="#memo" onclick="fnMemoAdd(); return false;"><img src="/resources/images/icon/ic_memo.png" alt="추가">추가</a>
             </p>
             <div class="mDiv" id="memoBox">
-                <div class="memo">
-                    <div class="placeTitle">
-                        <span class="pdL5 colGray2">2023-06-15 10:55</span>
-                        <div class="floatR" data-uidx="12" data-rdate="2023-06-15 10:55:27">
-                            <a href="#" class="btn btnS btnWhite memoSave" onclick="fnMemoInput($(this)); return false;">저장</a>&nbsp;
-                            <a href="#" class="btn btnS btnBlueLine memoDel" onclick="fnMemoDelete($(this)); return false;">삭제</a>
-                        </div>
-                        <textarea rows="5" cols="5" class="txtMemo">테스트 메모</textarea>
-                    </div>
-                </div>
-                <div class="memo">
-                    <div class="placeTitle">
-                        <span class="pdL5 colGray2">2023-06-15 10:55</span>
-                        <div class="floatR" data-uidx="12" data-rdate="2023-06-15 10:55:27">
-                            <a href="#" class="btn btnS btnWhite memoSave" onclick="fnMemoInput($(this)); return false;">저장</a>&nbsp;
-                            <a href="#" class="btn btnS btnBlueLine memoDel" onclick="fnMemoDelete($(this)); return false;">삭제</a>
-                        </div>
-                        <textarea rows="5" cols="5" class="txtMemo">테스트 메모</textarea>
-                    </div>
-                </div>
-                <div class="memo">
-                    <div class="placeTitle">
-                        <span class="pdL5 colGray2">2023-06-15 10:55</span>
-                        <div class="floatR" data-uidx="12" data-rdate="2023-06-15 10:55:27">
-                            <a href="#" class="btn btnS btnWhite memoSave" onclick="fnMemoInput($(this)); return false;">저장</a>&nbsp;
-                            <a href="#" class="btn btnS btnBlueLine memoDel" onclick="fnMemoDelete($(this)); return false;">삭제</a>
-                        </div>
-                        <textarea rows="5" cols="5" class="txtMemo">테스트 메모</textarea>
-                    </div>
-                </div>
-                <div class="memo">
-                    <div class="placeTitle">
-                        <span class="pdL5 colGray2">2023-06-15 10:55</span>
-                        <div class="floatR" data-uidx="12" data-rdate="2023-06-15 10:55:27">
-                            <a href="#" class="btn btnS btnWhite memoSave" onclick="fnMemoInput($(this)); return false;">저장</a>&nbsp;
-                            <a href="#" class="btn btnS btnBlueLine memoDel" onclick="fnMemoDelete($(this)); return false;">삭제</a>
-                        </div>
-                        <textarea rows="5" cols="5" class="txtMemo">테스트 메모</textarea>
-                    </div>
-                </div>
-                <div class="memo">
-                    <div class="placeTitle">
-                        <span class="pdL5 colGray2">2023-06-15 10:55</span>
-                        <div class="floatR" data-uidx="12" data-rdate="2023-06-15 10:55:27">
-                            <a href="#" class="btn btnS btnWhite memoSave" onclick="fnMemoInput($(this)); return false;">저장</a>&nbsp;
-                            <a href="#" class="btn btnS btnBlueLine memoDel" onclick="fnMemoDelete($(this)); return false;">삭제</a>
-                        </div>
-                        <textarea rows="5" cols="5" class="txtMemo">테스트 메모</textarea>
-                    </div>
-                </div>
-                
             </div>
         </section>
     </section>
