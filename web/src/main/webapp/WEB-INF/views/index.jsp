@@ -124,6 +124,7 @@
             </div>
             <!--게시판//-->
         </section>
+        
         <!--my place-->
         <section class="myPlace">
             <p class="ftSize20 ftBold mP">My Place &nbsp;&nbsp;
