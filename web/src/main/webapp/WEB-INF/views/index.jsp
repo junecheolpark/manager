@@ -124,7 +124,6 @@
             </div>
             <!--게시판//-->
         </section>
-        
         <!--my place-->
         <section class="myPlace">
             <p class="ftSize20 ftBold mP">My Place &nbsp;&nbsp;
@@ -134,15 +133,5 @@
             </div>
         </section>
     </section>
-	<script>
-            
-    </script>
-	<!--// pwa -->
-	<script src="/index-init.js"></script>
-	<!-- pwa //-->       
-	<!--// firebase -->
-	<script type="module" src="/firebase-init.js"></script>
-	<!-- firebase //-->
-        
 </body>
 </html>
