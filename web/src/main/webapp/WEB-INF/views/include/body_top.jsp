@@ -32,7 +32,6 @@
                         <a href="/schedule/01">일정 관리</a>
                         <ul>
                             <li><a href="/schedule/01">사내일정</a></li>
-                            <li><a href="/schedule/02">프로젝트</a></li>
                         </ul>
                     </li>
                     <li>
