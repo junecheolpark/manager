@@ -646,11 +646,7 @@ function fnScheduletcInput(appSts) {
 						fnScheduleFileInput();
 					}
 
-					// push
-					fnFCMSend(false, [3, 2, selSchdule + ' 신청 내용 : ' + paramMap.conts, '신청자 : ' + sUser, '', _c_logIdx, 0]);
 				} else if (appSts == 2 && (_schedule_Arr.includes(stp))) {
-					//휴가승인
-					fnFCMSend(false, [1, 3, selSchdule + ' 승인 완료', '승인자 : ' + _c_logNm, '', _c_logIdx, parseInt(paramMap.suidx)]);
 				}
 				alert('처리 되었습니다.');
 				fnMySchedule();
@@ -850,7 +846,7 @@ function fnMySchedule() {
 		eyear: year + '-12-31',
 	}
 	const jsonData = JSON.stringify(paramMap);
-	//console.log(jsonData);
+	console.log(jsonData);
 	$.ajax({
 		type: 'POST',
 		url: '/schedule/mySchedule',
@@ -863,7 +859,7 @@ function fnMySchedule() {
 		},
 		success: function(res) {
 			const items = res;
-			//console.log(res);
+			console.log(res);
 			let vacation = nomal_CNT = halfday = 0;
 
 			vacation = items.vacation;

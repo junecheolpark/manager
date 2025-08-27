@@ -86,7 +86,7 @@ function fnVacationListView() {
 function fnVacationList(totalCnt, paramMap) {
 	paramMap.ltype = 2;
 	const jsonData = JSON.stringify(paramMap);
-	//console.log(jsonData);
+	console.log(jsonData);
 	$.ajax({
 		type: 'POST',
 		url: '/user/vacationList',
@@ -208,6 +208,7 @@ function fnSchList(uidx, userNM) {
 		edate: $('#selSchYear').val() + '-12-31',
 	}
 	const jsonData = JSON.stringify(paramMap);
+	
 	$.ajax({
 		type: 'POST',
 		url: '/schedule/list',
@@ -243,14 +244,13 @@ function fnSchList(uidx, userNM) {
 					conts = val.conts;
 
 					//승인되고 연차관련
-					if (approve_STS == 2 && (schedule_TP == 106 || schedule_TP == 110 || schedule_TP == 127 || schedule_TP == 128)) { // 휴가,반차,반반차
+					if (approve_STS == 2 && (schedule_TP == 27 || schedule_TP == 29 || schedule_TP == 34)) { // 휴가,반차, 기타휴가
 
 						dayCnt = dateDiff('2023-01-01', '2023-01-01') + 1;
 						switch (schedule_TP) {
-							case 106: dayCnt *= 1; break; // 연차
-							case 110: dayCnt *= 0.5; break; // 반차
-							case 127: dayCnt *= 0.25; break; // 반반차
-							case 128: dayCnt *= 0; break; // 기타휴가
+							case 27: dayCnt *= 1; break; // 연차
+							case 29: dayCnt *= 0.5; break; // 반차
+							case 34: dayCnt *= 0; break; // 기타휴가
 
 						}
 						sHtml += '<tr>' + '\n';
