@@ -403,7 +403,7 @@ function fnSchList() {
 		},
 		success: function(res) {
 			const items = res;
-			//console.log(res);
+			console.log(res);
 			let sdate = edate = code_NM = user_NM = dateCnt = startDate = endDate = title = approveClass = conts = ''
 				, schedul_IDX = schedule_TP = approve_STS = 0;
 			$.each(items, function(i, val) {

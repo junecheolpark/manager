@@ -20,3 +20,24 @@ function fnVacationUsageRate(pVal) {
 
 	return ret;
 }
+
+// 일정관리 색상
+function fnScheduleTp(pVal) {
+	/*
+	26	"공휴일"
+	27	"연차"
+	29	"반차"
+	33	"기타"
+	*/
+	let ret = "";
+
+	if (pVal == 29) {
+		ret = "colGreen";
+	} else if (pVal == 26) {
+		ret = "colRed";
+	} else {
+		ret = "colBlack";
+	}
+
+	return ret;
+}

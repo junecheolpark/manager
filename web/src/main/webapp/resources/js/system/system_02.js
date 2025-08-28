@@ -98,7 +98,7 @@ function fnVacationList(totalCnt, paramMap) {
 			//if ($('.loading-layer').css('display') == 'none') $('.loading-layer').show();
 		},
 		success: function(res) {
-			//console.log(res);
+			console.log(res);
 			const items = res
 				, objList = $('#AppList').children('tbody');
 			let sHtml = dept_NM = posi_NM = nm = ''
