@@ -548,7 +548,6 @@ function fnUserScheduleView(pThis) {
 					$('#UploadFileView').show();
 					$('#UploadFileView').html(fHtml);
 				}
-				if (fnEmpty(_c_logSign, '') != '') { // 결재자일 경우
 					$('#btnDelete').show();
 					if (approve_STS == 2) { // 승인
 						$("#selSchdule").prop("disabled", true);
@@ -560,7 +559,6 @@ function fnUserScheduleView(pThis) {
 						$('#btnApproveCancel').show();
 						$('#btnApprove').show();
 					}
-				}
 				(approve_STS == 1) ? $('#btnSave').show() : $('#btnSave').hide();
 				(approve_STS == 1) ? $('#btnDelFile1').show() : $('#btnDelFile1').hide();
 				$('.vacationShow').show();
