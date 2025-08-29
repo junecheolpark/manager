@@ -85,32 +85,6 @@
 					</div>
 					<div class="autoSizeLayerCont">
 						<div class="autoSizeLayerContBody">
-							<ul class="vacationShow">
-								<li>
-									<p>
-										<span>연차일수</span>
-										<span><span id="yearVacation">0</span>&nbsp;일</span>
-									</p>                                                
-								</li>
-								<li>
-									<p>
-										<span>사용일수</span>
-										<span><span id="yearUse">0</span>&nbsp;일</span>
-									</p> 
-								</li>
-								<li>
-									<p>
-										<span>잔여일수</span>
-										<span><span id="yearLeave">0</span>&nbsp;일</span>
-									</p> 
-								</li>
-								<!-- <li>
-									<p>
-										<span>대체 잔여일수</span>
-										<span><span>0</span>&nbsp;일</span>
-									</p> 
-								</li> -->
-							</ul>
 							<table class="tableView">
 								<colgroup>
 									<col style="width: 20%;">

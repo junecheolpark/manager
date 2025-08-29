@@ -150,20 +150,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 		return resultCd;
 	}
 
-	// 일정체크 불러오기
-	@Override
-	public MyScheduleDTO mySchduleCheck(Map<String, Object> map) {
-		MyScheduleDTO dto = new MyScheduleDTO();
-
-		try {
-			dto = scheduleDao.mySchduleCheck(map);
-		} catch (Exception e) {
-			log.error("error", e);
-		}
-
-		return dto;
-	}
-
 	// 공휴일 불러오기
 	@Override
 	public List<HolidayDTO> holidayList(Map<String, Object> map) {

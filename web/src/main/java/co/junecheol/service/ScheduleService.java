@@ -21,7 +21,5 @@ public interface ScheduleService {
 	public List<WorkInoutDTO> workInoutList(Map<String, Object> map); //  출퇴근 불러오기
 	public Integer workInoutInput(Map<String, Object> map); //  출퇴근 등록/수정
 	
-	public MyScheduleDTO mySchduleCheck(Map<String, Object> map); //  일정체크 불러오기
-	
 	public List<HolidayDTO> holidayList(Map<String, Object> map); //  공휴일 	불러오기
 }

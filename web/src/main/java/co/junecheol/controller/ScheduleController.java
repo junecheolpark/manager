@@ -271,34 +271,6 @@ public class ScheduleController {
 		return resultCd;
 	}
 
-	// 일정체크 불러오기
-	@RequestMapping(value = "mySchedule", method = RequestMethod.POST)
-	@ResponseBody
-	public MyScheduleDTO mySchduleCheck(@RequestBody final Map<String, Object> map) throws Exception {
-
-		MyScheduleDTO dto = new MyScheduleDTO();
-
-		try {
-			Map<String, Object> hashMap = new HashMap<String, Object>() {
-				private static final long serialVersionUID = 1L;
-				{
-					put("USER_IDX", (Integer) map.get("uidx"));
-					put("YEAR", (Integer) map.get("yyyy"));
-					put("S_WEEK", (String) map.get("sweek"));
-					put("E_WEEK", (String) map.get("eweek"));
-					put("S_YEAR", (String) map.get("syear"));
-					put("E_YEAR", (String) map.get("eyear"));
-				}
-			};
-			// System.out.println(hashMap);
-			dto = scheduleService.mySchduleCheck(hashMap);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-
-		return dto;
-	}
-
 	// 공휴일 리스트
 	@RequestMapping(value = "holidayList", method = RequestMethod.POST)
 	@ResponseBody

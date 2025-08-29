@@ -35,9 +35,6 @@
                    <p class="mgTB10">남은연차 <span id="yearLeave" class="floatR colGray2">0</span></p>
                    <div class="txtC">
                    <p class="fick">
-	                   <img src="/resources/images/icon/ic_fick.svg" alt="중요"><span id="quarter"></span>
-	                   <span id="workInTime"></span> ~ 퇴근
-	                   <span id="workOutTime"></span> 적용중
                    </p>
 					</div>
                 </div>

@@ -58,8 +58,6 @@ $(function() {
 
 	fnScheduleLoad();
 
-	//연차 개수
-	fnMySchedule();
 	/***************************************/
 
 	// 표준, 년, 월 선택
@@ -647,7 +645,6 @@ function fnScheduletcInput(appSts) {
 				} else if (appSts == 2 && (_schedule_Arr.includes(stp))) {
 				}
 				alert('처리 되었습니다.');
-				fnMySchedule();
 				fnSchList();
 				fnScheduleClose();
 
@@ -813,7 +810,6 @@ function fnScheduleDelete() {
 				//console.log(res);
 				if (res == 0) {
 					alert('처리 되었습니다.');
-					fnMySchedule();
 					fnScheduleClose();
 					fnSchList();
 				} else {
@@ -832,50 +828,6 @@ function fnScheduleDelete() {
 	}
 }
 
-// 근무시간 및 근태 불러오기
-function fnMySchedule() {
-	let year = _today.substr(0, 4);
-	let paramMap = {
-		uidx: _c_logIdx,
-		yyyy: parseInt(year),
-		sweek: $('.fc-today').siblings('.fc-sun').attr('data-date'),
-		eweek: $('.fc-today').siblings('.fc-sat').attr('data-date'),
-		syear: year + '-01-01',
-		eyear: year + '-12-31',
-	}
-	const jsonData = JSON.stringify(paramMap);
-	console.log(jsonData);
-	$.ajax({
-		type: 'POST',
-		url: '/schedule/mySchedule',
-		data: jsonData,
-		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
-		beforeSend: function() {
-			//fnLoadingOpen();
-		},
-		success: function(res) {
-			const items = res;
-			console.log(res);
-			let vacation = nomal_CNT = halfday = 0;
-
-			vacation = items.vacation;
-			nomal_CNT = items.nomal_CNT;
-			halfday = items.halfday;
-			$('#yearLeave').text(nomal_CNT - vacation - (halfday * 0.5));
-			$('#yearVacation').text(nomal_CNT);
-			$('#yearUse').text(vacation + (halfday * 0.5));
-		},
-		error: function(jqXHR, textStatus, errorThrown) {
-			// loading.. progressbar 종료			
-			fnLoadingClose();
-			alert('실패');
-			//console.log("ERROR : " + textStatus + " : " + errorThrown);
-			//console.log(res.responseText);
-		}
-	});
-}
 
 // 일정구분 선택시
 function fnSelSchTp() {

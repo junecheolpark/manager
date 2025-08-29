@@ -66,11 +66,6 @@ public class ScheduleDAO {
 		return session.insert("schedule_mapper.workInoutInput", map);
 	}
 
-	// 일정체크 불러오기
-	public MyScheduleDTO mySchduleCheck(Map<String, Object> map) {
-		return session.selectOne("schedule_mapper.mySchduleCheck", map);
-	}
-
 	// 공휴일
 	public List<HolidayDTO> holidayList(Map<String, Object> map) {
 		return session.selectList("schedule_mapper.holidayList", map);

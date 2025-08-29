@@ -104,18 +104,6 @@
 	</insert>	
 	
 	
-	<!-- 일정체크 불러오기 -->
-	<select id="mySchduleCheck" parameterType="hashMap" resultType="co.junecheol.dto.MyScheduleDTO">
-		SELECT * from public.fn_myschedule(
-		#{USER_IDX}, 
-		#{YEAR},
-		#{S_WEEK},
-		#{E_WEEK},
-		#{S_YEAR},
-		#{E_YEAR}
-		)
-	</select>
-	
 	<!-- 공휴일 불러오기 -->
 	<select id="holidayList" parameterType="hashMap" resultType="co.junecheol.dto.HolidayDTO">
 		SELECT * from public.fn_holiday_list(

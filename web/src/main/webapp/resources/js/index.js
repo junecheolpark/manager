@@ -177,7 +177,7 @@ function fnMySchedule() {
 		uidx: _c_logIdx
 	}
 	const jsonData = JSON.stringify(paramMap);
-	//console.log(jsonData);
+	console.log(jsonData);
 	$.ajax({
 		type: 'POST',
 		url: '/schedule/vacationView',
@@ -223,8 +223,6 @@ function fnMySchedule() {
 			$('#goWork').text(in_DATETIME != '-' ? in_DATETIME.substr(10, 9) : '미등록');
 			$('#backWork').text(out_DATETIME != '-' ? out_DATETIME.substr(10, 9) : '미등록');
 			$('#yearLeave').text(nomal_CNT - use_NOMAL_CNT);
-			$('#workInTime').text(in_TIME);
-			$('#workOutTime').text(out_TIME);
 
 			fnLoadingClose();
 		},
