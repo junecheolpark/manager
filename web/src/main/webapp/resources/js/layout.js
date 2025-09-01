@@ -61,7 +61,6 @@ function fnSiteMenu(){
 	  ],
 	  'schedule': [
 	    {navi:'일정 관리', name: '사내일정', url: '/schedule/01'},
-	    {navi:'일정 관리', name: '프로젝트', url: '/schedule/02'},
 	  ],
 	  'user': [
 	    {navi:'사용자 관리', name: '사용자 관리', url: '/user/01'},
