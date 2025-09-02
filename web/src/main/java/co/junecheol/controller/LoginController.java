@@ -103,8 +103,6 @@ public class LoginController {
 	@RequestMapping(value = "loginCok", method = RequestMethod.POST)
 	@ResponseBody
 	public UserDTO loginCok(HttpServletRequest request) throws Exception {
-		System.out.println("################========");
-		System.out.println("Controller loginCok");
 		String cokLogin = "";
 		String cokAutoLogin = "";
 		UserDTO dto = new UserDTO();

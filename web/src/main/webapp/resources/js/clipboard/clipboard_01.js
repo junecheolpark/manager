@@ -14,7 +14,7 @@ $(function() {
 		_bidx = parseInt(urlParams.get('bidx'));
 		
 		if (!isNaN(_bidx)) {
-			console.log(_bidx);
+			//onsole.log(_bidx);
 			fnBoardView(_bidx);
 		}
 	}

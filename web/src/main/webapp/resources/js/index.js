@@ -14,7 +14,68 @@ $(function() {
 	fnTopMemo();
 
 	fnMemoList();
+	
+	// 공휴일 입력필요시 
+	//fnHolidayInput();
 });
+
+// 공휴일 저장
+async function fnHolidayInput() {
+	try {
+		// 공공데이터포털에서 발급받은 서비스키 넣기
+		const serviceKey = "4o%2BJcydtB5W1wD%2FH1UC4Egp9DDuQ16B3TFGZdogO5Vcw%2FYCe5dpbdYUhGg5fY6JPx2LB%2FWAZffhAPIo%2BzwTt%2Bg%3D%3D";
+		// 연도 입력
+		const year = 2025;
+		// API URL 만들기
+		const url = `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?solYear=${year}&numOfRows=5&ServiceKey=${serviceKey}&_type=json`;
+
+		// fetch 후 JSON 변환
+		const res = await fetch(url);
+		const data = await res.json();
+
+		// 공휴일 필요한 데이터만 변환 
+		const items = data.response.body.items.item || [];
+		const holidays = items.map(h => ({
+			dateName: h.dateName,
+			locdate: h.locdate
+		}));
+
+		console.log("공휴일 배열:", holidays);
+
+		// 서버로 전송할 데이터
+		const paramMap = {
+			ridx: _c_logIdx, // 외부 변수
+			holidays
+		};
+
+		jsonData = JSON.stringify(paramMap);
+		console.log(jsonData);
+
+		$.ajax({
+			type: 'POST',
+			url: '/schedule/holidayInput',
+			data: jsonData,
+			//async: false,
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json', // dataType is json format
+			beforeSend: function() {
+				//fnLoadingOpen();
+			},
+			success: function(res) {
+				console.log(res);
+
+			},
+			//error: function(jqXHR, textStatus, errorThrown) {
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert('실패');
+			}
+		});
+	} catch (err) {
+		console.error("공휴일 처리 실패:", err);
+		alert("공휴일 처리 실패");
+	}
+
+}
 
 // 게시판 공지사항 보기
 function fnBoardNoticeView() {

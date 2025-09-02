@@ -247,7 +247,6 @@ public class ScheduleController {
 	@RequestMapping(value = "workInoutInput", method = RequestMethod.POST)
 	@ResponseBody
 	public Integer workInoutInput(@RequestBody final Map<String, Object> map) throws Exception {
-		// System.out.println("controller companyInput");
 		Integer resultCd = 9;
 
 		try {
@@ -292,5 +291,47 @@ public class ScheduleController {
 		}
 
 		return list;
+	}
+
+	// 공휴일 등록
+	@RequestMapping(value = "holidayInput", method = RequestMethod.POST)
+	@ResponseBody
+	public Integer holidayInput(@RequestBody final Map<String, Object> map) throws Exception {
+		Integer resultCd = 9;
+
+		try {
+			// JS에서 보낸 공휴일 배열
+			List<Map<String, Object>> holidays = (List<Map<String, Object>>) map.get("holidays");
+			
+			for (int i = 0; i < holidays.size(); i++) {
+			    Map<String, Object> h = holidays.get(i);
+			    final int idx = i; 
+
+
+			    Map<String, Object> hashMap = new HashMap<String, Object>() {
+			    	private static final long serialVersionUID = 1L;
+			    	{
+			        put("HOLIDAY", h.get("dateName"));
+			        put("HOLIDAY_IDX", idx);
+			        put("RESULT_CD", 9);
+			        put("LOC_DATE", h.get("locdate"));
+			        put("DATE_NAME", h.get("dateName"));
+			    }};
+			    
+			    System.out.println(hashMap.toString());
+
+
+			}
+			
+
+			//scheduleService.workInoutInput(hashMap);
+			// System.out.println(hashMap);
+			//resultCd = (Integer) hashMap.get("RESULT_CD");
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return resultCd;
 	}
 }
