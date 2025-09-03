@@ -315,7 +315,6 @@ public class ScheduleController {
 			        put("HOLIDAY_IDX", idx);
 			        put("RESULT_CD", 9);
 			        put("LOC_DATE", h.get("locdate"));
-			        put("DATE_NAME", h.get("dateName"));
 			    }};
 			    
 			    System.out.println(hashMap.toString());
@@ -325,7 +324,6 @@ public class ScheduleController {
 			
 
 			//scheduleService.workInoutInput(hashMap);
-			// System.out.println(hashMap);
 			//resultCd = (Integer) hashMap.get("RESULT_CD");
 
 		} catch (Exception e) {

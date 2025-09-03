@@ -70,5 +70,9 @@ public class ScheduleDAO {
 	public List<HolidayDTO> holidayList(Map<String, Object> map) {
 		return session.selectList("schedule_mapper.holidayList", map);
 	}
+	// 공휴일 등록
+	public Integer holidayInput(Map<String, Object> map) {
+		return session.selectList("schedule_mapper.holidayInput", map);
+	}
 
 }

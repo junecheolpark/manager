@@ -163,5 +163,18 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 		return list;
 	}
+	// 공휴일 불러오기
+	@Override
+	public Integer holidayInput(Map<String, Object> map) {
+		Integer resultCd = 9;
+		
+		try {
+			resultCd = scheduleDao.holidayInput(map);
+		} catch (Exception e) {
+			log.error("error", e);
+		}
+		
+		return resultCd;
+	}
 
 }
