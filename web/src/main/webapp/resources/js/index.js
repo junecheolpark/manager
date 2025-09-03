@@ -25,9 +25,11 @@ async function fnHolidayInput() {
 		// 공공데이터포털에서 발급받은 서비스키 넣기
 		const serviceKey = "4o%2BJcydtB5W1wD%2FH1UC4Egp9DDuQ16B3TFGZdogO5Vcw%2FYCe5dpbdYUhGg5fY6JPx2LB%2FWAZffhAPIo%2BzwTt%2Bg%3D%3D";
 		// 연도 입력
-		const year = 2025;
+		const year = 2026;
+		// 행개수 입력
+		const numOfRows = 100;
 		// API URL 만들기
-		const url = `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?solYear=${year}&numOfRows=5&ServiceKey=${serviceKey}&_type=json`;
+		const url = `https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?solYear=${year}&numOfRows=${numOfRows}&ServiceKey=${serviceKey}&_type=json`;
 
 		// fetch 후 JSON 변환
 		const res = await fetch(url);
@@ -40,7 +42,7 @@ async function fnHolidayInput() {
 			locdate: h.locdate
 		}));
 
-		console.log("공휴일 배열:", holidays);
+		//console.log("공휴일 배열:", holidays);
 
 		// 서버로 전송할 데이터
 		const paramMap = {
@@ -49,7 +51,7 @@ async function fnHolidayInput() {
 		};
 
 		jsonData = JSON.stringify(paramMap);
-		console.log(jsonData);
+		//console.log(jsonData);
 
 		$.ajax({
 			type: 'POST',
@@ -62,8 +64,7 @@ async function fnHolidayInput() {
 				//fnLoadingOpen();
 			},
 			success: function(res) {
-				console.log(res);
-
+				//console.log(res);
 			},
 			//error: function(jqXHR, textStatus, errorThrown) {
 			error: function(jqXHR, textStatus, errorThrown) {

@@ -119,7 +119,6 @@ public class LoginController {
 		// 로그인 사용자 정보
 		if (!CommonFunc.isEmpty(cokLogin)) {
 			cokLogin = CommonFunc.decryptAES256(cokLogin);
-			System.out.println("cokLogin : " + cokLogin);
 			String[] arrCokLogin = cokLogin.split("‡");
 
 			dto.setUSER_IDX(Integer.valueOf(arrCokLogin[0]));

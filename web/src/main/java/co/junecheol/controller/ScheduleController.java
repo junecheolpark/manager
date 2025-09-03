@@ -311,14 +311,14 @@ public class ScheduleController {
 			    Map<String, Object> hashMap = new HashMap<String, Object>() {
 			    	private static final long serialVersionUID = 1L;
 			    	{
-			        put("HOLIDAY", h.get("dateName"));
+		    		put("HOLIDAY",  String.valueOf(h.get("locdate")));
 			        put("HOLIDAY_IDX", idx);
+			        put("HOLIDAY_NM",  String.valueOf(h.get("dateName")));
+			        put("REG_IDX", (Integer) map.get("ridx"));
 			        put("RESULT_CD", 9);
-			        put("LOC_DATE", h.get("locdate"));
 			    }};
-			    
-			    System.out.println(hashMap.toString());
-
+			    scheduleService.holidayInput(hashMap);
+				resultCd = (Integer) hashMap.get("RESULT_CD");
 
 			}
 			

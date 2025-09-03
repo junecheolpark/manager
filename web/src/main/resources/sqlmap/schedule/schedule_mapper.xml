@@ -112,4 +112,15 @@
 		)
 	</select>
 	
+	<!-- 공휴일 등록/수정 -->
+	<insert id="holidayInput" statementType="CALLABLE" parameterType="hashMap">
+		CALL public.sp_holiday_input(
+			#{HOLIDAY}, 
+			#{HOLIDAY_IDX}, 
+			#{HOLIDAY_NM}, 
+			#{REG_IDX}, 
+			#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
+			)
+	</insert>	
+	
 </mapper>
