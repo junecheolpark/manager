@@ -259,9 +259,12 @@ public class ScheduleController {
 				}
 			};
 
-			// System.out.println(hashMap);
 			scheduleService.workInoutInput(hashMap);
 			resultCd = (Integer) hashMap.get("RESULT_CD");
+			
+			if (resultCd.equals(11) || resultCd.equals(12) || resultCd.equals(13)) { // 출근, 퇴근, 조기 퇴근
+				resultCd = 0;
+			}
 
 		} catch (Exception e) {
 			System.out.println(e.toString());

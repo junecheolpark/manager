@@ -78,6 +78,45 @@ async function fnHolidayInput() {
 
 }
 
+// 출퇴근 등록/수정
+function fnWorkInoutInput() {
+	const paramMap = {
+		uidx: _c_logIdx,
+		iotp: 0,
+	}
+	const jsonData = JSON.stringify(paramMap);
+	//console.log(jsonData);
+	$.ajax({
+		type: 'POST',
+		url: '/schedule/workInoutInput',
+		data: jsonData,
+		//async: false,
+		contentType: 'application/json; charset=utf-8',
+		dataType: 'json', // dataType is json format
+		beforeSend: function() {
+			fnLoadingOpen();
+		},
+		success: function(res) {
+			//console.log(res);
+			if (res == 0) {
+				alert('처리 되었습니다.');
+				fnMySchedule();
+			} else {
+				alert('출/퇴근 등록 실패');
+			}
+			fnLoadingClose()
+		},
+		//error: function(jqXHR, textStatus, errorThrown) {
+		error: function(jqXHR, textStatus, errorThrown) {
+			// loading.. progressbar 종료			
+			fnLoadingClose();
+			alert('실패');
+			//console.log("ERROR : " + textStatus + " : " + errorThrown);
+			//console.log(res.responseText);
+		}
+	});
+}
+
 // 게시판 공지사항 보기
 function fnBoardNoticeView() {
 	const obj = $("#noticeTxt");
@@ -239,7 +278,7 @@ function fnMySchedule() {
 		uidx: _c_logIdx
 	}
 	const jsonData = JSON.stringify(paramMap);
-	console.log(jsonData);
+	//console.log(jsonData);
 	$.ajax({
 		type: 'POST',
 		url: '/schedule/vacationView',

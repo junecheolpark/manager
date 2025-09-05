@@ -97,10 +97,10 @@
 	<!-- 출퇴근 등록/수정 -->
 	<insert id="workInoutInput" statementType="CALLABLE" parameterType="hashMap">
 		CALL public.sp_work_inout_input(
-			#{USER_IDX}, 
 			#{INOUT_TP}, 
+			#{USER_IDX}, 
 			#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
-			)
+		) 
 	</insert>	
 	
 	

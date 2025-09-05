@@ -35,7 +35,7 @@
                    <p class="mgTB10">남은연차 <span id="yearLeave" class="floatR colGray2">0</span></p>
                    <div class="txtC">
                    <p class="fick">
-                   	<a href="#reg" class="btn btn100 btnPoint" onclick="fnOpenPopUp(); return false;">등록</a>
+                   	<a href="#reg" class="btn btn100 btnBlue" onclick="fnWorkInoutInput(); return false;">출/퇴근 등록</a>
                    </p>
 					</div>
                 </div>
