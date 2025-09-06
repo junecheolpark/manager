@@ -70,7 +70,7 @@ function fnSortListView() {
 		},
 		success: function(res) {
 			const total = res;
-			console.log(total);
+			//console.log(total);
 			$('#totalCnt').text(commify(total));
 			
 			fnSortList(total, paramMap);
@@ -346,6 +346,10 @@ function fnUserInput() {
 
 				_curPage = 1;
 				fnSortListView();
+			} else if (res == 4) {
+				alert('아이디 중복');
+			} else if (res == 5) {
+				alert('사용자 중복');
 			} else {
 				alert('실패');
 			}
