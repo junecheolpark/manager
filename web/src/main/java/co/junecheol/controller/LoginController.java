@@ -139,6 +139,8 @@ public class LoginController {
 		log.debug("################========");
 		return dto;
 	}
+	
+	
 
 	/**
 	
@@ -220,4 +222,52 @@ public class LoginController {
 		}
 		log.debug("################============");
 	}
+	
+	/**
+	 * 
+	 * @Method Name : cokDelProc
+	 * @작성일 : 2025. 9. 7.
+	 * @작성자 : 박준철
+	 * @Method 설명 : 쿠키 삭제 처리
+	 * @param tp
+	 * @param response
+	 * 
+	 */
+	public void cokDelProc(HttpServletResponse response) {
+		log.debug("################");
+		log.debug("Controller cokDelProc");
+		String cok = "";
+
+		cok = cookieNm;
+		log.debug("cok : " + cok);
+		Cookie cookie = new Cookie(cok, null);
+		cookie.setMaxAge(0);
+		cookie.setPath("/");
+		response.addCookie(cookie);
+		log.debug("################");
+	}
+
+	/**
+	
+	  * @Method Name : logout
+	  * @작성일 : 2025. 9. 7.
+	  * @작성자 : 박준철
+	  * @Method 설명 :로그아웃
+	  * @param response
+	  * @return "redirect:/"
+	  * @throws Exception
+	
+	  */
+	@RequestMapping(value = "logout")
+	public String logout(HttpServletResponse response) throws Exception {
+
+		cokDelProc(response);
+		return "redirect:/";
+	}
+	
+	
 }
+
+
+
+

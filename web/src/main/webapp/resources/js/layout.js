@@ -141,8 +141,6 @@ function fnLoginInfo() {
 				$('#userCharacter').attr('src', '/resources/images/profile/b_profile_' + (user_IMG_NUM < 10 ? '0' : '') + user_IMG_NUM + '.png');				
 				$('#logNM, #popLogNm').text(nm);
 				$('#logDept, #popLogDept').text(fnBlank(dept_NM, false));
-				$('#managerBadge').text(admin_NM);
-				if (admin_NM != '-') $('#managerBadge').show();
 
 				_c_logIdx = user_IDX;
 				_c_logSign = sign_TP;
@@ -165,6 +163,18 @@ function fnLoginInfo() {
 			//console.log(res.responseText);
 		}
 	});
+}
+
+
+// 로그인 사용자 정보 보기
+function fnLoginView() {
+	const obj = $('#popUserInfo');
+
+	if (obj.css('display') == 'none') {
+		obj.show();
+	} else {
+		obj.hide();
+	}
 }
 
 /**

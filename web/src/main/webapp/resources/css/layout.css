@@ -147,10 +147,6 @@ footer {position: absolute; bottom: 50px; width: 100%; height: 50px; text-align:
 #popMyInfo > ul > li > span{line-height: 24px;}
 #popMyInfo > ul > li img{width:24px; height: 24px; margin-right: 5px; padding:4px}
 
-#notiCntView {display: none; position: absolute; top: 10px; right: 185px; width: 170px; margin-top: 5px; padding:10px; background-color: #ffe29d; border-radius: 10px; z-index: 9999;}
-#notiCntView li {margin-bottom:5px;} 
-#notiCntView li:last-child {margin-bottom:0;}
-#notiCntView a {display: grid; grid-template-columns: 3fr 1fr; gap: 10px;}
 /*게시판 열리고닫히는 클래스*/
 .noChoice{display: block !important;}
 .noChoice > section{width: 100%;}
