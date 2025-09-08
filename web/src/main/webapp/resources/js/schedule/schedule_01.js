@@ -648,10 +648,13 @@ function fnScheduletcInput(appSts) {
 				fnSchList();
 				fnScheduleClose();
 
+			} else if (res == 3) {
+				alert('남은 연차가 없습니다.');
+				fnLoadingClose();
 			} else if (res == 4) {
 				alert('해당 기간에 이미 등록된 대상이 있습니다.');
 				fnLoadingClose();
-			} else {
+			}else {
 				alert('실패!');
 				fnLoadingClose();
 			}
