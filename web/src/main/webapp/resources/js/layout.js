@@ -1,4 +1,4 @@
-﻿let _c_logIdx, _c_logSign = _c_logCIdx = _c_logAdTp = 0
+﻿let _c_logIdx, _c_logSign = _c_logCIdx = _c_logAdTp = _c_logNmCnt = _c_logUNmCnt = 0
 	, _c_logNm = _c_logMobile = _c_logPhone = _c_logEmail = _c_logPosi = _c_logDept = ''
 	, _c_isMenuW = false;
 	
@@ -114,8 +114,9 @@ function fnLoginInfo() {
 		},
 		success: function(res) {
 			const items = res;
+			//console.log(items);
 			let admin_NM = dept_NM = nm = posi_NM = user_ID = phone = mobile = email = ''
-				, user_IDX = sign_TP = company_IDX = user_IMG_NUM = 0;
+				, user_IDX = sign_TP = company_IDX = user_IMG_NUM = nomal_CNT = use_NOMAL_CNT = 0;
 			admin_NM = fnBlank(items.admin_NM, false);
 			dept_NM = items.dept_NM;
 			nm = items.nm;
@@ -128,7 +129,8 @@ function fnLoginInfo() {
 			company_IDX = items.company_IDX;
 			user_IMG_NUM = items.user_IMG_NUM;
 			admin_TP = items.admin_TP;
-
+			nomal_CNT = items.nomal_CNT;
+			use_NOMAL_CNT = items.use_NOMAL_CNT;
 			phone = (phone == '' || phone == null ? '' : phone);
 			mobile = (mobile == '' || mobile == null ? '' : mobile);
 
@@ -152,6 +154,8 @@ function fnLoginInfo() {
 				_c_logPosi = posi_NM;
 				_c_logDept = dept_NM;
 				_c_logAdTp = admin_TP;
+				_c_logNmCnt = nomal_CNT;
+				_c_logUNmCnt = use_NOMAL_CNT;
 			}
 			// 로그인 중.. progressbar 종료
 		},

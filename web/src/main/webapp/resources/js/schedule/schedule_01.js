@@ -401,7 +401,7 @@ function fnSchList() {
 		},
 		success: function(res) {
 			const items = res;
-			console.log(res);
+			//console.log(res);
 			let sdate = edate = code_NM = user_NM = dateCnt = startDate = endDate = title = approveClass = conts = ''
 				, schedul_IDX = schedule_TP = approve_STS = 0;
 			$.each(items, function(i, val) {
@@ -593,14 +593,17 @@ function fnScheduletcInput(appSts) {
 
 	if (!fnAlertReturn('selSchdule', '일정구분', 'select')) return false;
 	if (!fnAlertReturn('txtTitle', '제목', '')) return false;
-	if (stp != 26 && stp != 33) {
+	/*if (stp != 26 && stp != 33) {
 		if (sUser == '' || sUser == null) { alert("선택된 대상자가 없습니다."); return false; }
-	}
+	}*/
 	if (fnEmpty(_fileName, '') == '' && stp == 34) { alert("업로드된 파일이 없습니다."); return false; }
 	if (!fnAlertReturn('txtSDate', '시작일', '')) return false;
 	if (!fnAlertReturn('txtEDate', '종료일', '')) return false;
 	if (!fnAlertReturn('txtConts', '내역', '')) return false;
 
+	if (stp == 27 || stp == 29) { // 연차나 반차시 남은 연차개수 확인
+		if (_c_logNmCnt - _c_logUNmCnt <= 0) { alert("남은 연차가 없습니다."); return false; }
+	}
 	// 연차,반차,반반차 외 등록 시 승인처리
 	if (!_schedule_Arr.includes(stp)) { appSts = 2; }
 	let paramMap = {

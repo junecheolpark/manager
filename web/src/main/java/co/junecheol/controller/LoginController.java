@@ -134,6 +134,8 @@ public class LoginController {
 			dto.setSIGN_TP(Integer.valueOf(arrCokLogin[10]));
 			dto.setCOMPANY_IDX(Integer.valueOf(arrCokLogin[11]));
 			dto.setUSER_IMG_NUM(Integer.valueOf(arrCokLogin[12]));
+			dto.setUSE_NOMAL_CNT(Float.valueOf(arrCokLogin[13]));
+			dto.setNOMAL_CNT(Float.valueOf(arrCokLogin[14]));
 
 		}
 		log.debug("################========");
@@ -202,6 +204,10 @@ public class LoginController {
 			sb.append(dto.getCOMPANY_IDX());
 			sb.append("‡");
 			sb.append(dto.getUSER_IMG_NUM());
+			sb.append("‡");
+			sb.append(dto.getNOMAL_CNT());
+			sb.append("‡");
+			sb.append(dto.getUSE_NOMAL_CNT());
 			
 			encryptCok = CommonFunc.encryptAES256(sb.toString());
 
