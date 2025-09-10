@@ -110,7 +110,7 @@ function fnLoginInfo() {
 		contentType: 'application/json; charset=UTF-8',
 		dataType: 'json', // dataType is json format
 		beforeSend: function() {
-			// 로그인 중.. progressbar 시작
+			 // 로그인 중.. progressbar 시작
 		},
 		success: function(res) {
 			const items = res;
