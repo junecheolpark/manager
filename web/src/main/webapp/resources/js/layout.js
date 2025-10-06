@@ -10,13 +10,8 @@ $(function () {
 	// 탑 메뉴 열기/닫기
 	fnTopBox();
 	
-	// 좌측 메뉴 열기/닫기
-	fnLeftBox();
-	
 	// 사이트 메뉴
 	fnSiteMenu();
-		console.log(_c_logUNmCnt);
-		console.log(_c_logNmCnt);
 });
 // 탑 메뉴 열기/닫기
 function fnTopBox() {
@@ -33,25 +28,6 @@ function fnTopBox() {
 	        }
 	        return false;
 	    });
-}
-
-// 좌측 메뉴 열기/닫기
-function fnLeftBox() {
-	$('.leftBox').click(function() {
-		const objImg = $('.leftBox').children('img');
-
-		if ($('.lmTop').css('display') != 'none') {
-			$('.leftMenu').css('margin-left', '-240px');
-			$('.lmTop, .lmMenu, footer').hide();
-			$('.contens').css('margin-left', '0');
-			objImg.attr('src', '/resources/images/btn/btn_leftmenu_open.png');
-		} else {
-			$('.leftMenu').css('margin-left', '0');
-			$('.lmTop, .lmMenu, footer').show();
-			$('.contens').css('margin-left', '240px');
-			objImg.attr('src', '/resources/images/btn/btn_leftmenu_close.png');
-		}
-	})
 }
 
 // 사이트 메뉴

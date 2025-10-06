@@ -4,7 +4,6 @@
 <section class="contentsBox">
 	<!-- left 메뉴 -->
 	<section class="leftMenu">
-		<div class="leftBox"><img src="/resources/images/btn/btn_leftmenu_close.png" alt="대메뉴"></div>
 		<section class="lmTop">
 			<p id="pageNavi" class="ftSize20 ftBold mgB10">
  				&nbsp;&nbsp;<!-- <span class="ftNormal colGray2">중메뉴</span> -->
