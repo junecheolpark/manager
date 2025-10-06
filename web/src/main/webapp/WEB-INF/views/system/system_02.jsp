@@ -95,7 +95,7 @@
 		</section>
 		<!--//등록 팝업-->
             <section class="schBox">
-                <p>총 <span id="totalCnt" class="colPoint">0</span>건</p>&nbsp;
+                <p>총 <span id="totalCnt" class="colBlue">0</span>건</p>&nbsp;
                 <select style="width: 120px;" id="selSchYear">
 	                <option value="0">년도</option>
                 </select>&nbsp;
@@ -108,7 +108,7 @@
                     <option value="2">아이디</option>
                 </select>
                 <input type="text" style="width: 150px;" id="txtSearch">&nbsp;
-                <input type="submit" value="검색" class="btn btnPoint" id="btnSch">
+                <input type="submit" value="검색" class="btn btnBlue" id="btnSch">
             </section> 
             <section class="contsBox">
                 <section class="contsF" style="width:100%;">

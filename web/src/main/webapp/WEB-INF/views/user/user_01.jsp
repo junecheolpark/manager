@@ -31,7 +31,7 @@
 			<%@ include file="/WEB-INF/views/include/body_left.jsp" %>
 			<!-- 컨텐츠 -->
             <section class="schBox">
-                <p>총 <span id="totalCnt" class="colPoint">0</span>건</p>&nbsp;
+                <p>총 <span id="totalCnt" class="colBlue">0</span>건</p>&nbsp;
                 <select id="selSchUserTp" name="selSchUserTp" style="width:120px;">
                     <option value="0">구분</option>
                 </select>&nbsp;                
@@ -45,7 +45,7 @@
                     <option value="4">이메일</option>
                 </select>
                 <input type="text" id="txtSch" name="txtSch" style="width:200px;" maxlength="100">&nbsp;
-                <input type="submit" id="btnSch" name="btnSch" class="btn btnPoint" value="검색" >            
+                <input type="submit" id="btnSch" name="btnSch" class="btn btnBlue" value="검색" >            
             </section>
             <section id="userManagement">
                 <section class="shadowBox">
@@ -167,7 +167,7 @@
 	                    </tbody>
 	                </table>
                     <div class="btnRight pdT10">
-                        <a href="#reg" class="btn btnPoint" id="btnInput" onclick="fnUserInput(); return false;">등록</a> 
+                        <a href="#reg" class="btn btnBlue" id="btnInput" onclick="fnUserInput(); return false;">등록</a> 
                         <a href="#del" class="btn btnRed" id="btnDelete" onclick="fnUserDelete(); return false;">삭제</a>
                         <a href="#can" class="btn btnWhite" onclick="fnUserCancel(); return false;">취소</a>
                     </div>

@@ -158,6 +158,7 @@ img.va-tp { vertical-align: top; }
 .btnS, a.btnS {text-align: center; padding:2px 4px;}
 .btnPoint, a.btnPoint { background-color: #FFC12E; border:1px solid #FFC12E; color: #fff; }
 .btnPointLine, a.btnPointLine { background-color: #fff; border:1px solid #FFC12E; color: #FFC12E; }
+.btnPointLine, a.btnPointLine { background-color: #fff; border:1px solid #FFC12E; color: #FFC12E; }
 .btnWhite, a.btnWhite { background-color: #fff; border: 1px solid #ddd; color: #444; }
 .btnNavy, a.btnNavy { background-color: #002157; border-color: #002157; color:#fff;}
 .btnRed, a.btnRed { background-color: #FF5B5B; border:1px solid #FF5B5B; color:#fff;}

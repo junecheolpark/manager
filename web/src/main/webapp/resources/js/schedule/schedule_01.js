@@ -602,7 +602,8 @@ function fnScheduletcInput(appSts) {
 	if (!fnAlertReturn('txtConts', '내역', '')) return false;
 
 	if (stp == 27 || stp == 29) { // 연차나 반차시 남은 연차개수 확인
-		if (_c_logNmCnt - _c_logUNmCnt <= 0) { alert("남은 연차가 없습니다."); return false; }
+	console.log(_c_logUNmCnt - _c_logNmCnt);
+		if (_c_logUNmCnt - _c_logNmCnt <= 0) { alert("남은 연차가 없습니다."); return false; }
 	}
 	// 연차,반차,반반차 외 등록 시 승인처리
 	if (!_schedule_Arr.includes(stp)) { appSts = 2; }
@@ -633,7 +634,7 @@ function fnScheduletcInput(appSts) {
 			fnLoadingOpen();
 		},
 		success: function(res) {
-			//console.log(res);
+			console.log(res);
 			let selSchdule = $("#selSchdule option:checked").text();
 			if (res == 0) {
 

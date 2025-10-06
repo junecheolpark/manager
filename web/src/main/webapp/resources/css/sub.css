@@ -67,7 +67,7 @@ th.rLine, td.rLine { border-right: 1px solid #e1e1e1; }
 .paging button.img img, .paging button.img.brNo img { padding-top: 3px; }
 /*.paging a:active { }*/
 .paging button:hover { background-color: #c7c7c7; color: #444; }
-.paging .on { color: #FFC12E;}
+.paging .on { color: #0091ea;}
 .paging .no { cursor: not-allowed; }
 /*.paging .end, .paging .on.end { }*/
 
@@ -149,9 +149,9 @@ input.cal { background-image: url(/resources/images/icon/ic_schedule_off.png); b
 .leftMenu >.lmMenu > h3 > img{display: inline-block; width:24px; height: 24px;}
 .leftMenu >.lmMenu > ul > li > a{padding:10px 30px; display: block; font-size: 16px;}
 .leftMenu >.lmMenu > ul > li > a:hover{background-color: #f2f2f2; border-top-right-radius: 100px; border-bottom-right-radius: 100px; margin-right:40px;}
-.leftMenu >.lmMenu > ul > li.lmChoice{border-left: 5px solid #FFC12E; position: relative;}
-.leftMenu >.lmMenu > ul > li.lmChoice::after{content: '>'; display: block; width:24px; height: 24px; top:0; right: 50px; position: absolute; font-size: 26px; color:#FFC12E; font-weight: bold;}
-.leftMenu >.lmMenu > ul > li.lmChoice > a{color:#FFC12E; padding: 10px 20px;}
+.leftMenu >.lmMenu > ul > li.lmChoice{border-left: 5px solid #0091ea; position: relative;}
+.leftMenu >.lmMenu > ul > li.lmChoice::after{content: '>'; display: block; width:24px; height: 24px; top:0; right: 50px; position: absolute; font-size: 26px; color:#0091ea; font-weight: bold;}
+.leftMenu >.lmMenu > ul > li.lmChoice > a{color:#0091ea; padding: 10px 20px;}
 
 #leftTop {overflow: hidden;}
 #leftTop .leftTopConts {display:none;}

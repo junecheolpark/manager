@@ -27,34 +27,33 @@
 			            </div>
 		            </div>
 				</div>			
-				<!-- 회의록  -->					
 				<div id="leftTopRpt02" class="leftTopConts">
 					<div class="ucTable">
-						<a href="#inp" class="btn btn100 btnPoint" onclick="fnInput(); return false;">저장</a>
+						<a href="#inp" class="btn btn100 btnBlue" onclick="fnInput(); return false;">저장</a>
 						<a href="#inp" class="btn btn100 btnRed mgT10" onclick="fnattendeesDelete(2); return false;">삭제</a>
 		            </div>
 				</div>	
 				
 				<div id="leftTopRpt03" class="leftTopConts">
 					<div class="ucTable">
-		            	<a href="/report/03/write" class="btn btn100 btnPoint">등록</a>
+		            	<a href="/report/03/write" class="btn btn100 btnBlue">등록</a>
 		            </div>
 				</div>	
 				<!-- 사내일정 -->
 				<div id="leftTopRpt04" class="leftTopConts">
 					<div class="ucTable">
-		            	<a href="#reg" class="btn btn100 btnPoint" onclick="fnOpenPopUp(); return false;">등록</a>
+		            	<a href="#reg" class="btn btn100 btnBlue" onclick="fnOpenPopUp(); return false;">등록</a>
 		            </div>
 				</div>									
 				<div id="leftTopRpt05" class="leftTopConts">
 					<div class="ucTable">
-		            	<a href="#reg" class="btn btn100 btnPoint" id="inputBtn">등록</a>
+		            	<a href="#reg" class="btn btn100 btnBlue" id="inputBtn">등록</a>
 		            </div>
 				</div>									
 			</div>			
 		</section>
 		<section class="lmMenu">
-			<h3><img src="/resources/images/sub/leftMenu_icon_01.png" alt="대메뉴">&nbsp;&nbsp;<span id="leftMenuTop"><!-- 대메뉴 --></span></h3>
+			<h3><img src="/resources/images/sub/leftMenu_icon_03.png" alt="대메뉴">&nbsp;&nbsp;<span id="leftMenuTop"><!-- 대메뉴 --></span></h3>
 			<ul id="leftMenuList">
 				<li><a href="#link">&nbsp;</a></li>
 				<!-- class="lmChoice" -->

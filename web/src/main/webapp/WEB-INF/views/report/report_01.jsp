@@ -57,7 +57,7 @@
 						</table>
 					</div>
 					<div class="autoSizeLayerF">
-						<a id="btnSave" class="btn btnPoint" href="#"onclick="fnWorkWeekInput(); return false;">저장</a>
+						<a id="btnSave" class="btn btnBlue" href="#"onclick="fnWorkWeekInput(); return false;">저장</a>
 						<a id="btnDelete" class="btn btnRed" href="#" onclick="fnWeekWorkDelete(1); return false;" style="display:none;">삭제</a> 
 						<a href="#popclose" class="btn btnWhite btn-layerClose" >닫기</a>
 					</div>

@@ -54,7 +54,7 @@
 			</select>&nbsp; 
 			<a id="btnNext" href="#"><img src="/resources/images/btn/btn_nright.png" alt="다음"><i
 				class="fas fa-chevron-circle-right"></i></a>
-				<input type="submit" name="btnToday" value="오늘" id="btnToday" class="btn btnPoint ">
+				<input type="submit" name="btnToday" value="오늘" id="btnToday" class="btn btnBlue ">
 		</section>
 	</section>
 	<section class="contsF shadowBox">
@@ -107,7 +107,7 @@
 											<div id="targetList">
 												<p id="ToName"></p>
 												<p>
-													<a href="#" id="btnUser" class="btn btnPoint " 
+													<a href="#" id="btnUser" class="btn btnBlue " 
 														onclick="fnCheckListPopUp(); return false;">선택</a>
 												</p>
 											</div>
@@ -180,13 +180,13 @@
 							</table>
 						</div>
 						<div class="autoSizeLayerF">
-							<a id="btnApprove" class="btn btnPointLine" href="#"
+							<a id="btnApprove" class="btn btnBlueLine" href="#"
 								onclick="fnScheduletcInput(2); return false;" style="display: none;">휴가승인</a>
 							<!--관리자 노출 버튼-->
 							<a id="btnApproveCancel" class="btn btnRedLine" href="#"
 								onclick="fnScheduletcInput(9); return false;" style="display: none;">휴가취소</a>
 							<!--관리자 노출 버튼-->
-							<a id="btnSave" class="btn btnPoint"
+							<a id="btnSave" class="btn btnBlue"
 								onclick="fnScheduletcInput(1); return false;" style="">저장</a>
 							<a id="btnDelete" class="btn btnRed" onclick="fnScheduleDelete(); return false;" href="#" style="display: none;">삭제</a>
 							<!--등록된 일정 클릭 시 노출 버튼-->
@@ -235,7 +235,7 @@
 							</table>
 						</div>
 						<div class="autoSizeLayerF">
-							<a href="#popclose" class="btn btnPoint"
+							<a href="#popclose" class="btn btnBlue"
 								onclick="fnUserSelect(); return false;">확인</a> <a
 								href="#popclose" class="btn btnWhite"
 								onclick="fnLayerPopupClose('CheckList'); return false;">닫기</a>

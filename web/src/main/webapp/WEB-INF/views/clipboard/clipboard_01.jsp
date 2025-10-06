@@ -31,7 +31,7 @@
 		<input type="hidden" id="mBIdx" value="10">
 			<section class="schBox">
 				<p>
-					총 <span id="totalCnt" class="colPoint">0</span>건
+					총 <span id="totalCnt" class="colBlue">0</span>건
 				</p>
 				&nbsp; <select id="cphBody_ddlDateSearch" style="width: 120px;">
 					<option value="">작성일</option>
@@ -39,7 +39,7 @@
 					type="text" id="txtEdate" class="cal" style="width: 120px;" onkeyup="fnDateMask(this);">&nbsp; <input
 					type="text" maxlength="100" id="txtRegName" placeholder="작성자" style="width: 120px;">&nbsp; <input type="text"
 					maxlength="100" id="txtTitle" placeholder="제목" style="width: 250px;"> <input type="submit" value="검색"
-					id="btnSch" class="btn btnPoint">
+					id="btnSch" class="btn btnBlue">
 			</section>
 			<section id="clipboard_01">
 				<section class="shadowBox">
@@ -124,13 +124,13 @@
 								<label for="ry_file">파일추가</label><input type="file" id="ry_file" name="ry_file" multiple="multiple">
 								<a href="#download" id="fileDownBtn" class="btn btnWhite"
 									 style="display: none;">파일전체 다운로드</a> <a
-									href="#input" id="fileUpBtn" class="btn btnPointLine floatR"
+									href="#input" id="fileUpBtn" class="btn btnBlueLine floatR"
 									 style="display: none;">파일 업로드</a>
 							</div>
 						</div>
 					</div>
 					<div class="boardFootBtn">
-						<a href="#reg" id="btnInput" class="btn btnPoint" onclick="fnBoardInput(0); return false;">등록</a>
+						<a href="#reg" id="btnInput" class="btn btnBlue" onclick="fnBoardInput(0); return false;">등록</a>
 						<a href="#del" id="btnDelete" class="btn btnRed" style="display: none;" onclick="fnBoardDelete(); return false;">삭제</a>
 						<a href="#can" id="btnCancel" class="btn btnWhite" onclick="fnBoardCancel(); return false;">취소</a>
 					</div>

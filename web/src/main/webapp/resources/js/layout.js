@@ -15,7 +15,8 @@ $(function () {
 	
 	// 사이트 메뉴
 	fnSiteMenu();
-		
+		console.log(_c_logUNmCnt);
+		console.log(_c_logNmCnt);
 });
 // 탑 메뉴 열기/닫기
 function fnTopBox() {

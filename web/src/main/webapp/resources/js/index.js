@@ -575,7 +575,7 @@ function fnMemoList() {
 					sHtml += '		<span class="pdL5 colGray2">' + reg_DATE_2 + '</span>' + '\n';
 					sHtml += '		<div class="floatR" data-uidx="' + user_IDX + '" data-rdate="' + reg_DATE + '">' + '\n';
 					sHtml += '			<a href="#" class="btn btnS btnWhite memoSave" onclick="fnMemoInput($(this)); return false;">저장</a>&nbsp;' + '\n';
-					sHtml += '			<a href="#" class="btn btnS btnPointLine memoDel" onclick="fnMemoDelete($(this)); return false;">삭제</a>' + '\n';
+					sHtml += '			<a href="#" class="btn btnS btnBlueLine memoDel" onclick="fnMemoDelete($(this)); return false;">삭제</a>' + '\n';
 					sHtml += '		</div>' + '\n';
 					sHtml += '		<textarea rows="5" cols="5" class="txtMemo" >' + memo + '</textarea>' + '\n';
 					sHtml += '	</div>' + '\n';
@@ -732,7 +732,7 @@ function fnMemoAdd() {
 	sHtml += '	<div class="placeTitle">' + '\n';
 	sHtml += '		<div class="floatR" data-uidx="0" data-rdate="">' + '\n';
 	sHtml += '			<a href="#" class="btn btnS btnWhite memoSave" onclick="fnMemoInput($(this)); return false;">저장</a>&nbsp;' + '\n';
-	sHtml += '			<a href="#" class="btn btnS btnPointLine memoDel" onclick="fnMemoDelete($(this)); return false;">삭제</a>' + '\n';
+	sHtml += '			<a href="#" class="btn btnS btnBlueLine memoDel" onclick="fnMemoDelete($(this)); return false;">삭제</a>' + '\n';
 	sHtml += '		</div>' + '\n';
 	sHtml += '		<textarea rows="5" cols="5" class="txtMemo" ></textarea>' + '\n';
 	sHtml += '	</div>' + '\n';
