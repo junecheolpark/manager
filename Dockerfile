@@ -5,7 +5,7 @@ FROM tomcat:8.5-jdk11
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # 3. WAR 파일 복사 (루트 경로로 배포)
-COPY target/ROOT.war /usr/local/tomcat/webapps/ROOT.war
+COPY ROOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # 4. 8080 포트 노출
 EXPOSE 8080
