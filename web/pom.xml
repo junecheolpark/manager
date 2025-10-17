@@ -4,7 +4,7 @@
 	<groupId>kr.co.juencheol</groupId>
 	<artifactId>web</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>ROOT</version>
 	<properties>
 		<java-version>11</java-version>
 		<org.springframework-version>5.3.20</org.springframework-version>
