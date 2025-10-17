@@ -26,8 +26,8 @@
 	        <section>
 	            <img src="/resources/images/login/logo.png" alt="junecheol">
 	            <p>LOGIN</p>
-	            <input class="mgB20" name="txtID" type="text" maxlength="100" id="txtID" placeholder="아이디를 입력해 주세요." value="">
-	            <input class="mgB20" name="txtPW" type="password" maxlength="100" id="txtPW" placeholder="비밀번호를 입력해 주세요." value="">
+	            <input class="mgB20" name="txtID" type="text" maxlength="100" id="txtID" placeholder="아이디를 입력해 주세요." value="test">
+	            <input class="mgB20" name="txtPW" type="password" maxlength="100" id="txtPW" placeholder="비밀번호를 입력해 주세요." value="master1234">
 	            <!-- <div class="pdTB20">
 		            <input type="checkbox" id="chkAutoLogin" placeholder="자동로그인">
 		            <label for="chkAutoLogin"></label>	                

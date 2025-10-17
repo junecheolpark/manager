@@ -20,6 +20,7 @@ $(function() {
 });
 
 // 공휴일 저장
+/*
 async function fnHolidayInput() {
 	try {
 		// 공공데이터포털에서 발급받은 서비스키 넣기
@@ -77,6 +78,7 @@ async function fnHolidayInput() {
 	}
 
 }
+*/
 
 // 출퇴근 등록/수정
 function fnWorkInoutInput() {
