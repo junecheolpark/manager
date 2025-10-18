@@ -7,7 +7,7 @@ $(function() {
 	fnCodeSelList([1, 16, '', '선택', 0, true, 0], $('#selUserSts'));
 	fnCodeSelList([1, 30, '', '구분', 0, true, 0], $('#selSchUserTp'));
 	fnCodeSelList([1, 30, '', '선택', 0, true, 0], $('#selUserTp'));
-	
+
 	fnEmailAutocomplate();
 	fnSortListView();
 
@@ -26,7 +26,7 @@ $(function() {
 		fnSortListView();
 		return false;
 	});
-	
+
 	// 선택 달력 이벤트 불러오기
 	$('.cal').datepicker({
 		language: 'ko-KR',
@@ -34,7 +34,7 @@ $(function() {
 		autoHide: true,
 		zIndex: 8889,
 	});
-	
+
 });
 
 // 목록 보기
@@ -72,7 +72,7 @@ function fnSortListView() {
 			const total = res;
 			//console.log(total);
 			$('#totalCnt').text(commify(total));
-			
+
 			fnSortList(total, paramMap);
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
@@ -266,8 +266,13 @@ function fnUserView() {
 
 			$('#pwRequired').hide();
 
-			$('#btnInput').text('수정');
-			$('#btnDelete').css('display', 'inline-block');
+			// 로그인한 계정과 같다면 수정가능
+			if (user_IDX == _c_logIdx) {
+				$('#btnInput').text('수정').show();
+				//$('#btnDelete').show();
+			}else{
+				$('#btnInput').hide();
+			}
 
 			fnLoadingClose();
 		},
@@ -441,7 +446,7 @@ function fnUserCancel() {
 	$('#txtPW').attr('placeholder', '');
 	$('#pwRequired').css('display', 'inline-block');
 
-	$('#btnInput').text('등록');
+	$('#btnInput').text('등록').show();
 	$('#btnDelete').hide();
 }
 

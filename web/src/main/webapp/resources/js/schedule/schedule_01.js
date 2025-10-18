@@ -119,7 +119,7 @@ $(function() {
 		valid_extensions: ['bmp', 'gif', 'png', 'jpg', 'jpeg', 'doc', 'docx', 'xls', 'xlsx', 'rar', 'pdf', 'hwp', 'ppt', 'pptx'],
 		onComplete: function(response) {
 			const items = response.fileDTOList[0];
-			console.log(items);
+			//console.log(items);
 			var status = response.status;
 			var code = null;
 			if (status == false) {
@@ -546,6 +546,7 @@ function fnUserScheduleView(pThis) {
 					$('#UploadFileView').show();
 					$('#UploadFileView').html(fHtml);
 				}
+				if (_c_logAdTp == 36) { // 총괄관리자일경우
 					$('#btnDelete').show();
 					if (approve_STS == 2) { // 승인
 						$("#selSchdule").prop("disabled", true);
@@ -557,6 +558,7 @@ function fnUserScheduleView(pThis) {
 						$('#btnApproveCancel').show();
 						$('#btnApprove').show();
 					}
+				}
 				(approve_STS == 1) ? $('#btnSave').show() : $('#btnSave').hide();
 				(approve_STS == 1) ? $('#btnDelFile1').show() : $('#btnDelFile1').hide();
 				$('.vacationShow').show();
@@ -601,8 +603,13 @@ function fnScheduletcInput(appSts) {
 	if (!fnAlertReturn('txtEDate', '종료일', '')) return false;
 	if (!fnAlertReturn('txtConts', '내역', '')) return false;
 
-	if (stp == 27 || stp == 29) { // 연차나 반차시 남은 연차개수 확인
-		if (_c_logUNmCnt - _c_logNmCnt <= 0) { alert("남은 연차가 없습니다."); return false; }
+	// 연차, 반차개수 확인
+	if (stp === 27 || stp === 29) { 
+		let leave = (stp === 27) ? 1 : 0.5;
+		if ((_c_logUNmCnt - _c_logNmCnt) < leave) {
+			alert("남은 연차/반차가 없습니다.");
+			return false;
+		}
 	}
 	// 연차,반차,반반차 외 등록 시 승인처리
 	if (!_schedule_Arr.includes(stp)) { appSts = 2; }

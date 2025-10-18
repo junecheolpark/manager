@@ -67,7 +67,7 @@ function fnVacationListView() {
 		},
 		success: function(res) {
 			const total = res;
-			console.log(res);
+			//console.log(res);
 
 			//commify= 천단위로 콤마 표시
 			$('#totalCnt').text(commify(total));
@@ -86,7 +86,7 @@ function fnVacationListView() {
 function fnVacationList(totalCnt, paramMap) {
 	paramMap.ltype = 2;
 	const jsonData = JSON.stringify(paramMap);
-	console.log(jsonData);
+	//console.log(jsonData);
 	$.ajax({
 		type: 'POST',
 		url: '/user/vacationList',

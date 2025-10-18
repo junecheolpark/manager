@@ -3,7 +3,6 @@
 	, _c_isMenuW = false;
 	
 $(function () {
-	
 	// 로그인 사용자 정보
 	fnLoginInfo();
 	
