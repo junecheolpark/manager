@@ -11,7 +11,7 @@ $(function(){
 	$('#selMonth').val(month).prop("selected", true);
 	fnDdlWeek(_today.toISOString());
 
-	fnPrNekWeekUpdate(0);
+	//fnPrNekWeekUpdate(0);
 
 	// , 년, 월 선택
 	$('#selYear, #selMonth').on('change', function() {
@@ -369,35 +369,35 @@ function fnDdlWeek(thisday) {
 	//console.log(thisday);
 	let year = Number(thisday.substring(0, 4))
 		, month = thisday.substring(5, 7)
-		, nowDate = new Date(year, Number(month) - 1, 1)
-		, lastDate = new Date(year, Number(month), 0)
-		, lastMonthSWeek = lastDate.getDay()
-		, monthSWeek = nowDate.getDay()
-		, weekSeq = parseInt((parseInt(lastDate.getDate()) + monthSWeek - 1) / 7) + 1
+		, nowDate = new Date(year, Number(month) - 1, 1) // 해당 연도와 월의 1일 객체
+		, lastDate = new Date(year, Number(month), 0) // 해당 월의 마지막 날 객체
+		, lastMonthSWeek = lastDate.getDay() // 마지막 날의 요일(0~6) 0=일요일...
+		, monthSWeek = nowDate.getDay() // 이번 달 1일의 요일
+		, weekSeq = parseInt((parseInt(lastDate.getDate()) + monthSWeek - 1) / 7) + 1 // 이번 달에 포함된 전체 주차 수 계산식
 		, cnt = 0
 		, sHtml = '';
-	if (monthSWeek == 0) {
+	if (monthSWeek == 0) { // 그 달의 1일이 일요일이면 루프 시작을 한 주 뒤로(cnt++) 전체 주 수(weekSeq) +1
 		cnt++;
 		weekSeq++;
-	} else if (monthSWeek == 6) {
+	} else if (monthSWeek == 6) { // 1일이 토요일이면 첫 주를 건너뛰기 위해 cnt++
 		cnt++;
 	}
-	if (lastMonthSWeek == 0) { weekSeq--; }
+	if (lastMonthSWeek == 0) { weekSeq--; } // 마지막 날이 일요일이면 주 1개 제외
 
 	for (let i = cnt; i < weekSeq; i++) {
-		let d = new Date(year + '-' + month + '-' + '01')
+		let d = new Date(year + '-' + month + '-' + '01') // 1일 날짜 객체 생성
 			, day = d.getDay(),
-			diff = d.getDate() - day + (day == 0 ? -6 : 1)
+			diff = d.getDate() - day + (day == 0 ? -6 : 1)  // 일요일(0)이면 -6 해서 앞주 월요일로
 			, monday = new Date(d.setDate(diff + (i * 7))).toISOString().substr(0, 10).split('-')
 			, friday = new Date(d.setDate(d.getDate() + 4)).toISOString().substr(0, 10).split('-')
 
 			, startYearDay = '1/1/' + monday[0]
 			, today = monday[1] + '/' + monday[2] + '/' + monday[0]
 
-			, dt = new Date(startYearDay)
-			, tDt = new Date(today)
+			, dt = new Date(startYearDay) // 올해의 1월 1일
+			, tDt = new Date(today) // 이번 주 월요일
 
-			, diffDay = (tDt - dt) / 86400000
+			, diffDay = (tDt - dt) / 86400000 // 1월 1일부터 월요일까지 지나온 일수
 
 			// 1월 1일부터 현재날자까지 차이에서 7을 나눠서 몇주가 지났는지 확인을 함
 			, weekDay = parseInt(diffDay / 7) + 1;

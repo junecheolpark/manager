@@ -10,7 +10,7 @@
 
     <!-- 상단 메뉴 -->
     <section class="topMenu">
-        <div class="logo"><h1><a href="/index"><img src="/resources/images/index/logo.png" alt="RYsoft"></a></h1></div>
+        <div class="logo"><h1><a href="/index"><img src="/resources/images/index/logo.png" alt="junecheol"></a></h1></div>
         <div class="menuList">
             <ul id="menuTop">
                 <li><a href="#menu" class="menuToggle" id="btnMenu"><img src="/resources/images/btn/btn_menu_open.png" alt="menuBtn"></a></li>
