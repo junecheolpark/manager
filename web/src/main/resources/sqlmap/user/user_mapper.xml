@@ -72,6 +72,7 @@
 			#{COMPANY_IDX},
 			#{ADMIN_TP},
 			#{JOIN_DATE},
+			#{BIRTHDAY},
 			#{REG_IDX},
 			#{RESULT_CD, mode=OUT, jdbcType=INTEGER}
 			)

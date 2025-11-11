@@ -178,15 +178,14 @@ function fnCodeSelList(arr, obj) {
 		cid: cid,
 		cnm: ''
 	}
-	const jsonData = JSON.stringify(paramMap);
-	//console.log(jsonData);
+	//const jsonData = JSON.stringify(paramMap);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/common/codeSelList',
-		data: jsonData,
+		data: paramMap,
 		async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
+		//contentType: 'application/json; charset=utf-8',
+		//dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			obj.html('<option value="' + arr[4] + '" data-id="">loading...</option>');
 		},

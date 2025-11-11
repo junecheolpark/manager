@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.junecheol.common.CommonFunc;
@@ -28,34 +29,34 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	private final Properties apiProps = CommonFunc.apiProp();	
+	private final Properties apiProps = CommonFunc.apiProp();
 	private final String uploadPath = CommonFunc.siteProp().getProperty("site.uploadPath");
 
 	// 사용자 목록 개수
-	@RequestMapping(value = "listTotal", method = RequestMethod.POST)
+	@RequestMapping(value = "listTotal", method = RequestMethod.GET)
 	@ResponseBody
-	public Integer userListTotal(@RequestBody final Map<String, Object> map) throws Exception {
+	public Integer userListTotal(@RequestParam final Map<String, Object> map) throws Exception {
 
 		Integer totalCnt = 0;
 
 		Map<String, Object> hashMap = new HashMap<String, Object>() {
 			private static final long serialVersionUID = 1L;
 			{
-				put("LIST_TP", (Integer) map.get("ltype"));
-				put("PAGE", (Integer) map.get("page"));
-				put("PAGE_SIZE", (Integer) map.get("psize"));
-				put("USER_TP", (Integer) map.get("usertp"));
-				put("USER_STS", (Integer) map.get("usersts"));
-				put("ADMIN_TP", (Integer) map.get("admintp"));
-				put("COMPANY_IDX", (Integer) map.get("cidx"));
+				put("LIST_TP", Integer.valueOf(map.get("ltype").toString()));
+				put("PAGE", Integer.valueOf(map.get("page").toString()));
+				put("PAGE_SIZE", Integer.valueOf(map.get("psize").toString()));
+				put("USER_TP", Integer.valueOf(map.get("usertp").toString()));
+				put("USER_STS", Integer.valueOf(map.get("usersts").toString()));
+				put("ADMIN_TP", Integer.valueOf(map.get("admintp").toString()));
+				put("COMPANY_IDX", Integer.valueOf(map.get("cidx").toString()));
 				put("COMPANY_NM", (String) map.get("cnm"));
-				put("SCH_DATE_TP", (Integer) map.get("datetp"));
+				put("SCH_DATE_TP", Integer.valueOf(map.get("datetp").toString()));
 				put("SDATE", (String) map.get("sdate"));
 				put("EDATE", (String) map.get("edate"));
-				put("SCH_SEL", (Integer) map.get("schsel"));
+				put("SCH_SEL", Integer.valueOf(map.get("schsel").toString()));
 				put("SCH_TXT", (String) map.get("schtxt"));
-				put("ORDER_BY", (Integer) map.get("orderby"));
-				put("DESC", (Integer) map.get("desc"));
+				put("ORDER_BY", Integer.valueOf(map.get("orderby").toString()));
+				put("DESC", Integer.valueOf(map.get("desc").toString()));
 			}
 		};
 
@@ -65,30 +66,30 @@ public class UserController {
 	}
 
 	// 사용자 목록
-	@RequestMapping(value = "list", method = RequestMethod.POST)
+	@RequestMapping(value = "list", method = RequestMethod.GET)
 	@ResponseBody
-	public List<UserDTO> userList(@RequestBody final Map<String, Object> map) throws Exception {
+	public List<UserDTO> userList(@RequestParam final Map<String, Object> map) throws Exception {
 
 		List<UserDTO> list = new ArrayList<UserDTO>();
 
 		Map<String, Object> hashMap = new HashMap<String, Object>() {
 			private static final long serialVersionUID = 1L;
 			{
-				put("LIST_TP", (Integer) map.get("ltype"));
-				put("PAGE", (Integer) map.get("page"));
-				put("PAGE_SIZE", (Integer) map.get("psize"));
-				put("USER_TP", (Integer) map.get("usertp"));
-				put("USER_STS", (Integer) map.get("usersts"));
-				put("ADMIN_TP", (Integer) map.get("admintp"));
-				put("COMPANY_IDX", (Integer) map.get("cidx"));
+				put("LIST_TP", Integer.valueOf(map.get("ltype").toString()));
+				put("PAGE", Integer.valueOf(map.get("page").toString()));
+				put("PAGE_SIZE", Integer.valueOf(map.get("psize").toString()));
+				put("USER_TP", Integer.valueOf(map.get("usertp").toString()));
+				put("USER_STS", Integer.valueOf(map.get("usersts").toString()));
+				put("ADMIN_TP", Integer.valueOf(map.get("admintp").toString()));
+				put("COMPANY_IDX", Integer.valueOf(map.get("cidx").toString()));
 				put("COMPANY_NM", (String) map.get("cnm"));
-				put("SCH_DATE_TP", (Integer) map.get("datetp"));
+				put("SCH_DATE_TP", Integer.valueOf(map.get("datetp").toString()));
 				put("SDATE", (String) map.get("sdate"));
 				put("EDATE", (String) map.get("edate"));
-				put("SCH_SEL", (Integer) map.get("schsel"));
+				put("SCH_SEL", Integer.valueOf(map.get("schsel").toString()));
 				put("SCH_TXT", (String) map.get("schtxt"));
-				put("ORDER_BY", (Integer) map.get("orderby"));
-				put("DESC", (Integer) map.get("desc"));
+				put("ORDER_BY", Integer.valueOf(map.get("orderby").toString()));
+				put("DESC", Integer.valueOf(map.get("desc").toString()));
 			}
 		};
 		list = userService.userList(hashMap);
@@ -97,16 +98,16 @@ public class UserController {
 	}
 
 	// 사용자 보기
-	@RequestMapping(value = "view", method = RequestMethod.POST)
+	@RequestMapping(value = "view", method = RequestMethod.GET)
 	@ResponseBody
-	public UserDTO userView(@RequestBody final Map<String, Object> map) throws Exception {
-//System.out.println("controller userView");		
+	public UserDTO userView(@RequestParam final Map<String, Object> map) throws Exception {
+//		System.out.println("controller userView");
 		UserDTO dto = new UserDTO();
 
 		Map<String, Object> hashMap = new HashMap<String, Object>() {
 			private static final long serialVersionUID = 1L;
 			{
-				put("USER_IDX", (Integer) map.get("uidx"));
+				put("USER_IDX", Integer.valueOf(map.get("uidx").toString()));
 			}
 		};
 
@@ -143,6 +144,7 @@ public class UserController {
 				put("COMPANY_IDX", (Integer) map.get("cidx"));
 				put("ADMIN_TP", (Integer) map.get("admintp"));
 				put("JOIN_DATE", (String) map.get("jdate"));
+				put("BIRTHDAY", (String) map.get("bdate"));
 				put("REG_IDX", (Integer) map.get("ridx"));
 				put("RESULT_CD", 9);
 			}
@@ -178,7 +180,6 @@ public class UserController {
 
 		return resultCd;
 	}
-
 
 	// 사용자 휴가 권한 개수
 	@RequestMapping(value = "VacationTotal", method = RequestMethod.POST)
@@ -235,7 +236,6 @@ public class UserController {
 
 		return list;
 	}
-
 
 	/**/
 	// 사용자 휴가 등록/수정
@@ -346,5 +346,5 @@ public class UserController {
 
 		return resultCd;
 	}
-	
+
 }

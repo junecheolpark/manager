@@ -45,7 +45,7 @@ function fnSortListView() {
 		psize: _pageSize,
 		usertp: parseInt($('#selSchUserTp').val()),
 		usersts: parseInt($('#selSchUserSts').val()),
-		admintp: parseInt($('#selSchAdTp').val()),
+		admintp: 0,
 		cidx: 0,
 		cnm: "",
 		datetp: 0,
@@ -56,15 +56,13 @@ function fnSortListView() {
 		orderby: 0,
 		desc: 0
 	}
-	const jsonData = JSON.stringify(paramMap);
-	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/user/listTotal',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
+		//contentType: 'application/json; charset=utf-8',
+		//dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
@@ -88,15 +86,15 @@ function fnSortListView() {
 // 목록
 function fnSortList(totalCnt, paramMap) {
 	paramMap.ltype = 2;
-	const jsonData = JSON.stringify(paramMap);
+	//const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/user/list',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
+		//contentType: 'application/json; charset=utf-8',
+		//dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			//if ($('.loading-layer').css('display') == 'none') $('.loading-layer').show();
 		},
@@ -144,7 +142,7 @@ function fnSortList(totalCnt, paramMap) {
 					sHtml += '	<td><p class="text-ellipsis" title="' + user_ID + '"><span>' + user_ID + '</span></p></td>' + '\n';
 					sHtml += '	<td>' + fnBlank(mobile, false) + '</td>' + '\n';
 					//sHtml += '	<td>' + fnBlank(email, false) + '</td>' + '\n';
-					sHtml += '	<td class="' + (user_STS == 37 ? 'colRed' : '') + '">' + user_STS_NM + '</td>' + '\n';
+					sHtml += '	<td class="' + (user_STS == 18 ? 'colRed' : '') + '">' + user_STS_NM + '</td>' + '\n';
 					sHtml += '</tr>' + '\n';
 				});
 
@@ -194,15 +192,13 @@ function fnUserView() {
 	const paramMap = {
 		uidx: uidx
 	}
-	const jsonData = JSON.stringify(paramMap);
-	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/user/view',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
+		//contentType: 'application/json; charset=utf-8',
+		//dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
@@ -329,8 +325,9 @@ function fnUserInput() {
 		usersts: parseInt($('#selUserSts').val()),
 		cidx: cidx,
 		admintp: atp,
-		jdate: $('#txtJDate').val(),
 		ridx: _c_logIdx,
+		jdate: $('#txtJDate').val(),
+		bdate: $('#txtBDate').val(),
 	}
 	const jsonData = JSON.stringify(paramMap);
 	$.ajax({

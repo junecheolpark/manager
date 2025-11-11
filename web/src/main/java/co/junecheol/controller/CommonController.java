@@ -50,10 +50,10 @@ public class CommonController {
 	private final Properties apiProps = CommonFunc.apiProp();
 	private final String cookieNm = CommonFunc.siteProp().getProperty("site.cookieNm");
 	private final String uploadPath = CommonFunc.siteProp().getProperty("site.uploadPath");
-	
+
 	@Autowired
 	MappingJackson2JsonView jsonView;
-	
+
 	@Autowired
 	private CommonService commonService;
 
@@ -119,30 +119,31 @@ public class CommonController {
 		return Arrays.stream(request.getCookies()).filter(cookie -> cookie.getName().equals(name)).findAny()
 				.orElse(null);
 	}
-	
+
 	// 코드 목록
-		@RequestMapping(value = "/common/codeSelList", method = RequestMethod.POST)
-		@ResponseBody
-		public List<CodeSelDTO> codeSelList(@RequestBody Map<String, Object> map) throws Exception {
-	//System.out.println("Controller codeSelList");
+	@RequestMapping(value = "/common/codeSelList", method = RequestMethod.GET)
+	@ResponseBody
+	public List<CodeSelDTO> codeSelList(@RequestParam Map<String, Object> map) throws Exception {
+		//System.out.println("Controller codeSelList");
 
-			Integer pidx = (Integer) map.get("pidx");
-			String cid = (String) map.get("cid"), cnm = (String) map.get("cnm");
-	//System.out.println("pidx = " + String.valueOf(pidx));
-	//System.out.println("cid = " + cid);
-			CodeSelDTO dto = new CodeSelDTO();
-			dto.setPARENT_IDX(pidx);
-			dto.setCODE_ID(cid);
-			dto.setCODE_NM(cnm);
+		// 전체 Map 출력
+		log.info("map = " + map);
+	    
+		Integer pidx = Integer.valueOf(map.get("pidx").toString());
+		String cid = (String) map.get("cid"), cnm = (String) map.get("cnm");
+		CodeSelDTO dto = new CodeSelDTO();
+		dto.setPARENT_IDX(pidx);
+		dto.setCODE_ID(cid);
+		dto.setCODE_NM(cnm);
 
-			List<CodeSelDTO> list = new ArrayList<CodeSelDTO>();
+		List<CodeSelDTO> list = new ArrayList<CodeSelDTO>();
 
-			list = commonService.codeSelList(dto);
+		list = commonService.codeSelList(dto);
+		log.info(list.toString());
 
-			return list;
-		}
-	
-	
+		return list;
+	}
+
 	/*******************/
 	/** 업무 보고 **/
 
@@ -166,7 +167,6 @@ public class CommonController {
 			return goErrorLogin();
 		}
 	}
-
 
 	/*******************/
 	/** 게시판 **/
@@ -326,7 +326,7 @@ public class CommonController {
 			return goErrorLogin();
 		}
 	}
-	
+
 	/*
 	 * 파일 업로드 utype : 업로드 파일명 구분 - 1:UUID, 2:년월일시분초밀리초+실제 파일명 ufolder : 업로드할 폴더명
 	 * uploadFiles : input[type=file] 요소
@@ -481,7 +481,7 @@ public class CommonController {
 		}
 		log.debug("#########################");
 	}
-	
+
 	@RequestMapping(value = "/common/uploadImgOne")
 	@ResponseBody
 	public void communityImageUpload(HttpServletRequest req, HttpServletResponse resp,
@@ -538,5 +538,5 @@ public class CommonController {
 
 		}
 	}
-	
+
 }
