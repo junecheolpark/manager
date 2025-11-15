@@ -13,6 +13,8 @@
 - **Database**: PostgreSQL
 - **형상관리**: Git, SVN
 
+<img width="1865" height="1056" alt="대표이미지" src="https://github.com/user-attachments/assets/9c6ab6e3-86c7-4e55-ae6f-f2a03019ab1e" />
+
 ---
 
 ## 주요 기능
@@ -22,6 +24,7 @@
 - 회원 관리/ 로그인 기능
 - 연차 부여 관리 기능
 - 시스템에 필요한 코드 관리 기능
+
 
 ---
 
@@ -45,7 +48,3 @@
 - ERD 확인: [https://www.erdcloud.com/d/omWNTfZnd67kXw8eC](https://www.erdcloud.com/d/omWNTfZnd67kXw8eC)
 
 ---
-
-## 테스트
-- 프로젝트 확인: [프로젝트 바로가기](https://manager-2k1u.onrender.com/)  
-(테스트 계정은 입력되어 있습니다. 서버가 자동으로 슬립 상태일 수 있어, 접속 후 약 1분 정도 기다리면 정상적으로 열립니다)
