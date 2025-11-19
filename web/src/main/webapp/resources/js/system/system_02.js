@@ -53,15 +53,12 @@ function fnVacationListView() {
 		orderby: 0,
 		desc: 0
 	}
-	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/user/VacationTotal',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
@@ -85,20 +82,17 @@ function fnVacationListView() {
 // 목록
 function fnVacationList(totalCnt, paramMap) {
 	paramMap.ltype = 2;
-	const jsonData = JSON.stringify(paramMap);
-	//console.log(jsonData);
+	console.log(paramMap);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/user/vacationList',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			//if ($('.loading-layer').css('display') == 'none') $('.loading-layer').show();
 		},
 		success: function(res) {
-			console.log(res);
+			//console.log(res);
 			const items = res
 				, objList = $('#AppList').children('tbody');
 			let sHtml = dept_NM = posi_NM = nm = ''

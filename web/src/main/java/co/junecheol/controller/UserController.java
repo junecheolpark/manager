@@ -182,25 +182,25 @@ public class UserController {
 	}
 
 	// 사용자 휴가 권한 개수
-	@RequestMapping(value = "VacationTotal", method = RequestMethod.POST)
+	@RequestMapping(value = "VacationTotal", method = RequestMethod.GET)
 	@ResponseBody
-	public Integer userVacationTotal(@RequestBody final Map<String, Object> map) throws Exception {
+	public Integer userVacationTotal(@RequestParam final Map<String, Object> map) throws Exception {
 
 		Integer totalCnt = 0;
-
+System.out.println(map.toString());
 		Map<String, Object> hashMap = new HashMap<String, Object>() {
 			private static final long serialVersionUID = 1L;
 			{
-				put("LIST_TP", (Integer) map.get("ltype"));
-				put("PAGE", (Integer) map.get("page"));
-				put("PAGE_SIZE", (Integer) map.get("psize"));
-				put("COMPANY_IDX", (Integer) map.get("cidx"));
-				put("YEAR", (Integer) map.get("year"));
-				put("USER_STS", (Integer) map.get("usersts"));
-				put("SCH_SEL", (Integer) map.get("schsel"));
-				put("SCH_TXT", (String) map.get("schtxt"));
-				put("ORDER_BY", (Integer) map.get("orderby"));
-				put("DESC", (Integer) map.get("desc"));
+				put("LIST_TP", Integer.valueOf(map.get("ltype").toString()));
+			    put("PAGE", Integer.valueOf(map.get("page").toString()));
+			    put("PAGE_SIZE", Integer.valueOf(map.get("psize").toString()));
+			    put("COMPANY_IDX", Integer.valueOf(map.get("cidx").toString()));
+			    put("YEAR", Integer.valueOf(map.get("year").toString()));
+			    put("USER_STS", Integer.valueOf(map.get("usersts").toString()));
+			    put("SCH_SEL", Integer.valueOf(map.get("schsel").toString()));
+			    put("SCH_TXT", (String) map.get("schtxt"));
+			    put("ORDER_BY", Integer.valueOf(map.get("orderby").toString()));
+			    put("DESC", Integer.valueOf(map.get("desc").toString()));
 			}
 		};
 
@@ -210,25 +210,25 @@ public class UserController {
 	}
 
 	// 사용자 휴가 권한
-	@RequestMapping(value = "vacationList", method = RequestMethod.POST)
+	@RequestMapping(value = "vacationList", method = RequestMethod.GET)
 	@ResponseBody
-	public List<UserDTO> userVacation(@RequestBody final Map<String, Object> map) throws Exception {
+	public List<UserDTO> userVacation(@RequestParam final Map<String, Object> map) throws Exception {
 
 		List<UserDTO> list = new ArrayList<UserDTO>();
 
 		Map<String, Object> hashMap = new HashMap<String, Object>() {
 			private static final long serialVersionUID = 1L;
 			{
-				put("LIST_TP", (Integer) map.get("ltype"));
-				put("PAGE", (Integer) map.get("page"));
-				put("PAGE_SIZE", (Integer) map.get("psize"));
-				put("COMPANY_IDX", (Integer) map.get("cidx"));
-				put("YEAR", (Integer) map.get("year"));
-				put("USER_STS", (Integer) map.get("usersts"));
-				put("SCH_SEL", (Integer) map.get("schsel"));
-				put("SCH_TXT", (String) map.get("schtxt"));
-				put("ORDER_BY", (Integer) map.get("orderby"));
-				put("DESC", (Integer) map.get("desc"));
+				put("LIST_TP", Integer.valueOf(map.get("ltype").toString()));
+			    put("PAGE", Integer.valueOf(map.get("page").toString()));
+			    put("PAGE_SIZE", Integer.valueOf(map.get("psize").toString()));
+			    put("COMPANY_IDX", Integer.valueOf(map.get("cidx").toString()));
+			    put("YEAR", Integer.valueOf(map.get("year").toString()));
+			    put("USER_STS", Integer.valueOf(map.get("usersts").toString()));
+			    put("SCH_SEL", Integer.valueOf(map.get("schsel").toString()));
+			    put("SCH_TXT", (String) map.get("schtxt"));
+			    put("ORDER_BY", Integer.valueOf(map.get("orderby").toString()));
+			    put("DESC", Integer.valueOf(map.get("desc").toString()));
 			}
 		};
 

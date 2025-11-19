@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.junecheol.dto.CodeDTO;
@@ -23,10 +24,11 @@ public class CodeController {
 
 	// 리스트 조회
 	@ResponseBody
-	@RequestMapping(value = "list")
-	public List<CodeDTO> codeList(@RequestBody Map<String, Object> map) throws Exception {
-		Integer cidx = (Integer) map.get("idx");
-
+	@RequestMapping(value = "list", method = RequestMethod.GET)
+	public List<CodeDTO> codeList(@RequestParam Map<String, Object> map) throws Exception {
+		Integer cidx = Integer.valueOf(map.get("idx").toString());
+		
+		
 		List<CodeDTO> list = new ArrayList<CodeDTO>();
 		list = codeService.codeList(cidx);
 		return list;
@@ -75,7 +77,7 @@ public class CodeController {
 				put("RESULT_CD", 9);
 			}
 		};
-		System.out.println(hashMap);
+		//System.out.println(hashMap);
 		codeService.codeSort(hashMap);
 		resultCd = (Integer) hashMap.get("RESULT_CD");
 

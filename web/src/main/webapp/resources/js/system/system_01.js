@@ -71,22 +71,18 @@ function fnCodeView(pNum, cidx) {
 	const paramMap = {
 		idx: cidx
 	}
-	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/code/list',
-		data: jsonData,
+		data: paramMap,
 		//async: false,		        
-		contentType: 'application/json; charset=UTF-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
 		success: function(res) {
 			let code_IDX = parent_IDX = code_STS = code_SORT = 0
 				, sHtml = code_NM = '';
-
 			// 페이지 열리면 대분류를 기본으로 보여준다.
 			if (pNum == 1) {
 				if (res.length == 0) {
@@ -168,6 +164,9 @@ function fnCodeView(pNum, cidx) {
 function fnCodeInput(pNum) {
 	let code_IDX = parent_IDX = code_SORT = 0
 		, code_ID, sHtml = '';
+
+	if (!fnAlertReturn('CateName'+ pNum , '코드명', '')) return false;
+	if (!fnAlertReturn('CateCode'+ pNum , '코드', '')) return false;
 
 	code_ID = $("#CateCode" + pNum).val();
 

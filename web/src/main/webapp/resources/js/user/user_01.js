@@ -458,14 +458,11 @@ function fnEmailAutocomplate() {
 				cid: '',
 				cnm: request.term
 			}
-			const jsonData = JSON.stringify(paramMap);
 			$.ajax({
-				type: 'POST',
+				type: 'GET',
 				url: '/common/codeSelList',
-				data: jsonData,
+				data: paramMap,
 				//async: false,
-				contentType: 'application/json; charset=utf-8',
-				dataType: 'json', // dataType is json format
 				beforeSend: function() {
 					//fnLoadingOpen();
 				},
