@@ -187,7 +187,6 @@ public class UserController {
 	public Integer userVacationTotal(@RequestParam final Map<String, Object> map) throws Exception {
 
 		Integer totalCnt = 0;
-System.out.println(map.toString());
 		Map<String, Object> hashMap = new HashMap<String, Object>() {
 			private static final long serialVersionUID = 1L;
 			{

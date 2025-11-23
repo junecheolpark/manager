@@ -10,10 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.junecheol.dto.HolidayDTO;
-import co.junecheol.dto.MyScheduleDTO;
 import co.junecheol.dto.ScheduleDTO;
 import co.junecheol.dto.WorkInoutDTO;
 import co.junecheol.service.ScheduleService;
@@ -25,9 +25,9 @@ public class ScheduleController {
 	private ScheduleService scheduleService;
 
 	// 사내일정 리스트
-	@RequestMapping(value = "list", method = RequestMethod.POST)
+	@RequestMapping(value = "list", method = RequestMethod.GET)
 	@ResponseBody
-	public List<ScheduleDTO> scheduleList(@RequestBody final Map<String, Object> map) throws Exception {
+	public List<ScheduleDTO> scheduleList(@RequestParam final Map<String, Object> map) throws Exception {
 
 		List<ScheduleDTO> list = new ArrayList<ScheduleDTO>();
 
@@ -35,7 +35,7 @@ public class ScheduleController {
 			Map<String, Object> hashMap = new HashMap<String, Object>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put("USER_IDX", (Integer) map.get("uidx"));
+					put("USER_IDX", Integer.valueOf(map.get("uidx").toString()));
 					put("SCH_SDATE", (String) map.get("sdate"));
 					put("SCH_EDATE", (String) map.get("edate"));
 				}

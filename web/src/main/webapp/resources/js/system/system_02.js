@@ -82,7 +82,6 @@ function fnVacationListView() {
 // 목록
 function fnVacationList(totalCnt, paramMap) {
 	paramMap.ltype = 2;
-	console.log(paramMap);
 	$.ajax({
 		type: 'GET',
 		url: '/user/vacationList',
@@ -160,7 +159,7 @@ function fnVacationInput() {
 		ridx: _c_logIdx
 	}
 	const jsonData = JSON.stringify(paramMap);
-	//console.log(paramMap);
+	console.log(jsonData);
 	$.ajax({
 		type: 'POST',
 		url: '/user/vacationInput',
@@ -204,12 +203,10 @@ function fnSchList(uidx, userNM) {
 	const jsonData = JSON.stringify(paramMap);
 	
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/schedule/list',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
