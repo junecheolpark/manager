@@ -86,12 +86,10 @@ function fnSortListView() {
 	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/board/listTotal',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
@@ -118,12 +116,10 @@ function fnSortList(totalCnt, paramMap) {
 	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/board/list',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			//if ($('.loading-layer').css('display') == 'none') $('.loading-layer').show();
 		},
@@ -211,12 +207,10 @@ function fnBoardView(bidx) {
 	//조회수 업
 	fnBoardInput(1);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/board/view',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
@@ -310,13 +304,6 @@ function fnBoardInput(regCnt) {
 					//파일등록
 					fnBoardFileInput();
 					alert('처리 되었습니다.');
-
-					if (_master_boardIdx == 11) {
-						let fcm_subj = '공지사항 ' + (board_IDX == 0 ? '등록' : '수정')
-							, fcm_conts = subj;
-
-						fnFCMSend(false, [1, 1, fcm_subj, fcm_conts, '', _c_logIdx, 0]);
-					}
 				}
 
 			} else {
@@ -421,11 +408,6 @@ function fnBoardFileInput() {
 		fnLoadingClose();
 		return false;
 	} else {
-		let conts = CKEDITOR.instances.resCnts.getData();
-		if (!fnAlertReturn('txtSubj', '제목', '')) return false;
-		if (conts == '' || conts == null) {
-			alert('내용을 입력해주세요');
-		}
 
 		const promise = new Promise(function(resolve, reject) {
 			fnLoadingOpen(); // 로딩 시작
@@ -492,7 +474,7 @@ function fnBoardFileInput() {
 							ridx: _c_logIdx
 						}
 						const jsonData = JSON.stringify(paramMap);
-						//console.log(jsonData);
+						console.log(jsonData);
 						$.ajax({
 							type: 'POST',
 							url: '/board/fileInput',
@@ -547,12 +529,10 @@ function fnBoardFileList(pFtp) {
 	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/board/fileList',
-		data: jsonData,
+		data: paramMap,
 		async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			//if (pIsLoadingView) fnLoadingOpen();
 		},

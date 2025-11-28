@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.junecheol.common.CommonFunc;
@@ -28,25 +29,25 @@ public class BoardController {
 	
 	
 	// 게시글 리스트 개수
-	@RequestMapping(value = "listTotal", method = RequestMethod.POST)
+	@RequestMapping(value = "listTotal", method = RequestMethod.GET)
 	@ResponseBody
-	public Integer companyListTotal(@RequestBody final Map<String, Object> map) throws Exception {
+	public Integer companyListTotal(@RequestParam final Map<String, Object> map) throws Exception {
 
 		Integer totalCnt = 0;
 		Map<String, Object> hashMap = new HashMap<String, Object>() {
 			private static final long serialVersionUID = 1L;
 			{
-				put("LIST_TP", (Integer) map.get("ltype"));
-				put("PAGE", (Integer) map.get("page"));
-				put("PAGESIZE", (Integer) map.get("psize"));
-				put("MASTER_BOARD_IDX", (Integer) map.get("midx"));
+				put("LIST_TP", Integer.valueOf(map.get("ltype").toString()));
+				put("PAGE", Integer.valueOf(map.get("page").toString()));
+				put("PAGESIZE", Integer.valueOf(map.get("psize").toString()));
+				put("MASTER_BOARD_IDX", Integer.valueOf(map.get("midx").toString()));
 				put("SEARCH_DATE1", (String) map.get("schd1"));
 				put("SEARCH_DATE2", (String) map.get("schd2"));
 				put("SEARCH_R_NM", (String) map.get("schrnm"));
-				put("SCH_SEL", (Integer) map.get("schsel"));
+				put("SCH_SEL", Integer.valueOf(map.get("schsel").toString()));
 				put("SCH_TXT", (String) map.get("schtxt"));
-				put("ORDER_BY", (Integer) map.get("orderby"));
-				put("DESC", (Integer) map.get("desc"));
+				put("ORDER_BY", Integer.valueOf(map.get("orderby").toString()));
+				put("DESC", Integer.valueOf(map.get("desc").toString()));
 			}
 		};
 		// System.out.println(hashMap);
@@ -56,26 +57,26 @@ public class BoardController {
 	}
 
 	// 게시글 리스트
-	@RequestMapping(value = "list", method = RequestMethod.POST)
+	@RequestMapping(value = "list", method = RequestMethod.GET)
 	@ResponseBody
-	public List<BoardDTO> companyList(@RequestBody final Map<String, Object> map) throws Exception {
+	public List<BoardDTO> companyList(@RequestParam final Map<String, Object> map) throws Exception {
 
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
 
 		Map<String, Object> hashMap = new HashMap<String, Object>() {
 			private static final long serialVersionUID = 1L;
 			{
-				put("LIST_TP", (Integer) map.get("ltype"));
-				put("PAGE", (Integer) map.get("page"));
-				put("PAGESIZE", (Integer) map.get("psize"));
-				put("MASTER_BOARD_IDX", (Integer) map.get("midx"));
+				put("LIST_TP", Integer.valueOf(map.get("ltype").toString()));
+				put("PAGE", Integer.valueOf(map.get("page").toString()));
+				put("PAGESIZE", Integer.valueOf(map.get("psize").toString()));
+				put("MASTER_BOARD_IDX", Integer.valueOf(map.get("midx").toString()));
 				put("SEARCH_DATE1", (String) map.get("schd1"));
 				put("SEARCH_DATE2", (String) map.get("schd2"));
 				put("SEARCH_R_NM", (String) map.get("schrnm"));
-				put("SCH_SEL", (Integer) map.get("schsel"));
+				put("SCH_SEL", Integer.valueOf(map.get("schsel").toString()));
 				put("SCH_TXT", (String) map.get("schtxt"));
-				put("ORDER_BY", (Integer) map.get("orderby"));
-				put("DESC", (Integer) map.get("desc"));
+				put("ORDER_BY", Integer.valueOf(map.get("orderby").toString()));
+				put("DESC", Integer.valueOf(map.get("desc").toString()));
 			}
 		};
 		list = boardService.boardList(hashMap);
@@ -84,16 +85,16 @@ public class BoardController {
 	}
 
 	// 게시글 보기
-	@RequestMapping(value = "view", method = RequestMethod.POST)
+	@RequestMapping(value = "view", method = RequestMethod.GET)
 	@ResponseBody
-	public BoardDTO companyView(@RequestBody final Map<String, Object> map) throws Exception {
+	public BoardDTO companyView(@RequestParam final Map<String, Object> map) throws Exception {
 		// System.out.println("controller companyView");
 		BoardDTO dto = new BoardDTO();
 
 		Map<String, Object> hashMap = new HashMap<String, Object>() {
 			private static final long serialVersionUID = 1L;
 			{
-				put("BOARD_IDX", (Integer) map.get("bidx"));
+				put("BOARD_IDX", Integer.valueOf(map.get("bidx").toString()));
 			}
 		};
 
@@ -101,7 +102,7 @@ public class BoardController {
 
 		return dto;
 	}
-	
+
 	// 게시글 등록/수정/조회수
 		@RequestMapping(value = "input", method = RequestMethod.POST)
 		@ResponseBody
@@ -154,17 +155,18 @@ public class BoardController {
 		}
 
 		// 게시판 파일 목록
-		@RequestMapping(value = "fileList", method = RequestMethod.POST)
+		@RequestMapping(value = "fileList", method = RequestMethod.GET)
 		@ResponseBody
-		public List<FileDTO> boardFileList(@RequestBody final Map<String, Object> map) throws Exception {
+		public List<FileDTO> boardFileList(@RequestParam final Map<String, Object> map) throws Exception {
 			List<FileDTO> list = new ArrayList<FileDTO>();
 
 			Map<String, Object> hashMap = new HashMap<String, Object>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put("BOARD_IDX", (Integer) map.get("bidx"));
-					put("FILE_IDX", (Integer) map.get("fidx"));
-					put("FILE_TP", (Integer) map.get("ftp"));
+					put("BOARD_IDX", Integer.valueOf(map.get("bidx").toString()));
+					put("FILE_IDX", Integer.valueOf(map.get("fidx").toString()));
+					put("FILE_TP", Integer.valueOf(map.get("ftp").toString()));
+
 				}
 			};
 
@@ -193,7 +195,7 @@ public class BoardController {
 
 				}
 			};
-			// System.out.println("hashMap : " + hashMap);
+			 System.out.println("hashMap : " + hashMap);
 			boardService.boardFileInput(hashMap);
 			resultCd = (Integer) hashMap.get("RESULT_CD");
 

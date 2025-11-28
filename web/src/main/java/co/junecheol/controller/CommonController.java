@@ -370,6 +370,7 @@ public class CommonController {
 		for (MultipartFile multipartFile : uploadFiles) {
 			size = multipartFile.getSize(); // 파일 사이즈
 			fileRealNm = multipartFile.getOriginalFilename();
+			System.out.println(fileRealNm);
 			fileExt = fileRealNm.substring(fileRealNm.lastIndexOf("."), fileRealNm.length()); // 서버에 저장할 파일 확장자
 			fileNm = "";
 

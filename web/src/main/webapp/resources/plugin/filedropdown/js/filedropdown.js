@@ -243,7 +243,8 @@ function fnRyUploaderUpFile(pID, pIsConf) {
 
 		formData.append('utype', 'multi'); // 업로드 구분 : 멀티 업로드
 		formData.append('ufolder', _fileFolder); // 업로드 폴더
-
+		
+		console.log(formData)
 		$.ajax({
 			url: '/common/fileupload',
 			data: formData,
