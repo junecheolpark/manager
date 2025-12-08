@@ -11,7 +11,7 @@ $(function(){
 	$('#selMonth').val(month).prop("selected", true);
 	fnDdlWeek(_today.toISOString());
 
-	//fnPrNekWeekUpdate(0);
+	fnPrNekWeekUpdate(0);
 
 	// , 년, 월 선택
 	$('#selYear, #selMonth').on('change', function() {
@@ -37,14 +37,12 @@ function fnWorkWeekList() {
 		uidx: 0
 	}
 	const jsonData = JSON.stringify(paramMap);
-	//console.log(jsonData);
+	console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/weekWork/list',
-		data: jsonData,
+		data: paramMap,
 		async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
@@ -113,12 +111,10 @@ function fnWorkWeekInputList() {
 	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/weekWork/list',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},

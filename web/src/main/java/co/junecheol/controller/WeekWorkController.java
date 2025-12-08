@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.junecheol.dto.WeekWorkDTO;
@@ -22,9 +23,9 @@ public class WeekWorkController {
 	private WeekWorkService weekWorkService;
 
 	// 주간업무 리스트
-	@RequestMapping(value = "list", method = RequestMethod.POST)
+	@RequestMapping(value = "list", method = RequestMethod.GET)
 	@ResponseBody
-	public List<WeekWorkDTO> weekWorkList(@RequestBody final Map<String, Object> map) throws Exception {
+	public List<WeekWorkDTO> weekWorkList(@RequestParam final Map<String, Object> map) throws Exception {
 
 		List<WeekWorkDTO> list = new ArrayList<WeekWorkDTO>();
 
@@ -32,11 +33,11 @@ public class WeekWorkController {
 			Map<String, Object> hashMap = new HashMap<String, Object>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put("PREVE_YEAR", (Integer) map.get("preyyyy"));
-					put("PREVE_WEEK_WORK", (Integer) map.get("prewwork"));
-					put("YEAR", (Integer) map.get("yyyy"));
-					put("WEEK_WORK", (Integer) map.get("wwork"));
-					put("USER_IDX", (Integer) map.get("uidx"));
+					put("PREVE_YEAR", Integer.valueOf(map.get("preyyyy").toString()));
+				    put("PREVE_WEEK_WORK", Integer.valueOf(map.get("prewwork").toString()));
+				    put("YEAR", Integer.valueOf(map.get("yyyy").toString()));
+				    put("WEEK_WORK", Integer.valueOf(map.get("wwork").toString()));
+				    put("USER_IDX", Integer.valueOf(map.get("uidx").toString()));
 				}
 			};
 			list = weekWorkService.weekWorkList(hashMap);
@@ -72,7 +73,7 @@ public class WeekWorkController {
 				}
 			};
 
-			System.out.println(hashMap);
+			//System.out.println(hashMap);
 			weekWorkService.weekWorkInput(hashMap);
 			resultCd = (Integer) hashMap.get("RESULT_CD");
 

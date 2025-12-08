@@ -278,17 +278,17 @@ public class UserController {
 	}
 
 	// 메모 목록
-	@RequestMapping(value = "memoList", method = RequestMethod.POST)
+	@RequestMapping(value = "memoList", method = RequestMethod.GET)
 	@ResponseBody
-	public List<MemoDTO> memoList(@RequestBody final Map<String, Object> map) throws Exception {
+	public List<MemoDTO> memoList(@RequestParam final Map<String, Object> map) throws Exception {
 
 		List<MemoDTO> list = new ArrayList<MemoDTO>();
 
 		Map<String, Object> hashMap = new HashMap<String, Object>() {
 			private static final long serialVersionUID = 1L;
 			{
-				put("USER_IDX", (Integer) map.get("uidx"));
-				put("SHOW_TP", (Integer) map.get("showtp"));
+				put("USER_IDX", Integer.valueOf(map.get("uidx").toString()));
+				put("SHOW_TP", Integer.valueOf(map.get("showtp").toString()));
 			}
 		};
 		list = userService.memoList(hashMap);

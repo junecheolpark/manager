@@ -335,12 +335,10 @@ function fnHolidayList() {
 		}
 	const jsonData = JSON.stringify(paramMap);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/schedule/holidayList',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
@@ -390,12 +388,10 @@ function fnSchList() {
 	//console.log(paramMap);
 	const jsonData = JSON.stringify(paramMap);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/schedule/list',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
@@ -480,12 +476,10 @@ function fnUserScheduleView(pThis) {
 	}
 	const jsonData = JSON.stringify(paramMap);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/schedule/view',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 		},
 		success: function(res) {

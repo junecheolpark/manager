@@ -548,12 +548,10 @@ function fnMemoList() {
 	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/user/memoList',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			//if ($('.loading-layer').css('display') == 'none') $('.loading-layer').show();
 		},

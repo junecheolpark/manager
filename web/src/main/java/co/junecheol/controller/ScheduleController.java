@@ -196,9 +196,9 @@ public class ScheduleController {
 	}
 
 	// 사내일정 뷰
-	@RequestMapping(value = "vacationView", method = RequestMethod.POST)
+	@RequestMapping(value = "vacationView", method = RequestMethod.GET)
 	@ResponseBody
-	public ScheduleDTO vacationView(@RequestBody final Map<String, Object> map) throws Exception {
+	public ScheduleDTO vacationView(@RequestParam final Map<String, Object> map) throws Exception {
 
 		ScheduleDTO dto = new ScheduleDTO();
 
@@ -206,8 +206,8 @@ public class ScheduleController {
 			Map<String, Object> hashMap = new HashMap<String, Object>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put("YEAR", (Integer) map.get("year"));
-					put("USER_IDX", (Integer) map.get("uidx"));
+					put("YEAR", Integer.valueOf(map.get("year").toString()));
+					put("USER_IDX", Integer.valueOf(map.get("uidx").toString()));
 				}
 			};
 			// System.out.println(hashMap);
@@ -274,9 +274,9 @@ public class ScheduleController {
 	}
 
 	// 공휴일 리스트
-	@RequestMapping(value = "holidayList", method = RequestMethod.POST)
+	@RequestMapping(value = "holidayList", method = RequestMethod.GET)
 	@ResponseBody
-	public List<HolidayDTO> holidayList(@RequestBody final Map<String, Object> map) throws Exception {
+	public List<HolidayDTO> holidayList(@RequestParam final Map<String, Object> map) throws Exception {
 
 		List<HolidayDTO> list = new ArrayList<HolidayDTO>();
 
