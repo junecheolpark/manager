@@ -128,12 +128,10 @@ function fnBoardNoticeView() {
 	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/board/view',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			//fnLoadingOpen();
 		},
@@ -190,12 +188,10 @@ function fnBoardList(midx) {
 	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/board/list',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			//if ($('.loading-layer').css('display') == 'none') $('.loading-layer').show();
 		},
@@ -282,12 +278,10 @@ function fnMySchedule() {
 	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/schedule/vacationView',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
@@ -408,12 +402,10 @@ function fnScheduleList() {
 	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/schedule/list',
-		data: jsonData,
+		data: paramMap,
 		//async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			fnLoadingOpen();
 		},
@@ -516,12 +508,10 @@ function fnHolidayList(sdate, edate) {
 	const jsonData = JSON.stringify(paramMap);
 	//console.log(jsonData);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: '/schedule/holidayList',
-		data: jsonData,
+		data: paramMap,
 		async: false,
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json', // dataType is json format
 		beforeSend: function() {
 			//fnLoadingOpen();
 		},
